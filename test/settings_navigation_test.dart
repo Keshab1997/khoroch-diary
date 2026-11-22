@@ -73,8 +73,6 @@ void main() {
         'profile-backup-row',
         'profile-sign-in-row',
         'profile-app-settings-row',
-        'profile-about-row',
-        'profile-logout-row',
       ];
 
       double lastDy = -1;
@@ -121,7 +119,7 @@ void main() {
 
         await _revealOn(
           tester,
-          find.byKey(const Key('settings-offline-backup-row')),
+          find.byKey(const Key('settings-storage-row')),
           screen: SettingsScreen,
         );
         expect(tester.takeException(), isNull);
@@ -133,7 +131,7 @@ void main() {
 
         await _revealOn(
           tester,
-          find.byKey(const Key('profile-logout-row')),
+          find.byKey(const Key('profile-licences-row')),
           screen: ProfileScreen,
         );
         expect(tester.takeException(), isNull);

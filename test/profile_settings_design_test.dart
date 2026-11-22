@@ -280,9 +280,8 @@ void main() {
       // Editing affordances and the honest local-only state are unchanged.
       expect(find.text('Edit name'), findsOneWidget);
       expect(find.text('Choose photo'), findsOneWidget);
-      expect(find.text('Not signed in'), findsOneWidget);
+      expect(find.text('Saved on this device'), findsOneWidget);
       expect(find.text('Local profile'), findsOneWidget);
-      expect(find.text('KHOROCH DIARY'), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
 
@@ -298,12 +297,8 @@ void main() {
       expect(find.byKey(const Key('profile-identity-card')), findsOneWidget);
       expect(find.text('Edit name'), findsOneWidget);
       expect(find.text('Choose photo'), findsOneWidget);
-      final Finder avatar = find.byKey(const Key('profile-avatar'));
-      expect(
-        tester.getBottomLeft(find.text('KHOROCH DIARY')).dy,
-        lessThan(tester.getTopLeft(avatar).dy),
-        reason: 'The avatar must not paint over the brand caption',
-      );
+      expect(find.text('Saved on this device'), findsOneWidget);
+      expect(find.byKey(const Key('profile-avatar')), findsOneWidget);
       // A cancelled picker is not an error state: the card stays usable.
       await tester.tap(find.text('Choose photo'));
       await tester.pumpAndSettle();
@@ -327,8 +322,7 @@ void main() {
       expect(find.text('স্থানীয় প্রোফাইল'), findsOneWidget);
       expect(find.text('নাম পরিবর্তন'), findsOneWidget);
       expect(find.text('ছবি বাছুন'), findsOneWidget);
-      // The brand caption is localized too, and no English tagline is left.
-      expect(find.text('খরচের ডায়েরি'), findsOneWidget);
+      expect(find.text('এই ডিভাইসে সংরক্ষিত'), findsOneWidget);
       expect(
         find.text('Khoroch Diary · Your ledger, on your phone'),
         findsNothing,
@@ -389,7 +383,7 @@ void main() {
 
       await reveal(
         tester,
-        find.byKey(const Key('settings-offline-backup-row')),
+        find.byKey(const Key('settings-storage-row')),
         screen: SettingsScreen,
       );
       expect(tester.takeException(), isNull);

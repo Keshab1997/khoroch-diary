@@ -15,24 +15,8 @@ import 'settings_screen.dart';
 String _profileText(AppLanguage language, String en, String bn) =>
     language == AppLanguage.bn ? bn : en;
 
-/// S5 - Profile, docs/spec/screens.md#s5--profile.
-///
-/// The honest, offline-first profile for this build, aligned with the S5
-/// reference layout (`docs/design/ui-preview.png`): branded account header,
-/// identity card (avatar with existing artwork, display name and signed-out
-/// account line), offline notice, and the reference action order:
-///   1. My Wallet Summary (`profile-wallet-row`)
-///   2. Offline backup / restore (`profile-backup-row`) + Cloud backup & sync
-///      (`profile-sign-in-row`)
-///   3. App Settings (`profile-app-settings-row`)
-///   4. About App (`profile-about-row`)
-///   5. Logout (`profile-logout-row`)
-/// followed by the static `About Khoroch Diary` facts and open-source licences
-/// (`profile-licences-row`).
-///
-/// Every row reuses [AccountRow] from `settings_screen.dart` so leading tiles
-/// and trailing chevrons stay aligned to the first line while titles and
-/// subtitles wrap across the full remaining width at 320 dp / 200% text scale.
+/// Profile keeps the account actions people use most in one short list, with
+/// app version and licences tucked into a small About section.
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
     super.key,
@@ -184,9 +168,7 @@ class ProfileScreen extends StatelessWidget {
                       language: language,
                       pickPhoto: onPickAvatar ?? pickProfilePhoto,
                     ),
-                  const SizedBox(height: 14),
-                  _OfflineNotice(language: language),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   AccountSectionPanel(
                     heading: strings.text(AppString.accountAndBackup),
                     children: <Widget>[
@@ -196,8 +178,8 @@ class ProfileScreen extends StatelessWidget {
                         title: strings.text(AppString.myWalletSummary),
                         subtitle: _profileText(
                           language,
-                          'Opening balance, income and expense for each khata.',
-                          'প্রতিটি খাতার প্রারম্ভিক ব্যালেন্স, আয় ও ব্যয়।',
+                          'See each khata’s balance.',
+                          'প্রতিটি খাতার ব্যালেন্স দেখুন।',
                         ),
                         status: onWalletSummary == null ? notAvailable : null,
                         onTap: onWalletSummary,
@@ -209,8 +191,8 @@ class ProfileScreen extends StatelessWidget {
                         title: strings.text(AppString.offlineBackupRestore),
                         subtitle: _profileText(
                           language,
-                          'Save or restore an unencrypted local backup file.',
-                          'এনক্রিপ্ট না করা স্থানীয় ব্যাকআপ সংরক্ষণ বা পুনরুদ্ধার করুন।',
+                          'Save or restore a backup file.',
+                          'ব্যাকআপ সংরক্ষণ বা পুনরুদ্ধার করুন।',
                         ),
                         status: onBackup == null ? notAvailable : null,
                         onTap: onBackup,
@@ -226,8 +208,8 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         subtitle: _profileText(
                           language,
-                          'Sign in with Google to back up khatas and sync across phones.',
-                          'গুগল দিয়ে সাইন ইন করে খাতা ব্যাকআপ করুন ও অন্য ফোনে সিঙ্ক করুন।',
+                          'Back up khatas and sync across phones.',
+                          'খাতা ব্যাকআপ ও অন্য ফোনে সিঙ্ক করুন।',
                         ),
                         status: onCloudBackup == null ? notAvailable : null,
                         onTap: onCloudBackup,
@@ -240,67 +222,12 @@ class ProfileScreen extends StatelessWidget {
                         subtitle: strings.text(AppString.settingsDescription),
                         onTap: () => _openSettings(context),
                       ),
-                      const AccountRowDivider(),
-                      AccountRow(
-                        key: const Key('profile-about-row'),
-                        icon: Icons.info_outline,
-                        title: _profileText(
-                          language,
-                          'About App',
-                          'অ্যাপ সম্পর্কে',
-                        ),
-                        subtitle: _profileText(
-                          language,
-                          'Dedicated about screen; version and licences are listed below.',
-                          'আলাদা পরিচিতি পাতা; নিচে সংস্করণ ও লাইসেন্স দেওয়া আছে।',
-                        ),
-                        status: notAvailable,
-                      ),
-                      const AccountRowDivider(),
-                      AccountRow(
-                        key: const Key('profile-logout-row'),
-                        icon: Icons.logout,
-                        title: _profileText(language, 'Logout', 'লগ আউট'),
-                        subtitle: _profileText(
-                          language,
-                          'Sign-out applies only after an account is connected.',
-                          'অ্যাকাউন্ট যুক্ত হলে তবেই সাইন আউট প্রযোজ্য হবে।',
-                        ),
-                        status: notAvailable,
-                        destructive: true,
-                      ),
                     ],
                   ),
                   const SizedBox(height: 20),
                   AccountSectionPanel(
                     heading: strings.text(AppString.about),
                     children: <Widget>[
-                      Padding(
-                        key: const Key('profile-footer-tagline'),
-                        padding: const EdgeInsets.fromLTRB(14, 12, 14, 10),
-                        child: Text(
-                          _profileText(
-                            language,
-                            'Khoroch Diary · Your ledger, on your phone',
-                            'খরচের ডায়েরি · আপনার হিসাব, আপনার ফোনে',
-                          ),
-                          textAlign: TextAlign.center,
-                          textDirection: TextDirection.ltr,
-                          style: const TextStyle(
-                            color: AppColors.softText,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0.2,
-                          ),
-                        ),
-                      ),
-                      const Divider(
-                        height: 1,
-                        thickness: 1,
-                        indent: 14,
-                        endIndent: 14,
-                        color: AppColors.outline,
-                      ),
                       AccountRow(
                         key: const Key('profile-version'),
                         icon: Icons.info_outline,
@@ -309,44 +236,9 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       const AccountRowDivider(),
                       AccountRow(
-                        icon: Icons.smartphone_outlined,
-                        eyebrow: _profileText(
-                          language,
-                          'Where your data lives',
-                          'তথ্য কোথায় থাকে',
-                        ),
-                        title: strings.text(AppString.thisDeviceOnly),
-                      ),
-                      const AccountRowDivider(),
-                      AccountRow(
-                        icon: Icons.currency_rupee,
-                        eyebrow: strings.text(AppString.money),
-                        title: _profileText(
-                          language,
-                          'Indian rupees (INR), Indian digit grouping',
-                          'ভারতীয় রুপি (INR), ভারতীয় সংখ্যা বিন্যাস',
-                        ),
-                      ),
-                      const AccountRowDivider(),
-                      AccountRow(
-                        icon: Icons.light_mode_outlined,
-                        eyebrow: strings.text(AppString.theme),
-                        title: _profileText(
-                          language,
-                          'Light only',
-                          'শুধু হালকা',
-                        ),
-                      ),
-                      const AccountRowDivider(),
-                      AccountRow(
                         key: const Key('profile-licences-row'),
                         icon: Icons.description_outlined,
                         title: strings.text(AppString.licences),
-                        subtitle: _profileText(
-                          language,
-                          'Software Khoroch Diary is built with.',
-                          'খরচের ডায়েরিে ব্যবহৃত সফটওয়্যার।',
-                        ),
                         onTap: () => _openLicences(context),
                       ),
                     ],
@@ -544,109 +436,70 @@ class _EditableIdentityCardState extends State<_EditableIdentityCard> {
     final bool hasName = profile.name.isNotEmpty;
     return AccountSurfaceCard(
       key: const Key('profile-identity-card'),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          _IdentityBanner(caption: _text('KHOROCH DIARY', 'খরচের ডায়েরি')),
-          // Keep the brand caption and the avatar in separate vertical space.
-          // A negative overlap hides the caption behind an opaque profile photo.
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: Center(child: _avatar(profile)),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(18, 0, 18, 12),
-            child: Column(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(18, 18, 18, 12),
+        child: Column(
+          children: <Widget>[
+            _avatar(profile),
+            const SizedBox(height: 10),
+            Text(
+              hasName
+                  ? profile.name
+                  : _text('Local profile', 'স্থানীয় প্রোফাইল'),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                color: AppColors.darkText,
+                height: 1.25,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              _text('Saved on this device', 'এই ডিভাইসে সংরক্ষিত'),
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 12.5, color: AppColors.softText),
+            ),
+            const SizedBox(height: 6),
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 4,
               children: <Widget>[
-                Text(
-                  hasName
-                      ? profile.name
-                      : _text('Local profile', 'স্থানীয় প্রোফাইল'),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.darkText,
-                    height: 1.25,
+                TextButton.icon(
+                  onPressed: _busy ? null : _editName,
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.primaryGreen,
                   ),
+                  icon: const Icon(Icons.edit_outlined, size: 18),
+                  label: Text(_text('Edit name', 'নাম পরিবর্তন')),
                 ),
-                const SizedBox(height: 8),
-                AccountStatusChip(
-                  label: _text('Not signed in', 'সাইন ইন করা হয়নি'),
+                TextButton.icon(
+                  onPressed: _busy ? null : _choosePhoto,
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.primaryGreen,
+                  ),
+                  icon: const Icon(Icons.camera_alt, size: 18),
+                  label: Text(_text('Choose photo', 'ছবি বাছুন')),
                 ),
-                const SizedBox(height: 6),
-                Text(
-                  _text(
-                    'Saved on this device only. Add a name and a photo if you like - nothing is uploaded.',
-                    'শুধু এই ডিভাইসে সংরক্ষিত। চাইলে নাম ও ছবি যোগ করুন - কিছু আপলোড হয় না।',
+                if (profile.avatarBytes != null)
+                  TextButton.icon(
+                    onPressed: _busy
+                        ? null
+                        : () => _save(LocalProfile(name: profile.name)),
+                    icon: const Icon(
+                      Icons.delete_outline,
+                      size: 18,
+                      color: AppColors.expenseRed,
+                    ),
+                    label: Text(
+                      _text('Remove photo', 'ছবি সরান'),
+                      style: const TextStyle(color: AppColors.darkText),
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 12.5,
-                    height: 1.4,
-                    color: AppColors.softText,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Divider(
-                  height: 1,
-                  thickness: 1,
-                  color: AppColors.outline,
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 6,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.lightGreen.withValues(alpha: 0.45),
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
-                    spacing: 2,
-                    runSpacing: 0,
-                    children: <Widget>[
-                      TextButton.icon(
-                        onPressed: _busy ? null : _editName,
-                        style: TextButton.styleFrom(
-                          foregroundColor: AppColors.primaryGreen,
-                        ),
-                        icon: const Icon(Icons.edit_outlined, size: 18),
-                        label: Text(_text('Edit name', 'নাম পরিবর্তন')),
-                      ),
-                      TextButton.icon(
-                        onPressed: _busy ? null : _choosePhoto,
-                        style: TextButton.styleFrom(
-                          foregroundColor: AppColors.primaryGreen,
-                        ),
-                        icon: const Icon(Icons.camera_alt, size: 18),
-                        label: Text(_text('Choose photo', 'ছবি বাছুন')),
-                      ),
-                      if (profile.avatarBytes != null)
-                        TextButton.icon(
-                          onPressed: _busy
-                              ? null
-                              : () => _save(LocalProfile(name: profile.name)),
-                          icon: const Icon(
-                            Icons.delete_outline,
-                            size: 18,
-                            color: AppColors.expenseRed,
-                          ),
-                          label: Text(
-                            _text('Remove photo', 'ছবি সরান'),
-                            style: const TextStyle(color: AppColors.darkText),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -663,161 +516,55 @@ class _IdentityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AccountSurfaceCard(
       key: const Key('profile-identity-card'),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          _IdentityBanner(
-            caption: _profileText(language, 'KHOROCH DIARY', 'খরচের ডায়েরি'),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 12, bottom: 10),
-            child: Center(
-              child: ExcludeSemantics(
-                child: Container(
-                  width: 76,
-                  height: 76,
-                  decoration: BoxDecoration(
-                    color: AppColors.lightGreen,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.golden, width: 2.5),
-                  ),
-                  child: ClipOval(
-                    child: Image.asset(
-                      'assets/illustrations/home_wallet.png',
-                      width: 76,
-                      height: 76,
-                      fit: BoxFit.cover,
-                      errorBuilder:
-                          (
-                            BuildContext context,
-                            Object error,
-                            StackTrace? stackTrace,
-                          ) => const ColoredBox(
-                            color: AppColors.lightGreen,
-                            child: Icon(
-                              Icons.account_balance_wallet_outlined,
-                              size: 34,
-                              color: AppColors.primaryGreen,
-                            ),
-                          ),
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          children: <Widget>[
+            ExcludeSemantics(
+              child: Container(
+                width: 72,
+                height: 72,
+                decoration: BoxDecoration(
+                  color: AppColors.lightGreen,
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColors.golden, width: 2),
+                ),
+                child: ClipOval(
+                  child: Image.asset(
+                    'assets/illustrations/home_wallet.png',
+                    width: 72,
+                    height: 72,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => const Icon(
+                      Icons.account_balance_wallet_outlined,
+                      size: 34,
+                      color: AppColors.primaryGreen,
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(18, 0, 18, 16),
-            child: Column(
-              children: <Widget>[
-                Text(
-                  _profileText(language, 'Local profile', 'স্থানীয় প্রোফাইল'),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.darkText,
-                    height: 1.25,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                AccountStatusChip(
-                  label: _profileText(
-                    language,
-                    'Not signed in',
-                    'সাইন ইন করা হয়নি',
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  _profileText(
-                    language,
-                    'No account is linked to Khoroch Diary. Everything you enter stays in the local database on this device.',
-                    'খরচের ডায়েরিে কোনো অ্যাকাউন্ট যুক্ত নেই। আপনার সব তথ্য এই ডিভাইসের ডেটাবেসে থাকে।',
-                  ),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    height: 1.4,
-                    color: AppColors.softText,
-                  ),
-                ),
-              ],
+            const SizedBox(height: 10),
+            Text(
+              _profileText(language, 'Local profile', 'স্থানীয় প্রোফাইল'),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                color: AppColors.darkText,
+              ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// The truthful sync state, given its own card so it cannot be missed.
-class _OfflineNotice extends StatelessWidget {
-  const _OfflineNotice({required this.language});
-  final AppLanguage language;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      container: true,
-      label: _profileText(
-        language,
-        'Offline and local-only. Khoroch Diary works without internet. Entries are saved on this device only, and nothing is uploaded.',
-        'অফলাইন এবং স্থানীয়। খরচের ডায়েরি ইন্টারনেট ছাড়াই চলে। এন্ট্রি শুধু এই ডিভাইসে থাকে; কিছু আপলোড হয় না।',
-      ),
-      child: ExcludeSemantics(
-        child: AccountSurfaceCard(
-          key: const Key('profile-offline-status'),
-          background: AppColors.lightGreen,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const AccountIconBadge(
-                  icon: Icons.cloud_off_outlined,
-                  size: 40,
-                  radius: 12,
-                  iconSize: 21,
-                  background: AppColors.surface,
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        _profileText(
-                          language,
-                          'Offline & local-only',
-                          'অফলাইন ও শুধু স্থানীয়',
-                        ),
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.darkText,
-                          height: 1.3,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        _profileText(
-                          language,
-                          'Khoroch Diary works without internet. Entries are written to this device only - nothing is uploaded, and there is no cloud copy to restore.',
-                          'খরচের ডায়েরি ইন্টারনেট ছাড়া চলে। এন্ট্রি শুধু এই ডিভাইসে থাকে; কিছু আপলোড হয় না এবং পুনরুদ্ধারের জন্য ক্লাউড কপি নেই।',
-                        ),
-                        style: const TextStyle(
-                          fontSize: 12.5,
-                          height: 1.4,
-                          color: AppColors.softText,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            const SizedBox(height: 4),
+            Text(
+              _profileText(
+                language,
+                'Saved on this device',
+                'এই ডিভাইসে সংরক্ষিত',
+              ),
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 12.5, color: AppColors.softText),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -847,53 +594,6 @@ class _SettingsGear extends StatelessWidget {
           color: AppColors.onPrimary,
           tooltip: _profileText(language, 'App settings', 'অ্যাপ সেটিংস'),
         ),
-      ),
-    );
-  }
-}
-
-/// The light-green caption band on top of the identity card: the same brand
-/// caption idiom the rest of the app uses, scaled to a card.
-class _IdentityBanner extends StatelessWidget {
-  const _IdentityBanner({required this.caption});
-
-  final String caption;
-
-  /// Fixed height so the avatar space below it is deterministic.
-  static const double height = 56;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      decoration: const BoxDecoration(
-        color: AppColors.lightGreen,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(19)),
-      ),
-      alignment: Alignment.center,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Icon(
-            Icons.menu_book_outlined,
-            size: 15,
-            color: AppColors.primaryGreen,
-          ),
-          const SizedBox(width: 8),
-          Flexible(
-            child: Text(
-              caption,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 2.4,
-                color: AppColors.primaryGreen,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

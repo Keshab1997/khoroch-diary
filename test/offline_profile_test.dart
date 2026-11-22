@@ -40,7 +40,7 @@ void main() {
     expect((await second.load()).name, 'বাংলা');
   });
 
-  testWidgets('Bengali profile shows localized offline and menu copy', (
+  testWidgets('Bengali profile shows localized profile and menu copy', (
     tester,
   ) async {
     tester.view.physicalSize = const Size(800, 2000);
@@ -49,7 +49,8 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(home: ProfileScreen(language: AppLanguage.bn)),
     );
-    expect(find.text('অফলাইন ও শুধু স্থানীয়'), findsOneWidget);
+    expect(find.text('স্থানীয় প্রোফাইল'), findsOneWidget);
+    expect(find.text('এই ডিভাইসে সংরক্ষিত'), findsOneWidget);
     expect(find.text('অ্যাপ সেটিংস'), findsOneWidget);
     expect(find.text('খরচের ডায়েরি সম্পর্কে'), findsOneWidget);
   });

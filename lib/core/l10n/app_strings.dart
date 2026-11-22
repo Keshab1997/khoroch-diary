@@ -322,10 +322,7 @@ enum AppString {
     'শুধু ওয়েব প্রিভিউ। ওয়েবে ডিভাইসে খাতা বা ব্যাকআপ রাখার সুবিধা নেই।',
   ),
   accountAndBackup('Account & backup', 'অ্যাকাউন্ট ও ব্যাকআপ'),
-  settingsDescription(
-    'Currency, theme, language and backup.',
-    'মুদ্রা, থিম, ভাষা ও ব্যাকআপ।',
-  ),
+  settingsDescription('Language and app preferences.', 'ভাষা ও অ্যাপের পছন্দ।'),
   myWalletSummary('My Wallet Summary', 'আমার ওয়ালেটের সারাংশ'),
   walletDescription(
     'Opening balance, income and expense for each khata.',
@@ -372,27 +369,24 @@ enum AppString {
   preferences('Preferences', 'পছন্দ'),
   currency('Currency', 'মুদ্রা'),
   currencyDetail(
-    'Amounts are shown in Indian rupees with Indian digit grouping. Other currencies are not available.',
-    'টাকার অঙ্ক ভারতীয় রুপিতে ও ভারতীয় বিন্যাসে দেখানো হয়। অন্য মুদ্রার সুবিধা নেই।',
+    'All amounts use Indian rupees.',
+    'সব অঙ্ক ভারতীয় রুপিতে দেখানো হয়।',
   ),
   currencyInr('INR (₹)', 'ভারতীয় রুপি (₹)'),
   fixed('Fixed in v1', 'প্রথম সংস্করণে নির্ধারিত'),
   theme('Theme', 'থিম'),
   themeDetail(
-    'Khoroch Diary uses its light, paper-style theme. Dark mode is not available.',
-    'খরচের ডায়েরিে কাগজের মতো হালকা থিম ব্যবহার করা হয়। গাঢ় থিম নেই।',
+    'The app uses a light theme.',
+    'অ্যাপে হালকা থিম ব্যবহার করা হয়।',
   ),
   light('Light', 'হালকা'),
   language('Language', 'ভাষা'),
   languageUnavailable(
-    'Changing between English and Bengali is not possible yet in this build.',
-    'এই সংস্করণে ইংরেজি ও বাংলার মধ্যে ভাষা বদলানো যায় না।',
+    'Language change is not available here.',
+    'এখানে ভাষা বদলানোর সুবিধা নেই।',
   ),
   changeLanguage('Change language', 'ভাষা বদলান'),
-  languageDetail(
-    'Choose English or Bengali. The preference applies where translations are wired up.',
-    'ইংরেজি বা বাংলা বেছে নিন। যেখানে অনুবাদ যুক্ত আছে, সেখানেই এই পছন্দ কার্যকর হবে।',
-  ),
+  languageDetail('Choose English or Bengali.', 'ইংরেজি বা বাংলা বেছে নিন।'),
   languagePending(
     'Saving language preference…',
     'ভাষার পছন্দ সংরক্ষণ করা হচ্ছে…',
@@ -408,13 +402,17 @@ enum AppString {
   ),
   off('Off', 'বন্ধ'),
   storage('Storage', 'তথ্য সংরক্ষণ'),
-  storageTitle('Where entries are saved', 'লেনদেন কোথায় সংরক্ষিত হয়'),
+  storageTitle('Your data', 'আপনার তথ্য'),
   storageDetail(
-    'Entries go into this device’s local database. Uninstalling removes the local database.',
-    'লেনদেন এই ডিভাইসের ডেটাবেসে থাকে। অ্যাপ আনইনস্টল করলে ডেটাবেসটি মুছে যায়।',
+    'Your entries are saved on this device.',
+    'আপনার লেনদেন এই ডিভাইসেই সংরক্ষিত থাকে।',
   ),
   thisDevice('This device', 'এই ডিভাইস'),
   localOnly('Local only', 'শুধু ডিভাইসে'),
+  settingsBackupHint(
+    'Back up or restore from Profile.',
+    'প্রোফাইল থেকে ব্যাকআপ নিন বা পুনরুদ্ধার করুন।',
+  ),
   internetRequired('Internet required', 'ইন্টারনেট প্রয়োজন'),
   internetDetail(
     'The app works offline and does not upload your ledger.',

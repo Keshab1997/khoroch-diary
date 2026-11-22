@@ -9,7 +9,7 @@ import 'package:khoroch_diary/core/l10n/app_strings.dart';
 import 'package:khoroch_diary/features/profile/settings_screen.dart';
 
 const _changeKey = Key('settings-change-language');
-const _backupKey = Key('settings-offline-backup-row');
+const _backupKey = Key('settings-storage-row');
 const _en = AppStrings();
 const _bn = AppStrings(AppLanguage.bn);
 
@@ -70,29 +70,24 @@ void main() {
     expect(tester.takeException(), isNull);
   }, skip: !kIsWeb);
 
-  testWidgets('unwired settings are read-only with fixed currency and theme', (
-    tester,
-  ) async {
-    await _pump(tester, const SettingsScreen());
-    expect(find.text('English'), findsOneWidget);
-    expect(find.text('Read-only in this build'), findsOneWidget);
-    expect(find.byKey(_changeKey), findsNothing);
-    expect(find.text('INR (₹)'), findsOneWidget);
-    expect(find.text('Light'), findsOneWidget);
-    expect(find.text('Fixed in v1'), findsNWidgets(2));
-    expect(find.textContaining('cloud sync are unavailable'), findsOneWidget);
-    await tester.scrollUntilVisible(find.byKey(_backupKey), 200);
-    expect(find.textContaining('unencrypted offline JSON'), findsOneWidget);
-    expect(
-      find.textContaining('contains khatas and transactions'),
-      findsOneWidget,
-    );
-    expect(
-      find.textContaining('excludes profile and note-count data'),
-      findsOneWidget,
-    );
-    expect(find.textContaining('somewhere private'), findsOneWidget);
-  }, skip: kIsWeb);
+  testWidgets(
+    'unwired settings show concise fixed values and backup guidance',
+    (tester) async {
+      await _pump(tester, const SettingsScreen());
+      expect(find.text('English'), findsOneWidget);
+      expect(find.text('Read-only in this build'), findsNothing);
+      expect(find.byKey(_changeKey), findsNothing);
+      expect(find.text('INR (₹)'), findsOneWidget);
+      expect(find.text('Light'), findsOneWidget);
+      expect(find.text('Fixed in v1'), findsNothing);
+      expect(find.textContaining('cloud sync are unavailable'), findsNothing);
+      expect(find.byKey(_backupKey), findsOneWidget);
+      expect(find.text('Your data'), findsOneWidget);
+      expect(find.text('Back up or restore from Profile.'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+    skip: kIsWeb,
+  );
 
   testWidgets(
     'only the caller can change the committed language after saving',
@@ -192,7 +187,7 @@ void main() {
     skip: kIsWeb,
   );
 
-  testWidgets('320dp at 200% text: picker and privacy notice are reachable', (
+  testWidgets('320dp at 200% text: language picker stays usable', (
     tester,
   ) async {
     await _pump(
@@ -202,8 +197,8 @@ void main() {
     );
     await tester.scrollUntilVisible(find.byKey(_changeKey), 120);
     await _selectBengali(tester);
-    await tester.scrollUntilVisible(find.byKey(_backupKey), 120);
-    expect(find.textContaining('unencrypted offline JSON'), findsOneWidget);
+    expect(find.text(_en.text(AppString.appSettings)), findsOneWidget);
+    expect(find.text('English'), findsOneWidget);
     expect(tester.takeException(), isNull);
   }, skip: kIsWeb);
 }

@@ -177,12 +177,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: SafeArea(
               top: false,
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(16, 20, 16, 28),
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
                 children: <Widget>[
-                  if (!canChoose) ...<Widget>[
-                    _ReadOnlyNotice(strings),
-                    const SizedBox(height: 20),
-                  ],
                   AccountSectionPanel(
                     heading: text(AppString.preferences),
                     children: <Widget>[
@@ -192,7 +188,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: text(AppString.currency),
                         subtitle: text(AppString.currencyDetail),
                         value: text(AppString.currencyInr),
-                        status: text(AppString.fixed),
                         mergeReadOnlySemantics: true,
                       ),
                       const AccountRowDivider(),
@@ -202,7 +197,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: text(AppString.theme),
                         subtitle: text(AppString.themeDetail),
                         value: text(AppString.light),
-                        status: text(AppString.fixed),
                         mergeReadOnlySemantics: true,
                       ),
                       const AccountRowDivider(),
@@ -222,7 +216,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       if (canChoose) ...<Widget>[
                         const AccountRowDivider(),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
+                          padding: const EdgeInsets.fromLTRB(14, 8, 14, 12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -239,7 +233,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               ),
                               if (_busy || _failed)
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 10),
+                                  padding: const EdgeInsets.only(top: 8),
                                   child: Semantics(
                                     liveRegion: true,
                                     child: Row(
@@ -278,19 +272,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ),
                       ],
-                      const AccountRowDivider(),
-                      AccountRow(
-                        key: const Key('settings-backup-row'),
-                        icon: Icons.cloud_off_outlined,
-                        title: text(AppString.cloudBackup),
-                        subtitle: text(AppString.cloudDetail),
-                        value: text(AppString.off),
-                        status: text(AppString.notAvailable),
-                        mergeReadOnlySemantics: true,
-                      ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 12),
                   AccountSectionPanel(
                     heading: text(AppString.storage),
                     children: <Widget>[
@@ -300,49 +284,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: text(AppString.storageTitle),
                         subtitle: text(AppString.storageDetail),
                         value: text(AppString.thisDevice),
-                        status: text(AppString.localOnly),
                         mergeReadOnlySemantics: true,
                       ),
-                      const AccountRowDivider(),
-                      AccountRow(
-                        icon: Icons.wifi_off_outlined,
-                        title: text(AppString.internetRequired),
-                        subtitle: text(AppString.internetDetail),
-                        value: text(AppString.no),
-                        status: text(AppString.offlineFirst),
-                        mergeReadOnlySemantics: true,
-                      ),
-                      const AccountRowDivider(),
-                      AccountRow(
-                        key: const Key('settings-offline-backup-row'),
-                        icon: Icons.save_alt,
-                        title: text(AppString.offlineBackupRestore),
-                        subtitle: text(AppString.androidBackupDetail),
-                        value: text(AppString.androidBackup),
-                        mergeReadOnlySemantics: true,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(66, 0, 14, 12),
+                        child: Text(
+                          text(AppString.settingsBackupHint),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            height: 1.35,
+                            color: AppColors.softText,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 14),
                   Center(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.surface,
-                        borderRadius: BorderRadius.circular(999),
-                        border: Border.all(color: AppColors.outline),
-                      ),
-                      child: Text(
-                        strings.buildLabel('1.0.0', 1),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.softText,
-                        ),
+                    child: Text(
+                      strings.buildLabel('1.0.0', 1),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.softText,
                       ),
                     ),
                   ),
@@ -468,73 +433,6 @@ class _HeaderBackButton extends StatelessWidget {
       child: BackButton(
         color: AppColors.onPrimary,
         onPressed: () => Navigator.maybePop(context),
-      ),
-    );
-  }
-}
-
-/// Green-tinted banner naming the state of the screen up front.
-class _ReadOnlyNotice extends StatelessWidget {
-  const _ReadOnlyNotice(this.strings);
-
-  final AppStrings strings;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      container: true,
-      label:
-          '${strings.text(AppString.readOnly)}. '
-          '${strings.text(AppString.readOnlyDetail)}',
-      child: ExcludeSemantics(
-        child: Container(
-          key: const Key('settings-readonly-notice'),
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: AppColors.lightGreen,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: AppColors.outline),
-            boxShadow: accountCardShadow(),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const AccountIconBadge(
-                icon: Icons.info_outline,
-                size: 40,
-                radius: 12,
-                iconSize: 21,
-                background: AppColors.surface,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      strings.text(AppString.readOnly),
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
-                        color: AppColors.darkText,
-                        height: 1.3,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      strings.text(AppString.readOnlyDetail),
-                      style: const TextStyle(
-                        fontSize: 12.5,
-                        height: 1.4,
-                        color: AppColors.softText,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
