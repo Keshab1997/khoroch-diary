@@ -251,6 +251,84 @@ final List<Shot> shots = <Shot>[
     build: () => AddEntryScreen(openingBalancePaise: 642000, onSave: (_) {}),
     dark: false,
   ),
+  // Play phone screenshots: native app UI at 1080x1920 (9:16), populated
+  // only with the screenshot harness's fictional sample ledger.
+  Shot(
+    name: 'home_play_phone',
+    build: () => HomeScreen(
+      summary: LedgerSummary(
+        openingBalancePaise: kSeedOpeningBalancePaise,
+        entries: kSeedEntries,
+      ),
+      khataName: 'Personal Khata',
+      onSwitchKhata: () {},
+      onAddEntry: () {},
+      onViewAll: () {},
+    ),
+    logicalSize: const Size(432, 768),
+    dpr: 2.5,
+    dark: false,
+  ),
+  Shot(
+    name: 'calculator_play_phone',
+    build: () => const CalculatorScreen(),
+    logicalSize: const Size(432, 768),
+    dpr: 2.5,
+    dark: false,
+  ),
+  Shot(
+    name: 'counter_play_phone',
+    build: () => const NoteCounterScreen(),
+    logicalSize: const Size(432, 768),
+    dpr: 2.5,
+    dark: false,
+  ),
+  Shot(
+    name: 'add_entry_play_phone',
+    build: () => AddEntryScreen(openingBalancePaise: 642000, onSave: (_) {}),
+    logicalSize: const Size(432, 768),
+    dpr: 2.5,
+    dark: false,
+  ),
+  // Tablet portrait previews keep the real UI intact, in a Play-supported
+  // 9:16 aspect ratio at 1200x2134 output pixels (2x pixel ratio).
+  Shot(
+    name: 'home_tablet',
+    build: () => HomeScreen(
+      summary: LedgerSummary(
+        openingBalancePaise: kSeedOpeningBalancePaise,
+        entries: kSeedEntries,
+      ),
+      khataName: 'Personal Khata',
+      onSwitchKhata: () {},
+      onAddEntry: () {},
+      onViewAll: () {},
+    ),
+    logicalSize: const Size(600, 1067),
+    dpr: 2,
+    dark: false,
+  ),
+  Shot(
+    name: 'calculator_tablet',
+    build: () => const CalculatorScreen(),
+    logicalSize: const Size(600, 1067),
+    dpr: 2,
+    dark: false,
+  ),
+  Shot(
+    name: 'counter_tablet',
+    build: () => const NoteCounterScreen(),
+    logicalSize: const Size(600, 1067),
+    dpr: 2,
+    dark: false,
+  ),
+  Shot(
+    name: 'add_entry_tablet',
+    build: () => AddEntryScreen(openingBalancePaise: 642000, onSave: (_) {}),
+    logicalSize: const Size(600, 1067),
+    dpr: 2,
+    dark: false,
+  ),
 ];
 
 /// A presentation-only, signed-out backend. Screenshot builds never contact
