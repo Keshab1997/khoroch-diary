@@ -23,3 +23,7 @@ All upload images are opaque JPEGs, use the app's English UI, and were checked f
 - Screenshots are individually below 8 MB. The longest side of each standard phone/tablet screenshot is less than 2.3 times the shortest.
 
 Official reference: <https://support.google.com/googleplay/android-developer/answer/9866151?hl=en>
+
+## AI-polished mockup variant
+
+For a more designed, promotional presentation, see `mockups/` or download `store/Khoroch-Diary-AI-Mockup-Assets.zip`. These use a separate AI-generated, text-free botanical backdrop, a generic illustration frame and truthful English headlines around the genuine app screenshots; the app UI itself is not generated or retouched. Tablet mockups keep the screenshot free of added headlines. Both the plain screenshots above and these designed alternatives are retained so you can choose which presentation to upload.
