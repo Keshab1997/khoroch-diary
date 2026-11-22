@@ -30579,15 +30579,15 @@ break}if(s==null)s=b
 else s=a.a===B.h?s.d:s.c
 return s},
 blR(a,b){var s
-switch(b){case"Grocery Shopping":s=B.Hb
+switch(b){case"Grocery Shopping":s=B.Ha
 break
 case"Lunch with Friends":s=B.Hu
 break
-case"Mobile Recharge":s=B.Hf
+case"Mobile Recharge":s=B.Hd
 break
-case"Gift for Mom":s=B.Hc
+case"Gift for Mom":s=B.Hb
 break
-case"Bus Fare":s=B.Hd
+case"Bus Fare":s=B.Hc
 break
 case"Tea with Team":s=B.Ho
 break
@@ -31500,18 +31500,16 @@ _.r=e
 _.a=f},
 a1M:function a1M(a){this.a=a},
 aHq:function aHq(a){this.a=a},
-CT:function CT(a,b,c){this.c=a
-this.d=b
-this.a=c},
-CR:function CR(a,b,c,d,e,f,g,h){var _=this
+CT:function CT(a,b){this.c=a
+this.a=b},
+CR:function CR(a,b,c,d,e,f,g){var _=this
 _.c=a
 _.d=b
 _.e=c
 _.f=d
 _.r=e
 _.w=f
-_.x=g
-_.a=h},
+_.a=g},
 Gg:function Gg(a,b,c,d){var _=this
 _.c=a
 _.d=b
@@ -102960,7 +102958,7 @@ r=b===1?"khata":"khatas"
 q=d===1?"transaction":"transactions"
 return s+": "+b+" "+r+", "+d+" "+q+", "+a+" deleted."},
 Q_(a,b,c){var s,r
-if(a==null){if(b)s=c?B.Hp:B.H8
+if(a==null){if(b)s=c?B.Hp:B.H7
 else s=c?B.Hq:B.Hj
 return this.a===B.h?s.d:s.c}r=this.zQ(a)
 if(this.a===B.h){if(c){s=b?"\u09a5\u09c7\u0995\u09c7":"\u09aa\u09b0\u09cd\u09af\u09a8\u09cd\u09a4"
@@ -103206,18 +103204,18 @@ else p.push(r)}q.ou()},
 $S:0}
 A.aDN.prototype={
 $0(){var s,r,q,p,o,n=this.a,m=n.d
-if(m.length===0||B.b.n(B.jR,B.b.ga8(m))){n.f=B.lx
+if(m.length===0||B.b.n(B.jR,B.b.ga8(m))){n.f=B.lw
 return}s=A.b4P(B.b.ga8(m))
-if(s==null){n.f=B.lx
+if(s==null){n.f=B.lw
 return}r=s/100
 if(!isFinite(r)||Math.abs(r)>1e12){n.f=B.pS
-return}if(r===0&&s!==0){n.f=B.pU
+return}if(r===0&&s!==0){n.f=B.pV
 return}q=n.avK(r)
 p=m.length-1
-if(q.length>40){n.f=B.pU
+if(q.length>40){n.f=B.pV
 return}o=A.fC(m,!0,t.N)
 o[p]=q
-if(B.b.b2(o," ").length>64){n.f=B.H6
+if(B.b.b2(o," ").length>64){n.f=B.H5
 return}m[p]=q
 n.ou()},
 $S:0}
@@ -105678,7 +105676,7 @@ $S:0}
 A.aQ3.prototype={
 $0(){var s=this.a
 s.at=null
-s.as=B.Hn},
+s.as=B.Hm},
 $S:0}
 A.aQ4.prototype={
 $0(){return this.a.a.aLz(this.b)},
@@ -105689,12 +105687,12 @@ $S:0}
 A.aQ6.prototype={
 $0(){var s=this.a
 s.as=null
-s.at=B.H7},
+s.at=B.H6},
 $S:0}
 A.aPQ.prototype={
 $0(){var s=this.a
 s.at=null
-s.as=B.Hi},
+s.as=B.Hh},
 $S:0}
 A.aPR.prototype={
 $0(){return this.a.as=null},
@@ -106059,7 +106057,7 @@ var $async$Ec=A.j(function(a,b){if(a===1)return A.k(b,r)
 for(;;)switch(s){case 0:n=p.y
 m=n==null?p.ga_X():n
 s=3
-return A.e(p.a29(B.Hm,m==null?p.gX5():m),$async$Ec)
+return A.e(p.a29(B.Hk,m==null?p.gX5():m),$async$Ec)
 case 3:l=b
 if(l==null||p.c==null){s=1
 break}o=A.aSZ(l)
@@ -106072,7 +106070,7 @@ for(;;)switch(s){case 0:l=p.z
 if(l==null)l=p.y
 o=l==null?p.ga_X():l
 s=3
-return A.e(p.a29(B.H9,o==null?p.gX5():o),$async$Ed)
+return A.e(p.a29(B.H8,o==null?p.gX5():o),$async$Ed)
 case 3:n=b
 if(n==null||p.c==null){s=1
 break}m=A.aSZ(n)
@@ -106214,7 +106212,7 @@ case 12:l=b
 n.e.$1(l)
 case 9:k=n.f
 if(k.c==null){s=1
-break}j=m?B.pT:B.pV
+break}j=m?B.pT:B.pW
 k.hO(A.hw(null,null,null,null,null,B.x,null,A.z(n.r.a===B.h?j.d:j.c,null,null,null,null,null,null,null,null,null),null,B.bV,null,null,null,null,null,null,null,null,null,null))
 p=2
 s=6
@@ -108562,7 +108560,7 @@ Dv(){var s=0,r=A.n(t.H),q,p=2,o=[],n=this,m,l,k
 var $async$Dv=A.j(function(a,b){if(a===1){o.push(b)
 s=p}for(;;)switch(s){case 0:if(n.d){s=1
 break}n.L(new A.aCm(n))
-n.e=B.Hv
+n.e=B.Hr
 p=4
 s=7
 return A.e(n.a.aKS(),$async$Dv)
@@ -108587,7 +108585,7 @@ Dx(){var s=0,r=A.n(t.H),q,p=2,o=[],n=this,m,l,k
 var $async$Dx=A.j(function(a,b){if(a===1){o.push(b)
 s=p}for(;;)switch(s){case 0:if(n.d){s=1
 break}n.L(new A.aCp(n))
-n.e=B.Hg
+n.e=B.Hs
 p=4
 s=7
 return A.e(n.a.aL0(),$async$Dx)
@@ -108612,7 +108610,7 @@ y7(){var s=0,r=A.n(t.H),q,p=2,o=[],n=this,m,l,k,j,i,h
 var $async$y7=A.j(function(a,b){if(a===1){o.push(b)
 s=p}for(;;)switch(s){case 0:if(n.d||n.f==null){s=1
 break}n.L(new A.aCu(n))
-n.e=B.Hk
+n.e=B.Hi
 l=n.c
 l.toString
 s=3
@@ -108674,8 +108672,8 @@ o=h.d?g:h.garj()
 n=A.kD(B.S,g,g,g,B.m,B.F2,g,g,g,g)
 B.b.J(q,A.a([B.a3,p,B.a3,A.f9(new A.AU(B.NU,h.a.c===B.h?"\u09aa\u09c1\u09a8\u09b0\u09c1\u09a6\u09cd\u09a7\u09be\u09b0 \u09a8\u09bf\u09b6\u09cd\u099a\u09bf\u09a4 \u0995\u09b0\u09c1\u09a8 (\u09b8\u09ac \u0996\u09be\u09a4\u09be \u0993 \u09b2\u09c7\u09a8\u09a6\u09c7\u09a8 \u09ac\u09a6\u09b2\u09be\u09ac\u09c7)":"Confirm Restore (Replace ALL Data)",B.m,g),B.aaB,o,n)],c))}e=A.a([b,B.c1,e,B.bk,a,B.F7,new A.O3(1,a0,s,g),B.a3,new A.O3(2,r,A.az(q,B.aa,g,B.i,B.k),g)],c)
 b=h.e
-if(b!=null){l=b===B.ly||b===B.lw
-k=b===B.pW||b===B.He
+if(b!=null){l=b===B.ly||b===B.lx
+k=b===B.pU||b===B.H3
 if(l)j=B.S
 else j=k?B.r:B.L
 if(l)i=B.d9
@@ -108695,14 +108693,14 @@ A.aCn.prototype={
 $0(){var s,r=this.a
 r.d=!1
 s=this.b
-if(s===B.q2)s=B.pW
-else s=s===B.q3?B.H4:B.lw
+if(s===B.q2)s=B.pU
+else s=s===B.q3?B.H9:B.lx
 r.e=s},
 $S:0}
 A.aCo.prototype={
 $0(){var s=this.a
 s.d=!1
-s.e=B.lw},
+s.e=B.lx},
 $S:0}
 A.aCp.prototype={
 $0(){return this.a.d=!0},
@@ -108712,12 +108710,12 @@ $0(){var s,r=this.a
 r.d=!1
 s=this.b
 r.f=s
-r.e=s!=null?null:B.H5},
+r.e=s!=null?null:B.Hv},
 $S:0}
 A.aCr.prototype={
 $0(){var s=this.a
 s.d=!1
-s.e=B.Ha
+s.e=B.Hg
 s.f=null},
 $S:0}
 A.aCu.prototype={
@@ -108762,7 +108760,7 @@ $S:0}
 A.aCz.prototype={
 $0(){var s=this.a
 s.d=!1
-s.e=B.Hr},
+s.e=B.Hn},
 $S:0}
 A.O3.prototype={
 D(a){var s=null,r=A.aC(20),q=A.bR(B.C,1),p=A.a([new A.cG(0,B.aS,B.J.aX(0.05),B.co,14)],t.V),o=A.aC(999),n=t.p
@@ -108776,7 +108774,7 @@ return A.aG(s,A.ca(B.NW,B.r,s,s,22),B.j,s,s,new A.aB(B.a2,s,s,r,s,s,B.u),s,44,s,
 A.VR.prototype={
 a0b(a){A.aU(a,!1).eB(A.ik(new A.ars(this),null,t.H))},
 D(a){var s=null,r=this.c,q=r===B.h,p=q?"\u098f\u0987 \u09a1\u09bf\u09ad\u09be\u0987\u09b8\u09c7\u09b0 \u0985\u09cd\u09af\u09be\u0995\u09be\u0989\u09a8\u09cd\u099f":"Account on this device",o=q?"\u09aa\u09cd\u09b0\u09cb\u09ab\u09be\u0987\u09b2":"Profile",n=A.z(q?"\u09b6\u09c1\u09a7\u09c1 \u0993\u09af\u09bc\u09c7\u09ac \u09a1\u09bf\u099c\u09be\u0987\u09a8 \u09aa\u09cd\u09b0\u09bf\u09ad\u09bf\u0989\u0964 \u0993\u09af\u09bc\u09c7\u09ac\u09c7 \u09b8\u09cd\u09a5\u09be\u09a8\u09c0\u09af\u09bc \u0996\u09be\u09a4\u09be \u0993 \u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09a8\u09c7\u0987\u0964":"Web design preview only. Local ledger storage and backup are not available on the web.",s,s,s,s,s,B.FK,B.ar,s,s),m=t.p
-return A.ht(s,s,A.az(A.a([new A.CS(o,p,B.tH,s,new A.a68(r,new A.art(this,a),s),B.a8U),A.aI(A.dR(A.fF(new A.CT(new A.au(B.rV,A.az(A.a([B.GT,B.bk,n,B.oQ,A.nx(B.u2,s,A.z(q?"\u0985\u09cd\u09af\u09be\u09aa \u09b8\u09c7\u099f\u09bf\u0982\u09b8":"App Settings",s,s,s,s,s,s,s,s,s),new A.aru(this,a),s)],m),B.q,s,B.i,B.N),s),s,s),B.x,B.cP),s,s,s),1)],m),B.q,s,B.i,B.k),s,s,s)}}
+return A.ht(s,s,A.az(A.a([new A.CS(o,p,B.tH,s,new A.a68(r,new A.art(this,a),s),B.a8U),A.aI(A.dR(A.fF(new A.CT(new A.au(B.rV,A.az(A.a([B.GS,B.bk,n,B.oQ,A.nx(B.u2,s,A.z(q?"\u0985\u09cd\u09af\u09be\u09aa \u09b8\u09c7\u099f\u09bf\u0982\u09b8":"App Settings",s,s,s,s,s,s,s,s,s),new A.aru(this,a),s)],m),B.q,s,B.i,B.N),s),s),B.x,B.cP),s,s,s),1)],m),B.q,s,B.i,B.k),s,s,s)}}
 A.ars.prototype={
 $1(a){var s=this.a
 return new A.mp(s.c,s.d,null)},
@@ -108794,8 +108792,8 @@ A.arv.prototype={}
 A.mp.prototype={
 ab(){return new A.a69()}}
 A.a69.prototype={
-D(a){var s=null,r=new A.cn(this.a.c).gcQ(),q=r.$1(B.Hl),p=t.p
-return A.ht(s,s,A.az(A.a([new A.CS(r.$1(B.H3),q,B.tT,B.acp,s,B.a9t),A.aI(A.dR(A.fF(new A.CT(new A.au(B.rV,A.az(A.a([B.GS,B.bk,A.z(r.$1(B.Hs),s,s,s,s,s,B.FK,B.ar,s,s)],p),B.q,s,B.i,B.N),s),s,s),B.x,B.cP),s,s,s),1)],p),B.q,s,B.i,B.k),s,s,s)}}
+D(a){var s=null,r=new A.cn(this.a.c).gcQ(),q=r.$1(B.Hf),p=t.p
+return A.ht(s,s,A.az(A.a([new A.CS(r.$1(B.H4),q,B.tT,B.acp,s,B.a9t),A.aI(A.dR(A.fF(new A.CT(new A.au(B.rV,A.az(A.a([B.GT,B.bk,A.z(r.$1(B.Hl),s,s,s,s,s,B.FK,B.ar,s,s)],p),B.q,s,B.i,B.N),s),s),B.x,B.cP),s,s,s),1)],p),B.q,s,B.i,B.k),s,s,s)}}
 A.CS.prototype={
 D(a){var s=this,r=null,q=A.bh(a,B.ix,t.w).w,p=B.dJ.zE(B.b2),o=t.p,n=A.a([],o),m=s.f
 if(m!=null)B.b.J(n,A.a([A.c2(m,48,48),B.F3],o))
@@ -108812,17 +108810,13 @@ A.aHq.prototype={
 $0(){return A.apI(this.a)},
 $S:0}
 A.CT.prototype={
-D(a){var s,r=null,q=this.d
-if(q==null)q=B.M
-s=A.aC(20)
-return A.aG(r,this.c,B.j,r,r,new A.aB(q,r,A.bR(B.C,1),s,A.bmo(),r,B.u),r,r,r,r,r,r,r,r)}}
+D(a){var s=null,r=A.aC(20)
+return A.aG(s,this.c,B.j,s,s,new A.aB(B.M,s,A.bR(B.C,1),r,A.bmo(),s,B.u),s,s,s,s,s,s,s,s)}}
 A.CR.prototype={
-D(a){var s,r,q,p=this,o=null,n=p.x
-if(n==null){s=p.d?B.a2:B.C.aX(0.45)
-n=s}r=p.d?B.r:B.L
-s=p.f
-q=A.aC(p.r)
-return A.aG(o,A.ca(p.c,r,o,o,p.w),B.j,o,o,new A.aB(n,o,o,q,o,o,B.u),o,s,o,o,o,o,o,s)}}
+D(a){var s,r=this,q=null,p=r.d?B.a2:B.C.aX(0.45),o=p,n=r.d?B.r:B.L
+p=r.f
+s=A.aC(r.r)
+return A.aG(q,A.ca(r.c,n,q,q,r.w),B.j,q,q,new A.aB(o,q,q,s,q,q,B.u),q,p,q,q,q,q,q,p)}}
 A.Gg.prototype={
 ab(){return new A.M7(B.Ts)}}
 A.M7.prototype={
@@ -109337,7 +109331,7 @@ case 8:s=10
 return A.e(j.yJ(l,k),$async$$0)
 case 10:case 9:l=n.e
 if(l.c==null){s=1
-break}k=m?B.pT:B.pV
+break}k=m?B.pT:B.pW
 l.hO(A.hw(null,null,null,null,null,B.x,null,A.z(n.f.a===B.h?k.d:k.c,null,null,null,null,null,null,null,null,null),null,B.bV,null,null,null,null,null,null,null,null,null,null))
 p=2
 s=6
@@ -119156,8 +119150,8 @@ B.GQ=new A.x1(2,"receivedDomFocus")
 B.GR=new A.x1(3,"receivedDomBlur")
 B.adC=new A.aah(0,"unknown")
 B.e6=new A.at(58173,"MaterialIcons",!1)
-B.GS=new A.CR(B.e6,!0,!1,52,16,26,null,null)
-B.GT=new A.CR(B.e6,!0,!1,56,18,28,null,null)
+B.GS=new A.CR(B.e6,!0,!1,56,18,28,null)
+B.GT=new A.CR(B.e6,!0,!1,52,16,26,null)
 B.GU=new A.fX(0,1)
 B.GV=new A.fX(0,-1)
 B.iA=new A.fX(1,0)
@@ -119203,49 +119197,49 @@ B.d1=new A.ko(1,"resumed")
 B.iD=new A.ko(2,"inactive")
 B.iE=new A.ko(3,"hidden")
 B.lv=new A.ko(4,"paused")
+B.H3=new A.c3("Backup restored.","\u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09a5\u09c7\u0995\u09c7 \u09a4\u09a5\u09cd\u09af \u09ab\u09c7\u09b0\u09be\u09a8\u09cb \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964",237,"backupRestored")
 B.pS=new A.c3("Value too large","\u09ae\u09be\u09a8\u099f\u09bf \u0985\u09a4\u09bf\u09b0\u09bf\u0995\u09cd\u09a4 \u09ac\u09a1\u09bc",135,"valueTooLarge")
 B.pT=new A.c3("Transaction restored","\u09b2\u09c7\u09a8\u09a6\u09c7\u09a8 \u09ab\u09bf\u09b0\u09bf\u09af\u09bc\u09c7 \u0986\u09a8\u09be \u09b9\u09af\u09bc\u09c7\u099b\u09c7",104,"transactionRestored")
-B.lw=new A.c3("Export failed.","\u09b0\u09aa\u09cd\u09a4\u09be\u09a8\u09bf \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf\u0964",223,"exportFailed")
-B.lx=new A.c3("Invalid expression","\u09b9\u09bf\u09b8\u09be\u09ac\u099f\u09bf \u09b8\u09a0\u09bf\u0995 \u09a8\u09af\u09bc",134,"invalidExpression")
+B.lw=new A.c3("Invalid expression","\u09b9\u09bf\u09b8\u09be\u09ac\u099f\u09bf \u09b8\u09a0\u09bf\u0995 \u09a8\u09af\u09bc",134,"invalidExpression")
 B.fR=new A.c3("Gifts","\u0989\u09aa\u09b9\u09be\u09b0",38,"gifts")
-B.H3=new A.c3("App Settings","\u0985\u09cd\u09af\u09be\u09aa \u09b8\u09c7\u099f\u09bf\u0982\u09b8",160,"appSettings")
+B.H4=new A.c3("App Settings","\u0985\u09cd\u09af\u09be\u09aa \u09b8\u09c7\u099f\u09bf\u0982\u09b8",160,"appSettings")
 B.fS=new A.c3("Travel","\u09af\u09be\u09a4\u09be\u09af\u09bc\u09be\u09a4",36,"travel")
-B.H4=new A.c3("Export cancelled.","\u09b0\u09aa\u09cd\u09a4\u09be\u09a8\u09bf \u09ac\u09be\u09a4\u09bf\u09b2 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964",222,"exportCancelled")
-B.H5=new A.c3("Pick cancelled.","\u09ab\u09be\u0987\u09b2 \u09ac\u09be\u099b\u09be\u0987 \u09ac\u09be\u09a4\u09bf\u09b2 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964",226,"pickCancelled")
-B.H6=new A.c3("Expression too long","\u09b9\u09bf\u09b8\u09be\u09ac\u099f\u09bf \u0985\u09a4\u09bf\u09b0\u09bf\u0995\u09cd\u09a4 \u09a6\u09c0\u09b0\u09cd\u0998",137,"expressionTooLong")
-B.H7=new A.c3("Could not save your changes. You can try again.","\u09aa\u09b0\u09bf\u09ac\u09b0\u09cd\u09a4\u09a8 \u09b8\u0982\u09b0\u0995\u09cd\u09b7\u09a3 \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf\u0964 \u0986\u09ac\u09be\u09b0 \u099a\u09c7\u09b7\u09cd\u099f\u09be \u0995\u09b0\u09a4\u09c7 \u09aa\u09be\u09b0\u09c7\u09a8\u0964",50,"editSaveFailed")
-B.H8=new A.c3("From: any date","\u09b6\u09c1\u09b0\u09c1: \u09af\u09c7\u0995\u09cb\u09a8\u09cb \u09a4\u09be\u09b0\u09bf\u0996",110,"fromAnyDate")
-B.H9=new A.c3("Show transactions up to this day","\u098f\u0987 \u09a6\u09bf\u09a8 \u09aa\u09b0\u09cd\u09af\u09a8\u09cd\u09a4 \u09b2\u09c7\u09a8\u09a6\u09c7\u09a8 \u09a6\u09c7\u0996\u09be\u09a8",107,"pickToDay")
-B.Ha=new A.c3("Could not read or validate the backup.","\u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09aa\u09a1\u09bc\u09be \u09ac\u09be \u09af\u09be\u099a\u09be\u0987 \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf\u0964",227,"backupValidationFailed")
-B.Hb=new A.c3("Grocery Shopping","\u09ae\u09c1\u09a6\u09bf\u09b0 \u09ac\u09be\u099c\u09be\u09b0",17,"groceryShopping")
-B.Hc=new A.c3("Gift for Mom","\u09ae\u09be\u09af\u09bc\u09c7\u09b0 \u099c\u09a8\u09cd\u09af \u0989\u09aa\u09b9\u09be\u09b0",20,"giftForMom")
-B.pU=new A.c3("Value too small","\u09ae\u09be\u09a8\u099f\u09bf \u0985\u09a4\u09bf\u09b0\u09bf\u0995\u09cd\u09a4 \u099b\u09cb\u099f",136,"valueTooSmall")
-B.Hd=new A.c3("Bus Fare","\u09ac\u09be\u09b8\u09ad\u09be\u09a1\u09bc\u09be",21,"busFare")
-B.He=new A.c3("Backup restored.","\u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09a5\u09c7\u0995\u09c7 \u09a4\u09a5\u09cd\u09af \u09ab\u09c7\u09b0\u09be\u09a8\u09cb \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964",236,"backupRestored")
-B.Hf=new A.c3("Mobile Recharge","\u09ae\u09cb\u09ac\u09be\u0987\u09b2 \u09b0\u09bf\u099a\u09be\u09b0\u09cd\u099c",19,"mobileRecharge")
-B.Hg=new A.c3("Picking backup\u2026","\u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09ab\u09be\u0987\u09b2 \u09ac\u09c7\u099b\u09c7 \u09a8\u09c7\u0993\u09af\u09bc\u09be \u09b9\u099a\u09cd\u099b\u09c7\u2026",224,"pickingBackup")
+B.H5=new A.c3("Expression too long","\u09b9\u09bf\u09b8\u09be\u09ac\u099f\u09bf \u0985\u09a4\u09bf\u09b0\u09bf\u0995\u09cd\u09a4 \u09a6\u09c0\u09b0\u09cd\u0998",137,"expressionTooLong")
+B.H6=new A.c3("Could not save your changes. You can try again.","\u09aa\u09b0\u09bf\u09ac\u09b0\u09cd\u09a4\u09a8 \u09b8\u0982\u09b0\u0995\u09cd\u09b7\u09a3 \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf\u0964 \u0986\u09ac\u09be\u09b0 \u099a\u09c7\u09b7\u09cd\u099f\u09be \u0995\u09b0\u09a4\u09c7 \u09aa\u09be\u09b0\u09c7\u09a8\u0964",50,"editSaveFailed")
+B.H7=new A.c3("From: any date","\u09b6\u09c1\u09b0\u09c1: \u09af\u09c7\u0995\u09cb\u09a8\u09cb \u09a4\u09be\u09b0\u09bf\u0996",110,"fromAnyDate")
+B.H8=new A.c3("Show transactions up to this day","\u098f\u0987 \u09a6\u09bf\u09a8 \u09aa\u09b0\u09cd\u09af\u09a8\u09cd\u09a4 \u09b2\u09c7\u09a8\u09a6\u09c7\u09a8 \u09a6\u09c7\u0996\u09be\u09a8",107,"pickToDay")
+B.pU=new A.c3("Export saved successfully.","\u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09b8\u0982\u09b0\u0995\u09cd\u09b7\u09bf\u09a4 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964",222,"exportSaved")
+B.H9=new A.c3("Export cancelled.","\u09b0\u09aa\u09cd\u09a4\u09be\u09a8\u09bf \u09ac\u09be\u09a4\u09bf\u09b2 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964",223,"exportCancelled")
+B.Ha=new A.c3("Grocery Shopping","\u09ae\u09c1\u09a6\u09bf\u09b0 \u09ac\u09be\u099c\u09be\u09b0",17,"groceryShopping")
+B.Hb=new A.c3("Gift for Mom","\u09ae\u09be\u09af\u09bc\u09c7\u09b0 \u099c\u09a8\u09cd\u09af \u0989\u09aa\u09b9\u09be\u09b0",20,"giftForMom")
+B.pV=new A.c3("Value too small","\u09ae\u09be\u09a8\u099f\u09bf \u0985\u09a4\u09bf\u09b0\u09bf\u0995\u09cd\u09a4 \u099b\u09cb\u099f",136,"valueTooSmall")
+B.Hc=new A.c3("Bus Fare","\u09ac\u09be\u09b8\u09ad\u09be\u09a1\u09bc\u09be",21,"busFare")
+B.Hd=new A.c3("Mobile Recharge","\u09ae\u09cb\u09ac\u09be\u0987\u09b2 \u09b0\u09bf\u099a\u09be\u09b0\u09cd\u099c",19,"mobileRecharge")
 B.fT=new A.c3("Food","\u0996\u09be\u09ac\u09be\u09b0",35,"food")
 B.fU=new A.c3("Shopping","\u0995\u09c7\u09a8\u09be\u0995\u09be\u099f\u09be",34,"shopping")
-B.ly=new A.c3("Restore failed. Your current data was not replaced.","\u09aa\u09c1\u09a8\u09b0\u09c1\u09a6\u09cd\u09a7\u09be\u09b0 \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf\u0964 \u0986\u09aa\u09a8\u09be\u09b0 \u09ac\u09b0\u09cd\u09a4\u09ae\u09be\u09a8 \u09a4\u09a5\u09cd\u09af \u09ac\u09a6\u09b2\u09be\u09af\u09bc\u09a8\u09bf\u0964",234,"restoreFailed")
+B.Hf=new A.c3("Language and app preferences.","\u09ad\u09be\u09b7\u09be \u0993 \u0985\u09cd\u09af\u09be\u09aa\u09c7\u09b0 \u09aa\u099b\u09a8\u09cd\u09a6\u0964",164,"settingsDescription")
 B.cI=new A.c3("Expense","\u09ac\u09cd\u09af\u09af\u09bc",33,"expense")
-B.pV=new A.c3("Could not restore transaction","\u09b2\u09c7\u09a8\u09a6\u09c7\u09a8 \u09ab\u09bf\u09b0\u09bf\u09af\u09bc\u09c7 \u0986\u09a8\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf",105,"transactionRestoreFailed")
-B.Hi=new A.c3("Deleting\u2026","\u09ae\u09c1\u099b\u09c7 \u09ab\u09c7\u09b2\u09be \u09b9\u099a\u09cd\u099b\u09c7\u2026",49,"deleting")
-B.pW=new A.c3("Export saved successfully.","\u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09b8\u0982\u09b0\u0995\u09cd\u09b7\u09bf\u09a4 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964",221,"exportSaved")
+B.pW=new A.c3("Could not restore transaction","\u09b2\u09c7\u09a8\u09a6\u09c7\u09a8 \u09ab\u09bf\u09b0\u09bf\u09af\u09bc\u09c7 \u0986\u09a8\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf",105,"transactionRestoreFailed")
+B.Hg=new A.c3("Could not read or validate the backup.","\u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09aa\u09a1\u09bc\u09be \u09ac\u09be \u09af\u09be\u099a\u09be\u0987 \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf\u0964",228,"backupValidationFailed")
+B.Hh=new A.c3("Deleting\u2026","\u09ae\u09c1\u099b\u09c7 \u09ab\u09c7\u09b2\u09be \u09b9\u099a\u09cd\u099b\u09c7\u2026",49,"deleting")
+B.Hi=new A.c3("Review the confirmation before restoring.","\u09aa\u09c1\u09a8\u09b0\u09c1\u09a6\u09cd\u09a7\u09be\u09b0\u09c7\u09b0 \u0986\u0997\u09c7 \u09a8\u09bf\u09b6\u09cd\u099a\u09bf\u09a4\u0995\u09b0\u09a3 \u09ac\u09be\u09b0\u09cd\u09a4\u09be\u099f\u09bf \u09aa\u09a1\u09bc\u09c1\u09a8\u0964",230,"reviewRestore")
 B.Hj=new A.c3("To: any date","\u09b6\u09c7\u09b7: \u09af\u09c7\u0995\u09cb\u09a8\u09cb \u09a4\u09be\u09b0\u09bf\u0996",111,"toAnyDate")
-B.Hk=new A.c3("Review the confirmation before restoring.","\u09aa\u09c1\u09a8\u09b0\u09c1\u09a6\u09cd\u09a7\u09be\u09b0\u09c7\u09b0 \u0986\u0997\u09c7 \u09a8\u09bf\u09b6\u09cd\u099a\u09bf\u09a4\u0995\u09b0\u09a3 \u09ac\u09be\u09b0\u09cd\u09a4\u09be\u099f\u09bf \u09aa\u09a1\u09bc\u09c1\u09a8\u0964",229,"reviewRestore")
-B.Hl=new A.c3("Currency, theme, language and backup.","\u09ae\u09c1\u09a6\u09cd\u09b0\u09be, \u09a5\u09bf\u09ae, \u09ad\u09be\u09b7\u09be \u0993 \u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa\u0964",164,"settingsDescription")
-B.Hm=new A.c3("Show transactions from this day","\u098f\u0987 \u09a6\u09bf\u09a8 \u09a5\u09c7\u0995\u09c7 \u09b2\u09c7\u09a8\u09a6\u09c7\u09a8 \u09a6\u09c7\u0996\u09be\u09a8",106,"pickFromDay")
-B.Hn=new A.c3("Updating\u2026","\u09aa\u09b0\u09bf\u09ac\u09b0\u09cd\u09a4\u09a8 \u0995\u09b0\u09be \u09b9\u099a\u09cd\u099b\u09c7\u2026",48,"updating")
+B.Hk=new A.c3("Show transactions from this day","\u098f\u0987 \u09a6\u09bf\u09a8 \u09a5\u09c7\u0995\u09c7 \u09b2\u09c7\u09a8\u09a6\u09c7\u09a8 \u09a6\u09c7\u0996\u09be\u09a8",106,"pickFromDay")
+B.Hl=new A.c3("Web design preview only. Local ledger storage, preferences and backup are not available on the web.","\u09b6\u09c1\u09a7\u09c1 \u0993\u09af\u09bc\u09c7\u09ac \u09aa\u09cd\u09b0\u09bf\u09ad\u09bf\u0989\u0964 \u0993\u09af\u09bc\u09c7\u09ac\u09c7 \u0996\u09be\u09a4\u09be, \u09aa\u099b\u09a8\u09cd\u09a6 \u09ac\u09be \u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09b8\u0982\u09b0\u0995\u09cd\u09b7\u09a3\u09c7\u09b0 \u09b8\u09c1\u09ac\u09bf\u09a7\u09be \u09a8\u09c7\u0987\u0964",214,"webSettings")
+B.Hm=new A.c3("Updating\u2026","\u09aa\u09b0\u09bf\u09ac\u09b0\u09cd\u09a4\u09a8 \u0995\u09b0\u09be \u09b9\u099a\u09cd\u099b\u09c7\u2026",48,"updating")
 B.fV=new A.c3("Bills","\u09ac\u09bf\u09b2",37,"bills")
+B.Hn=new A.c3("Restore cancelled.","\u09aa\u09c1\u09a8\u09b0\u09c1\u09a6\u09cd\u09a7\u09be\u09b0 \u09ac\u09be\u09a4\u09bf\u09b2 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964",236,"restoreCancelled")
 B.Ho=new A.c3("Tea with Team","\u09b8\u09b9\u0995\u09b0\u09cd\u09ae\u09c0\u09a6\u09c7\u09b0 \u09b8\u0999\u09cd\u0997\u09c7 \u099a\u09be",22,"teaWithTeam")
 B.Hp=new A.c3("Date filter: from any date","\u09a4\u09be\u09b0\u09bf\u0996\u09c7\u09b0 \u09ab\u09bf\u09b2\u09cd\u099f\u09be\u09b0: \u09af\u09c7\u0995\u09cb\u09a8\u09cb \u09a4\u09be\u09b0\u09bf\u0996 \u09a5\u09c7\u0995\u09c7",112,"fromAnyDateFilter")
 B.Hq=new A.c3("Date filter: to any date","\u09a4\u09be\u09b0\u09bf\u0996\u09c7\u09b0 \u09ab\u09bf\u09b2\u09cd\u099f\u09be\u09b0: \u09af\u09c7\u0995\u09cb\u09a8\u09cb \u09a4\u09be\u09b0\u09bf\u0996 \u09aa\u09b0\u09cd\u09af\u09a8\u09cd\u09a4",113,"toAnyDateFilter")
-B.Hr=new A.c3("Restore cancelled.","\u09aa\u09c1\u09a8\u09b0\u09c1\u09a6\u09cd\u09a7\u09be\u09b0 \u09ac\u09be\u09a4\u09bf\u09b2 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964",235,"restoreCancelled")
-B.Hs=new A.c3("Web design preview only. Local ledger storage, preferences and backup are not available on the web.","\u09b6\u09c1\u09a7\u09c1 \u0993\u09af\u09bc\u09c7\u09ac \u09aa\u09cd\u09b0\u09bf\u09ad\u09bf\u0989\u0964 \u0993\u09af\u09bc\u09c7\u09ac\u09c7 \u0996\u09be\u09a4\u09be, \u09aa\u099b\u09a8\u09cd\u09a6 \u09ac\u09be \u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09b8\u0982\u09b0\u0995\u09cd\u09b7\u09a3\u09c7\u09b0 \u09b8\u09c1\u09ac\u09bf\u09a7\u09be \u09a8\u09c7\u0987\u0964",213,"webSettings")
+B.Hr=new A.c3("Exporting backup\u2026","\u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09b0\u09aa\u09cd\u09a4\u09be\u09a8\u09bf \u09b9\u099a\u09cd\u099b\u09c7\u2026",220,"exportingBackup")
+B.Hs=new A.c3("Picking backup\u2026","\u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09ab\u09be\u0987\u09b2 \u09ac\u09c7\u099b\u09c7 \u09a8\u09c7\u0993\u09af\u09bc\u09be \u09b9\u099a\u09cd\u099b\u09c7\u2026",225,"pickingBackup")
 B.Ht=new A.c3("Could not delete this transaction. It has not been removed, so you can try again.","\u09b2\u09c7\u09a8\u09a6\u09c7\u09a8\u099f\u09bf \u09ae\u09cb\u099b\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf\u0964 \u098f\u099f\u09bf \u098f\u0996\u09a8\u0993 \u0986\u099b\u09c7, \u0986\u09ac\u09be\u09b0 \u099a\u09c7\u09b7\u09cd\u099f\u09be \u0995\u09b0\u09a4\u09c7 \u09aa\u09be\u09b0\u09c7\u09a8\u0964",52,"deleteFailed")
+B.lx=new A.c3("Export failed.","\u09b0\u09aa\u09cd\u09a4\u09be\u09a8\u09bf \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf\u0964",224,"exportFailed")
 B.Hu=new A.c3("Lunch with Friends","\u09ac\u09a8\u09cd\u09a7\u09c1\u09a6\u09c7\u09b0 \u09b8\u0999\u09cd\u0997\u09c7 \u09a6\u09c1\u09aa\u09c1\u09b0\u09c7\u09b0 \u0996\u09be\u09ac\u09be\u09b0",18,"lunchWithFriends")
-B.Hv=new A.c3("Exporting backup\u2026","\u09ac\u09cd\u09af\u09be\u0995\u0986\u09aa \u09b0\u09aa\u09cd\u09a4\u09be\u09a8\u09bf \u09b9\u099a\u09cd\u099b\u09c7\u2026",219,"exportingBackup")
+B.Hv=new A.c3("Pick cancelled.","\u09ab\u09be\u0987\u09b2 \u09ac\u09be\u099b\u09be\u0987 \u09ac\u09be\u09a4\u09bf\u09b2 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964",227,"pickCancelled")
 B.cJ=new A.c3("Income","\u0986\u09af\u09bc",32,"income")
+B.ly=new A.c3("Restore failed. Your current data was not replaced.","\u09aa\u09c1\u09a8\u09b0\u09c1\u09a6\u09cd\u09a7\u09be\u09b0 \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf\u0964 \u0986\u09aa\u09a8\u09be\u09b0 \u09ac\u09b0\u09cd\u09a4\u09ae\u09be\u09a8 \u09a4\u09a5\u09cd\u09af \u09ac\u09a6\u09b2\u09be\u09af\u09bc\u09a8\u09bf\u0964",235,"restoreFailed")
 B.Hw=new A.Qp(!1,127)
 B.pX=new A.Qq(127)
 B.lz=new A.Dc(0,"polite")
@@ -123252,10 +123246,10 @@ B.iw=new A.w9(1,"active")
 B.Gy=new A.w9(2,"inactive")
 B.acc=new A.w9(3,"failed")
 B.Gz=new A.w9(4,"defunct")
-B.px=new A.wb(B.lx)
+B.px=new A.wb(B.lw)
 B.py=new A.wb(B.pS)
-B.Hh=new A.c3("Cannot divide by zero","\u09b6\u09c2\u09a8\u09cd\u09af \u09a6\u09bf\u09af\u09bc\u09c7 \u09ad\u09be\u0997 \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc \u09a8\u09be",138,"divideByZero")
-B.ack=new A.wb(B.Hh)
+B.He=new A.c3("Cannot divide by zero","\u09b6\u09c2\u09a8\u09cd\u09af \u09a6\u09bf\u09af\u09bc\u09c7 \u09ad\u09be\u0997 \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc \u09a8\u09be",138,"divideByZero")
+B.ack=new A.wb(B.He)
 B.aea=new A.aGx(0,"filled")
 B.pz=new A.Lo(0,"none")
 B.acl=new A.Lo(1,"forward")
