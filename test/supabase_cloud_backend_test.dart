@@ -180,6 +180,36 @@ void main() {
       );
     });
 
+    test('deleteAccount calls the authenticated deletion function and clears local session', () async {
+      bool sawDeletion = false;
+      String? bearer;
+      final SupabaseClient client = _buildClient((http.Request request) async {
+        if (request.url.path.endsWith('/auth/v1/token')) {
+          return _jsonResponse(
+            _sessionPayload(userId: 'delete-user', email: 'delete@example.com'),
+          );
+        }
+        if (request.url.path.endsWith('/functions/v1/delete-account')) {
+          sawDeletion = true;
+          bearer = request.headers['authorization'];
+          return _jsonResponse(<String, dynamic>{'deleted': true});
+        }
+        return _jsonResponse(<Object>[]);
+      });
+      addTearDown(client.dispose);
+      await client.auth.signInWithPassword(
+        email: 'delete@example.com',
+        password: 'pw',
+      );
+      final SupabaseCloudBackend backend = SupabaseCloudBackend(client: client);
+
+      await backend.deleteAccount();
+
+      expect(sawDeletion, isTrue);
+      expect(bearer, startsWith('Bearer '));
+      expect(backend.currentUser, isNull);
+    });
+
     test('signInWithGoogle launches OAuth with redirectTo & externalApplication, resolves on session, and returns null on timeout', () async {
       const MethodChannel urlLauncherChannel = MethodChannel(
         'plugins.flutter.io/url_launcher',

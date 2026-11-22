@@ -389,6 +389,10 @@ abstract class CloudBackend {
   /// Signs out of the cloud account without touching local data.
   Future<void> signOut();
 
+  /// Permanently deletes the authenticated cloud account and its server-side
+  /// records. Local ledger data on this device is intentionally preserved.
+  Future<void> deleteAccount();
+
   /// Upserts a batch of khatas and returns the rows as stored on the server
   /// (including any row where the server kept its newer copy).
   Future<List<CloudKhataRow>> upsertKhatas(List<CloudKhataRow> rows);

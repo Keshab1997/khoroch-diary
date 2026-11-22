@@ -106,6 +106,10 @@ class CloudSync {
   /// Signs out locally without deleting any local khatas or transactions.
   Future<void> signOut() => _engine.signOut();
 
+  /// Permanently deletes the authenticated cloud account and remote rows while
+  /// preserving this device's local ledger.
+  Future<void> deleteAccount() => _engine.deleteAccount();
+
   /// Debounced trigger called after local ledger writes.
   void notifyLocalChange() {
     if (_disposed) return;

@@ -1,0 +1,39 @@
+name: Publish Play policy pages
+
+on:
+  workflow_run:
+    workflows: ['Deploy Flutter Web Preview (GitHub Pages)']
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# The web-preview workflow writes preview/<branch> to the same gh-pages
+# branch. Triggering after that workflow completes keeps the two pushes ordered.
+concurrency:
+  group: web-preview
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Publish self-contained policy and deletion pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: store/site
+          destination_dir: ''
+          # Preserve the root preview hub and preview/<branch> bundles.
+          keep_files: true

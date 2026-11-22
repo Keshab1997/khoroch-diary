@@ -67,6 +67,42 @@ void main() {
       await ledger.close();
     });
 
+    test(
+      'account deletion removes remote copies but preserves local ledger',
+      () async {
+        final LocalKhata khata = await ledger.createKhata(
+          name: 'Local remains',
+          openingBalancePaise: 4200,
+        );
+        backend.seedRemoteKhata(
+          _alice.id,
+          CloudKhataRow(
+            userId: _alice.id,
+            id: 'remote-only',
+            name: 'Remote only',
+            openingBalancePaise: 0,
+            currency: 'INR',
+            sortOrder: 0,
+            createdAt: DateTime.utc(2026, 11, 20),
+            updatedAt: DateTime.utc(2026, 11, 20),
+          ),
+        );
+
+        await engine.deleteAccount();
+
+        expect(backend.currentUser, isNull);
+        expect(backend.callOrder, contains('deleteAccount'));
+        final List<LocalKhata> localKhatas = await ledger.listKhatas();
+        expect(
+          localKhatas,
+          hasLength(2),
+        ); // default Personal Khata + the user row
+        expect(localKhatas.any((LocalKhata row) => row.id == khata.id), isTrue);
+        expect(backend.remoteKhatasFor(_alice.id), isEmpty);
+        expect(backend.remoteTransactionsFor(_alice.id), isEmpty);
+      },
+    );
+
     test('push -> synced in batches (khatas before transactions) and pending count drops to 0', () async {
       final LocalKhata shop = await ledger.createKhata(
         name: 'Shop',

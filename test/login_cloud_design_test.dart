@@ -280,6 +280,9 @@ void main() {
         findsOneWidget,
       );
       expect(find.byKey(const Key('sign-in-not-now-button')), findsOneWidget);
+      expect(find.byKey(const Key('legal-privacy-link')), findsOneWidget);
+      expect(find.byKey(const Key('legal-terms-link')), findsOneWidget);
+      expect(find.byKey(const Key('legal-delete-link')), findsOneWidget);
 
       // The optional-backup promise is still on screen, in the hero.
       expect(find.byKey(const Key('sign-in-hero')), findsOneWidget);

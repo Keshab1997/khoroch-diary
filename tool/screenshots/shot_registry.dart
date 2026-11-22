@@ -259,6 +259,10 @@ class _ScreenshotBackend implements CloudBackend {
   Future<void> signOut() async {}
 
   @override
+  Future<void> deleteAccount() async =>
+      throw UnsupportedError('Screenshot only');
+
+  @override
   Future<List<CloudKhataRow>> upsertKhatas(List<CloudKhataRow> rows) =>
       Future<List<CloudKhataRow>>.error(UnsupportedError('Screenshot only'));
 

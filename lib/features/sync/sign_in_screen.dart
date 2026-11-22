@@ -7,6 +7,7 @@ import '../../core/l10n/app_strings.dart' show AppLanguage;
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/ledger_header_background.dart';
 import 'cloud_backend.dart';
+import 'legal_links.dart';
 
 /// The single soft card shadow from `theme.md` (blur 14, offset 0/4).
 List<BoxShadow> _cardShadow() => <BoxShadow>[
@@ -680,6 +681,8 @@ class _ActionCard extends StatelessWidget {
               ),
             ),
           ],
+          const SizedBox(height: 4),
+          LegalLinks(bengali: bn),
         ],
       ),
     );

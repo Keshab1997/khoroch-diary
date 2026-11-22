@@ -46,6 +46,7 @@ class AccountCard extends StatefulWidget {
     this.onRetry,
     this.onConfirmAccountSwitch,
     this.onSignOut,
+    this.onDeleteAccount,
     this.isOnline,
   });
 
@@ -75,6 +76,9 @@ class AccountCard extends StatefulWidget {
 
   /// Invoked after the user confirms **Log out**. Never deletes local data.
   final Future<void> Function()? onSignOut;
+
+  /// Invoked after the user confirms permanent cloud account deletion.
+  final Future<void> Function()? onDeleteAccount;
 
   /// Optional connectivity check checked before running [onBackupNow] or
   /// [onRetry]. When it returns `false`, backup does nothing and displays an
@@ -245,6 +249,68 @@ class _AccountCardState extends State<AccountCard> {
       if (mounted) {
         setState(() => _busyAction = false);
       }
+    }
+  }
+
+  Future<void> _confirmAndDeleteAccount() async {
+    if (_busyAction || widget.onDeleteAccount == null) return;
+    final bool? confirmed = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext dialogContext) => AlertDialog(
+        backgroundColor: AppColors.surface,
+        title: Text(
+          _pair('Delete cloud account?', 'ক্লাউড অ্যাকাউন্ট মুছে ফেলবেন?'),
+          style: const TextStyle(
+            color: AppColors.darkText,
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+        content: SingleChildScrollView(
+          child: Text(
+            _pair(
+              'This permanently deletes your Khoroch Diary cloud account and all synced khatas and transactions. This cannot be undone. Local data on this device will remain. To remove it too, clear app data or uninstall the app.',
+              'এতে আপনার Khoroch Diary ক্লাউড অ্যাকাউন্ট এবং সিঙ্ক করা সব খাতা ও লেনদেন স্থায়ীভাবে মুছে যাবে। এটি ফেরানো যাবে না। এই ফোনের স্থানীয় তথ্য থাকবে। সেটিও মুছতে অ্যাপের তথ্য মুছুন বা অ্যাপ আনইনস্টল করুন।',
+            ),
+            style: const TextStyle(color: AppColors.darkText, height: 1.4),
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            key: const Key('account-delete-cancel'),
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(_pair('Cancel', 'বাতিল করুন')),
+          ),
+          TextButton(
+            key: const Key('account-delete-confirm'),
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            style: TextButton.styleFrom(foregroundColor: AppColors.expenseRed),
+            child: Text(_pair('Delete permanently', 'স্থায়ীভাবে মুছুন')),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    setState(() {
+      _busyAction = true;
+      _offlineNotice = false;
+    });
+    try {
+      await widget.onDeleteAccount!();
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              _pair(
+                'Could not delete the cloud account. Check your connection and try again.',
+                'ক্লাউড অ্যাকাউন্ট মুছতে পারেনি। ইন্টারনেট পরীক্ষা করে আবার চেষ্টা করুন।',
+              ),
+            ),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _busyAction = false);
     }
   }
 
@@ -694,6 +760,17 @@ class _AccountCardState extends State<AccountCard> {
             ),
           ),
         ),
+        if (widget.onDeleteAccount != null) ...<Widget>[
+          const SizedBox(height: 8),
+          TextButton(
+            key: const Key('account-card-delete-button'),
+            onPressed: _busyAction ? null : _confirmAndDeleteAccount,
+            style: TextButton.styleFrom(foregroundColor: AppColors.expenseRed),
+            child: Text(
+              _pair('Delete cloud account', 'ক্লাউড অ্যাকাউন্ট মুছুন'),
+            ),
+          ),
+        ],
       ],
     );
   }

@@ -465,6 +465,43 @@ void main() {
     });
 
     testWidgets(
+      'account deletion requires confirmation and reports completion',
+      (WidgetTester tester) async {
+        int deleteCalls = 0;
+        await _pumpCard(
+          tester,
+          AccountCard(
+            status: SyncStatus.idle(userEmail: 'person@example.com'),
+            onDeleteAccount: () async => deleteCalls++,
+          ),
+        );
+
+        await tester.ensureVisible(
+          find.byKey(const Key('account-card-delete-button')),
+        );
+        await tester.tap(find.byKey(const Key('account-card-delete-button')));
+        await tester.pumpAndSettle();
+        expect(
+          find.text(
+            'This permanently deletes your Khoroch Diary cloud account and all synced khatas and transactions. This cannot be undone. Local data on this device will remain. To remove it too, clear app data or uninstall the app.',
+          ),
+          findsOneWidget,
+        );
+        expect(deleteCalls, 0);
+        await tester.tap(find.byKey(const Key('account-delete-cancel')));
+        await tester.pumpAndSettle();
+        expect(deleteCalls, 0);
+
+        await tester.tap(find.byKey(const Key('account-card-delete-button')));
+        await tester.pumpAndSettle();
+        await tester.tap(find.byKey(const Key('account-delete-confirm')));
+        await tester.pumpAndSettle();
+        expect(deleteCalls, 1);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
       'syncing state stays inline at 320dp / 200% with no progress dialog',
       (WidgetTester tester) async {
         await _pumpCard(

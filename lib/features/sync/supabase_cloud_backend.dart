@@ -155,6 +155,29 @@ class SupabaseCloudBackend implements CloudBackend {
   }
 
   @override
+  Future<void> deleteAccount() async {
+    if (currentUser == null) {
+      throw StateError('Cannot delete an account while signed out.');
+    }
+
+    try {
+      final FunctionResponse response = await client.functions
+          .invoke('delete-account')
+          .timeout(requestTimeout);
+      if (response.status < 200 || response.status >= 300) {
+        throw const CloudBackendException(
+          'Could not delete the cloud account. Please try again.',
+        );
+      }
+      // The Edge Function has already deleted auth.users and cascading cloud
+      // rows. Clear this device's session without making another network call.
+      await client.auth.signOut(scope: SignOutScope.local);
+    } catch (error) {
+      throw _normalizeError(error);
+    }
+  }
+
+  @override
   Future<List<CloudKhataRow>> upsertKhatas(List<CloudKhataRow> rows) async {
     final CloudUser user = _requireSignedInUser();
     if (rows.isEmpty) return const <CloudKhataRow>[];

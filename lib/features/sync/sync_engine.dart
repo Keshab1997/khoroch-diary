@@ -184,6 +184,16 @@ class SyncEngine {
     await refreshStatus();
   }
 
+  /// Deletes the signed-in cloud account and remote copies, but preserves the
+  /// local ledger. A failed remote deletion leaves the session intact to retry.
+  Future<void> deleteAccount() async {
+    if (_disposed) return;
+    scheduler.reset();
+    _confirmedSwitchAccountId = null;
+    await backend.deleteAccount();
+    await refreshStatus();
+  }
+
   /// Runs one push-then-pull sync pass now. Never throws network or backend
   /// errors to the caller.
   Future<SyncOutcome> syncNow({bool confirmAccountSwitch = false}) async {

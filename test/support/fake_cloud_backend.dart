@@ -73,6 +73,18 @@ class FakeCloudBackend implements CloudBackend {
     }
   }
 
+  /// Read-only snapshot helper for asserting data remaining in the fake server.
+  List<CloudKhataRow> remoteKhatasFor(String userId) =>
+      List<CloudKhataRow>.unmodifiable(
+        _khatasByUser[userId]?.values ?? const <CloudKhataRow>[],
+      );
+
+  /// Read-only snapshot helper for asserting data remaining in the fake server.
+  List<CloudTransactionRow> remoteTransactionsFor(String userId) =>
+      List<CloudTransactionRow>.unmodifiable(
+        _transactionsByUser[userId]?.values ?? const <CloudTransactionRow>[],
+      );
+
   /// Seeds a khata row directly on the server for [userId] (simulating a write
   /// from another device).
   CloudKhataRow seedRemoteKhata(String userId, CloudKhataRow row) {
@@ -131,6 +143,16 @@ class FakeCloudBackend implements CloudBackend {
   Future<void> signOut() async {
     callOrder.add('signOut');
     signOutCalls++;
+    setSignedInUser(null);
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    callOrder.add('deleteAccount');
+    _throwIfFaultInjected();
+    final String userId = _requireSignedIn().id;
+    _khatasByUser.remove(userId);
+    _transactionsByUser.remove(userId);
     setSignedInUser(null);
   }
 

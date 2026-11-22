@@ -118,6 +118,7 @@ class CloudBackupScreen extends StatelessWidget {
                       onRetry: service.backupNow,
                       onConfirmAccountSwitch: service.confirmAccountSwitch,
                       onSignOut: service.signOut,
+                      onDeleteAccount: service.deleteAccount,
                     ),
                   ],
                   const SizedBox(height: 14),

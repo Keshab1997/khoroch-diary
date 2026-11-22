@@ -1,0 +1,80 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Khoroch Diary — Privacy Policy (Draft)</title><style>*{box-sizing:border-box}body{margin:0;background:#f7f3e8;color:#24352c;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:900px;margin:28px auto;padding:30px;background:#fffdf6;border:1px solid #e4dac4;border-radius:18px}h1,h2,h3{color:#1f412d;line-height:1.3}h1{font-size:2rem}a{color:#1f6b3b;overflow-wrap:anywhere}blockquote{padding:14px;background:#fff0e8;border-left:4px solid #8d341f;margin:18px 0}code{background:#f1ecdf;padding:2px 5px;border-radius:4px}li{margin:6px 0}hr{border:0;border-top:1px solid #e4dac4;margin:28px 0}footer{border-top:1px solid #e4dac4;margin-top:32px;padding-top:16px;color:#53645a;font-size:.92rem}@media(max-width:650px){main{margin:0;padding:20px 16px;border-radius:0;border-left:0;border-right:0}h1{font-size:1.6rem}}</style></head><body><main><h1>Khoroch Diary — Privacy Policy</h1>
+<blockquote>
+<p><strong>DRAFT FOR REVIEW — NOT THE FINAL EFFECTIVE POLICY.</strong> Publisher and support contact are filled in; the policy still requires legal review and a release-level data/SDK audit. The deletion feature and public deletion page must be deployed and verified before this draft is published. Effective date is the publication date.</p>
+</blockquote>
+<ul>
+<li><strong>App:</strong> Khoroch Diary</li>
+<li><strong>Android package:</strong> <code>com.keshabstudios.khorochdiary</code></li>
+<li><strong>Developer/publisher:</strong> <code>Keshab Studios</code></li>
+<li><strong>Privacy contact:</strong> <code>keshabsarkar2018@gmail.com</code></li>
+<li><strong>Effective date:</strong> <code>Draft prepared 23 November 2026; not effective until approved publication</code></li>
+<li><strong>Public policy URL:</strong> <code>https://keshab1997.github.io/khoroch-diary/privacy-policy.html</code></li>
+</ul>
+<h2>English</h2>
+<h3>1. About this policy</h3>
+<p>Khoroch Diary is an offline-first personal ledger for recording income, expenses, and balances. Core ledger use does not require an account or an internet connection. This policy covers the Android app and its optional Google sign-in and cloud backup/sync features.</p>
+<h3>2. Information stored on your device</h3>
+<p>The app stores ledger information in a local SQLite database, including khata names and balances, income/expense amounts, categories, descriptions, dates, and locally generated record IDs. It also stores custom categories, note-counter sessions, and an optional local profile name and photo. The app does not send the local profile name or photo as part of cloud sync.</p>
+<p>Local data remains on the device until you clear the app's data or uninstall it, subject to Android device backup/transfer settings. The app itself does not encrypt its local SQLite database.</p>
+<h3>3. Optional sign-in and cloud sync</h3>
+<p>If you choose Google sign-in and affirmatively confirm cloud sync, the app uses Google OAuth through Supabase Auth. Supabase processes the account email and account/user identifier needed for authentication. The app can sync khata records and transaction records to the Khoroch Diary Supabase project. Synced fields include khata names, opening balances, currency, ordering, transaction type, amount, category ID, optional description, date, record IDs, and create/update/delete timestamps. Cloud sync is optional; it is not needed for the local ledger.</p>
+<p>Synced records are associated with your authenticated account. Row-level security is enabled so ordinary authenticated requests are limited to that account's rows. Network traffic to Google and Supabase uses HTTPS. Supabase hosts the cloud service in the project region configured by the developer: <code>ap-northeast-2 (Seoul, South Korea)</code>. Google and Supabase may process technical request, authentication, and security information under their own policies.</p>
+<p>The app does not sell ledger data or use it for advertising. The current source does not include an advertising or analytics feature; verify the final release's complete SDK/dependency inventory before making this statement publicly.</p>
+<h3>4. Backups and files you choose</h3>
+<p>The app's manual offline backup is a user-initiated JSON file. It may contain ledger records, the local profile name/photo, custom categories, and note-counter data. The backup file is <strong>not encrypted by the app</strong>. It is saved or selected using the platform's file picker; after export, its location and any onward sharing are controlled by you and the apps/storage providers you choose. Keep backup files private and secure.</p>
+<h3>5. Information sharing</h3>
+<p>We do not sell your personal information. Data is sent to:</p>
+<ul>
+<li><strong>Google</strong>, when you choose Google sign-in, to authenticate your selected account.</li>
+<li><strong>Supabase</strong>, only when you opt into cloud sign-in/sync, to authenticate the account and host/synchronize its khata and transaction records.</li>
+<li><strong>Your chosen file/storage provider</strong>, if you export, import, move, or share a backup file yourself.</li>
+</ul>
+<p>The developer may administer the Supabase project for service operation, security, and support. No other third-party advertising or analytics service is intentionally integrated in the current source tree; this must be rechecked against the final release bundle.</p>
+<h3>6. Security</h3>
+<p>Cloud requests use HTTPS and the database uses account-scoped row-level security for normal client access. The app does not provide end-to-end encryption and does not encrypt the local SQLite database or exported JSON backup. Protect your device, Google account, and backup files. No method of storage or transmission can be guaranteed completely secure.</p>
+<h3>7. Retention, deletion, and sign-out</h3>
+<p>Signing out clears the local authentication session; it does <strong>not</strong> delete the account or cloud data. To permanently delete your Khoroch Diary cloud account, use <strong>Profile → Cloud Backup → Delete cloud account</strong> in the app, or follow the external deletion instructions at <a href="https://keshab1997.github.io/khoroch-diary/account-deletion.html">https://keshab1997.github.io/khoroch-diary/account-deletion.html</a>. Account deletion removes the Supabase authentication account and its synced khata/transaction records. It does not delete the local ledger on this device; clear app data or uninstall the app to remove that copy. Exported JSON backups must be deleted separately by you.</p>
+<p>If you cannot access the app, email keshabsarkar2018@gmail.com from the email address associated with your Google sign-in and request deletion. Never send a password or backup file. There is no fixed completion-time promise. We do not intentionally retain a copy of deleted account or ledger data; limited security logs or provider backups may persist for the service providers’ operational retention periods.</p>
+<h3>8. Children and changes</h3>
+<p>The Play Console target-audience declaration must be completed by the developer. Do not describe the app as child-directed unless it is intentionally designed and compliant for children. If data practices change, update this policy, the in-app disclosure, and the Play Console Data safety answers before releasing the change.</p>
+<h3>9. Contact</h3>
+<p>For privacy questions or requests: <strong>keshabsarkar2018@gmail.com</strong>. Include “Khoroch Diary privacy” in the subject. Do not send passwords or backup files by email.</p>
+<hr />
+<h2>বাংলা</h2>
+<h3>১. এই নীতির বিষয়ে</h3>
+<p>Khoroch Diary ব্যক্তিগত আয়, খরচ ও ব্যালেন্সের হিসাব রাখার অফলাইন-প্রথম অ্যাপ। মূল খাতা ব্যবহার করতে অ্যাকাউন্ট বা ইন্টারনেট লাগে না। এই নীতি Android অ্যাপ এবং ঐচ্ছিক Google সাইন-ইন ও ক্লাউড ব্যাকআপ/সিঙ্কের ক্ষেত্রে প্রযোজ্য।</p>
+<h3>২. ডিভাইসে সংরক্ষিত তথ্য</h3>
+<p>অ্যাপটি ডিভাইসের SQLite ডেটাবেসে খাতার নাম ও ব্যালেন্স, আয়/ব্যয়ের অঙ্ক, বিভাগ, বিবরণ, তারিখ এবং অ্যাপের তৈরি রেকর্ড আইডি রাখে। কাস্টম বিভাগ, নোট-কাউন্টারের সেশন এবং চাইলে স্থানীয় প্রোফাইলের নাম ও ছবি-ও রাখা হয়। স্থানীয় প্রোফাইলের নাম বা ছবি ক্লাউড সিঙ্কে পাঠানো হয় না।</p>
+<p>অ্যাপের ডেটা মুছে ফেলা বা অ্যাপ আনইনস্টল করা পর্যন্ত স্থানীয় তথ্য ডিভাইসে থাকে; Android-এর ডিভাইস ব্যাকআপ/ট্রান্সফার সেটিংস প্রযোজ্য হতে পারে। অ্যাপটি নিজে স্থানীয় SQLite ডেটাবেস এনক্রিপ্ট করে না।</p>
+<h3>৩. ঐচ্ছিক সাইন-ইন ও ক্লাউড সিঙ্ক</h3>
+<p>আপনি Google দিয়ে সাইন-ইন করে ক্লাউড সিঙ্কে সম্মতি দিলে, Supabase Auth-এর মাধ্যমে Google OAuth ব্যবহৃত হয়। সাইন-ইনের জন্য Supabase আপনার অ্যাকাউন্টের ইমেল ও অ্যাকাউন্ট/ইউজার আইডি প্রক্রিয়া করে। অ্যাপটি খাতার তথ্য ও লেনদেন Khoroch Diary-এর Supabase প্রকল্পে সিঙ্ক করতে পারে। সিঙ্কে খাতার নাম, প্রারম্ভিক ব্যালেন্স, মুদ্রা, সাজানোর ক্রম, লেনদেনের ধরন, অঙ্ক, বিভাগ আইডি, ঐচ্ছিক বিবরণ, তারিখ, রেকর্ড আইডি এবং তৈরি/পরিবর্তন/মুছে-ফেলার সময় অন্তর্ভুক্ত থাকে। ক্লাউড সিঙ্ক ঐচ্ছিক; স্থানীয় খাতা চালাতে এর প্রয়োজন নেই।</p>
+<p>সিঙ্ক করা তথ্য আপনার সাইন-ইন করা অ্যাকাউন্টের সঙ্গে যুক্ত থাকে। সাধারণ অ্যাপ-অনুরোধে row-level security ব্যবহারকারীর নিজের রেকর্ডেই প্রবেশ সীমিত করে। Google ও Supabase-এ নেটওয়ার্ক যোগাযোগ HTTPS দিয়ে হয়। Supabase প্রকল্পের অঞ্চল: <code>ap-northeast-2 (সিউল, দক্ষিণ কোরিয়া)</code>। Google ও Supabase তাদের নিজস্ব নীতি অনুযায়ী সাইন-ইন, নিরাপত্তা ও প্রযুক্তিগত অনুরোধ-সংক্রান্ত তথ্য প্রক্রিয়া করতে পারে।</p>
+<p>অ্যাপটি হিসাবের তথ্য বিক্রি করে না বা বিজ্ঞাপনের জন্য ব্যবহার করে না। বর্তমান সোর্সে বিজ্ঞাপন বা অ্যানালিটিক্স ফিচার নেই; প্রকাশের আগে সম্পূর্ণ SDK/নির্ভরতার তালিকা আবার যাচাই করতে হবে।</p>
+<h3>৪. ব্যাকআপ ও আপনার বেছে নেওয়া ফাইল</h3>
+<p>অ্যাপের অফলাইন ব্যাকআপ ব্যবহারকারীর অনুরোধে তৈরি JSON ফাইল। এতে খাতার তথ্য, স্থানীয় প্রোফাইলের নাম/ছবি, কাস্টম বিভাগ এবং নোট-কাউন্টারের তথ্য থাকতে পারে। অ্যাপ এই ব্যাকআপ ফাইল <strong>এনক্রিপ্ট করে না</strong>। প্ল্যাটফর্মের ফাইল-পিকার দিয়ে ফাইল সংরক্ষণ বা বেছে নেওয়া হয়। রপ্তানির পর ফাইলের অবস্থান ও অন্য কোথাও পাঠানো আপনার এবং আপনার বেছে নেওয়া অ্যাপ/স্টোরেজ পরিষেবার নিয়ন্ত্রণে। ব্যাকআপ ব্যক্তিগত ও নিরাপদ স্থানে রাখুন।</p>
+<h3>৫. তথ্য কার সঙ্গে ভাগ হয়</h3>
+<p>আমরা ব্যক্তিগত তথ্য বিক্রি করি না। তথ্য পাঠানো হয়:</p>
+<ul>
+<li><strong>Google-এ</strong>, আপনি Google সাইন-ইন বেছে নিলে, নির্বাচিত অ্যাকাউন্ট যাচাই করতে।</li>
+<li><strong>Supabase-এ</strong>, আপনি ঐচ্ছিক ক্লাউড সাইন-ইন/সিঙ্ক চালু করলেই, অ্যাকাউন্ট যাচাই এবং খাতা/লেনদেন হোস্ট ও সিঙ্ক করতে।</li>
+<li><strong>আপনার বেছে নেওয়া ফাইল/স্টোরেজ পরিষেবায়</strong>, আপনি নিজে ব্যাকআপ রপ্তানি, আমদানি, সরানো বা শেয়ার করলে।</li>
+</ul>
+<p>পরিষেবা চালানো, নিরাপত্তা ও সহায়তার জন্য ডেভেলপার Supabase প্রকল্প পরিচালনা করতে পারেন। বর্তমান সোর্সে অন্য কোনো বিজ্ঞাপন বা অ্যানালিটিক্স পরিষেবা ইচ্ছাকৃতভাবে যুক্ত নেই; প্রকাশিত bundle-এ আবার পরীক্ষা করতে হবে।</p>
+<h3>৬. নিরাপত্তা</h3>
+<p>ক্লাউড অনুরোধ HTTPS ব্যবহার করে এবং সাধারণ অ্যাপ-অ্যাক্সেসের জন্য ডেটাবেসে অ্যাকাউন্টভিত্তিক row-level security আছে। অ্যাপে end-to-end encryption নেই; স্থানীয় SQLite ডেটাবেস বা রপ্তানি করা JSON ব্যাকআপ এনক্রিপ্ট করা হয় না। নিজের ডিভাইস, Google অ্যাকাউন্ট ও ব্যাকআপ ফাইল সুরক্ষিত রাখুন। কোনো স্টোরেজ বা যোগাযোগ পদ্ধতিই শতভাগ নিরাপদ বলে নিশ্চয়তা দেওয়া যায় না।</p>
+<h3>৭. তথ্য রাখা, মুছে ফেলা ও সাইন-আউট</h3>
+<p>সাইন-আউট করলে ডিভাইসের লগইন সেশন পরিষ্কার হয়; অ্যাকাউন্ট বা ক্লাউড তথ্য মুছে যায় না। Khoroch Diary ক্লাউড অ্যাকাউন্ট স্থায়ীভাবে মুছতে অ্যাপে <strong>Profile → Cloud Backup → Delete cloud account</strong> ব্যবহার করুন, অথবা <a href="https://keshab1997.github.io/khoroch-diary/account-deletion.html">https://keshab1997.github.io/khoroch-diary/account-deletion.html</a> পেজের নির্দেশনা অনুসরণ করুন। অ্যাকাউন্ট মুছলে Supabase authentication account এবং তার সিঙ্ক করা খাতা/লেনদেন মুছে যায়। এই ফোনের স্থানীয় খাতার কপি মুছে যায় না; সেটি সরাতে অ্যাপের তথ্য মুছুন বা অ্যাপ আনইনস্টল করুন। রপ্তানি করা JSON ব্যাকআপ আপনাকে আলাদাভাবে মুছতে হবে।</p>
+<p>অ্যাপে প্রবেশ করতে না পারলে Google সাইন-ইনে ব্যবহৃত ইমেল ঠিকানা থেকে keshabsarkar2018@gmail.com-এ মুছে ফেলার অনুরোধ পাঠান। পাসওয়ার্ড বা ব্যাকআপ ফাইল পাঠাবেন না। নির্দিষ্ট পূরণ-সময়সীমার প্রতিশ্রুতি নেই। মুছে ফেলা অ্যাকাউন্ট বা হিসাবের কপি আমরা ইচ্ছাকৃতভাবে রাখি না; পরিষেবা প্রদানকারীর পরিচালনাগত retention সময়ে সীমিত নিরাপত্তা লগ বা ব্যাকআপ থাকতে পারে।</p>
+<h3>৮. শিশু ও নীতির পরিবর্তন</h3>
+<p>Play Console-এ লক্ষ্য বয়সের ঘোষণা ডেভেলপারকে পূরণ করতে হবে। শিশুদের জন্য বিশেষভাবে তৈরি না হলে অ্যাপটিকে শিশুদের জন্য বলে প্রচার করবেন না। তথ্য ব্যবহারের ধরন বদলালে নীতি, অ্যাপের ভেতরের ঘোষণা এবং Play Console Data safety উত্তর রিলিজের আগে আপডেট করুন।</p>
+<h3>৯. যোগাযোগ</h3>
+<p>গোপনীয়তা-সংক্রান্ত প্রশ্ন বা অনুরোধ: <strong>keshabsarkar2018@gmail.com</strong>। ইমেলের subject-এ “Khoroch Diary privacy” লিখুন। ইমেলে পাসওয়ার্ড বা ব্যাকআপ ফাইল পাঠাবেন না।</p>
+<hr />
+<h2>Before publication</h2>
+<ol>
+<li>Obtain legal review and verify every data/SDK disclosure against the release bundle.</li>
+<li>Deploy and end-to-end test account deletion and the external deletion instructions.</li>
+<li>Publish this policy at a stable public HTTPS webpage with no login/geofence and verify the in-app and Play Console links.</li>
+<li>Set the effective date when the approved page is published.</li>
+</ol>
+<footer><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms-of-use.html">Terms of Use</a> · <a href="account-deletion.html">Account deletion</a> · <a href="mailto:keshabsarkar2018@gmail.com">keshabsarkar2018@gmail.com</a></footer></main></body></html>
