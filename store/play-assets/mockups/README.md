@@ -1,6 +1,6 @@
 # Khoroch Diary — AI-polished Google Play mockups
 
-This is the presentation-ready mockup set, built around genuine Khoroch Diary screen captures. Each original app screen remains intact inside the framed mockup; only the surroundings, border, brand header and short accurate feature copy have been added. The portrait backdrop is AI-generated, text-free artwork. It contains no generated UI.
+This is the presentation-ready mockup set, built around genuine Khoroch Diary screen captures. The app's home screenshot was supplied to image generation as a visual reference for its palette and mood; AI then produced coordinated, text-free background artwork. Each original app screen is composited back in as actual screenshot pixels. Only the surroundings, frame, brand header and short accurate feature copy are added; no UI is AI-generated or retouched.
 
 ## Files
 

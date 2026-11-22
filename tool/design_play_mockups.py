@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "store" / "play-assets"
 OUT = ASSETS / "mockups"
-BG_PATH = ASSETS / "source" / "mockup-background.png"
+BG_PATH = ASSETS / "source" / "reference-led-phone-background.png"
 ICON_PATH = ROOT / "store" / "assets" / "app-icon-512.png"
 REGULAR = ROOT / "assets" / "fonts" / "Roboto-Regular.ttf"
 BOLD = ROOT / "assets" / "fonts" / "Roboto-Bold.ttf"
@@ -99,7 +99,7 @@ def make_feature() -> None:
     # The existing AI artwork remains the banner background. A genuine, intact
     # home-screen capture appears inside a floating preview panel, not a fake
     # generated interface or device.
-    base_path = ASSETS / "source" / "feature-background.png"
+    base_path = ASSETS / "source" / "reference-led-banner-background.png"
     canvas = cover(Image.open(base_path), (1024, 500)).convert("RGBA")
     icon = Image.open(ICON_PATH).convert("RGBA").resize((86, 86), Image.Resampling.LANCZOS)
     d = ImageDraw.Draw(canvas)
