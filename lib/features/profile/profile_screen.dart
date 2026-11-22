@@ -27,7 +27,7 @@ String _profileText(AppLanguage language, String en, String bn) =>
 ///   3. App Settings (`profile-app-settings-row`)
 ///   4. About App (`profile-about-row`)
 ///   5. Logout (`profile-logout-row`)
-/// followed by the static `About KhataBook` facts and open-source licences
+/// followed by the static `About Khoroch Diary` facts and open-source licences
 /// (`profile-licences-row`).
 ///
 /// Every row reuses [AccountRow] from `settings_screen.dart` so leading tiles
@@ -75,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
   void _openLicences(BuildContext context) {
     showLicensePage(
       context: context,
-      applicationName: 'KhataBook',
+      applicationName: 'Khoroch Diary',
       applicationVersion: versionLabel,
       applicationLegalese: _profileText(
         language,
@@ -281,8 +281,8 @@ class ProfileScreen extends StatelessWidget {
                         child: Text(
                           _profileText(
                             language,
-                            'KhataBook · Plan · Track · Save',
-                            'খাতাবুক · পরিকল্পনা · হিসাব · সঞ্চয়',
+                            'Khoroch Diary · Your ledger, on your phone',
+                            'খরচের ডায়েরি · আপনার হিসাব, আপনার ফোনে',
                           ),
                           textAlign: TextAlign.center,
                           textDirection: TextDirection.ltr,
@@ -344,8 +344,8 @@ class ProfileScreen extends StatelessWidget {
                         title: strings.text(AppString.licences),
                         subtitle: _profileText(
                           language,
-                          'Software KhataBook is built with.',
-                          'খাতাবুকে ব্যবহৃত সফটওয়্যার।',
+                          'Software Khoroch Diary is built with.',
+                          'খরচের ডায়েরিে ব্যবহৃত সফটওয়্যার।',
                         ),
                         onTap: () => _openLicences(context),
                       ),
@@ -547,7 +547,7 @@ class _EditableIdentityCardState extends State<_EditableIdentityCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _IdentityBanner(caption: _text('KHATABOOK', 'খাতাবুক')),
+          _IdentityBanner(caption: _text('KHOROCH DIARY', 'খরচের ডায়েরি')),
           // Keep the brand caption and the avatar in separate vertical space.
           // A negative overlap hides the caption behind an opaque profile photo.
           Padding(
@@ -667,7 +667,7 @@ class _IdentityCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           _IdentityBanner(
-            caption: _profileText(language, 'KHATABOOK', 'খাতাবুক'),
+            caption: _profileText(language, 'KHOROCH DIARY', 'খরচের ডায়েরি'),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12, bottom: 10),
@@ -732,8 +732,8 @@ class _IdentityCard extends StatelessWidget {
                 Text(
                   _profileText(
                     language,
-                    'No account is linked to KhataBook. Everything you enter stays in the local database on this device.',
-                    'খাতাবুকে কোনো অ্যাকাউন্ট যুক্ত নেই। আপনার সব তথ্য এই ডিভাইসের ডেটাবেসে থাকে।',
+                    'No account is linked to Khoroch Diary. Everything you enter stays in the local database on this device.',
+                    'খরচের ডায়েরিে কোনো অ্যাকাউন্ট যুক্ত নেই। আপনার সব তথ্য এই ডিভাইসের ডেটাবেসে থাকে।',
                   ),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
@@ -762,8 +762,8 @@ class _OfflineNotice extends StatelessWidget {
       container: true,
       label: _profileText(
         language,
-        'Offline and local-only. KhataBook works without internet. Entries are saved on this device only, and nothing is uploaded.',
-        'অফলাইন এবং স্থানীয়। খাতাবুক ইন্টারনেট ছাড়াই চলে। এন্ট্রি শুধু এই ডিভাইসে থাকে; কিছু আপলোড হয় না।',
+        'Offline and local-only. Khoroch Diary works without internet. Entries are saved on this device only, and nothing is uploaded.',
+        'অফলাইন এবং স্থানীয়। খরচের ডায়েরি ইন্টারনেট ছাড়াই চলে। এন্ট্রি শুধু এই ডিভাইসে থাকে; কিছু আপলোড হয় না।',
       ),
       child: ExcludeSemantics(
         child: AccountSurfaceCard(
@@ -803,8 +803,8 @@ class _OfflineNotice extends StatelessWidget {
                       Text(
                         _profileText(
                           language,
-                          'KhataBook works without internet. Entries are written to this device only - nothing is uploaded, and there is no cloud copy to restore.',
-                          'খাতাবুক ইন্টারনেট ছাড়া চলে। এন্ট্রি শুধু এই ডিভাইসে থাকে; কিছু আপলোড হয় না এবং পুনরুদ্ধারের জন্য ক্লাউড কপি নেই।',
+                          'Khoroch Diary works without internet. Entries are written to this device only - nothing is uploaded, and there is no cloud copy to restore.',
+                          'খরচের ডায়েরি ইন্টারনেট ছাড়া চলে। এন্ট্রি শুধু এই ডিভাইসে থাকে; কিছু আপলোড হয় না এবং পুনরুদ্ধারের জন্য ক্লাউড কপি নেই।',
                         ),
                         style: const TextStyle(
                           fontSize: 12.5,

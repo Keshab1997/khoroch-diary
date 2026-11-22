@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/format/money.dart';
-import 'package:khatabook/core/theme/app_colors.dart';
-import 'package:khatabook/core/theme/app_theme.dart';
-import 'package:khatabook/features/home/home_screen.dart';
-import 'package:khatabook/features/home/models.dart';
+import 'package:khoroch_diary/core/format/money.dart';
+import 'package:khoroch_diary/core/theme/app_colors.dart';
+import 'package:khoroch_diary/core/theme/app_theme.dart';
+import 'package:khoroch_diary/features/home/home_screen.dart';
+import 'package:khoroch_diary/features/home/models.dart';
 
 /// Sizes used by the layout tests: a small phone (320 x 568 logical px) and a
 /// common mid-range device (360 x 640).
@@ -96,7 +96,7 @@ void main() {
     ) async {
       await pumpHome(tester);
 
-      expect(find.text('KhataBook'), findsNothing);
+      expect(find.text('Khoroch Diary'), findsNothing);
       expect(find.text('Plan · Track · Save'), findsNothing);
       expect(find.byIcon(Icons.settings), findsNothing);
       expect(find.text('Recent Transactions'), findsOneWidget);

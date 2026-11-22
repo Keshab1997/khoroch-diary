@@ -1,4 +1,4 @@
-/// The Supabase project behind KhataBook's optional cloud backup.
+/// The Supabase project behind Khoroch Diary's optional cloud backup.
 ///
 /// Both values are public by design: every installed copy of the app carries
 /// them, so they live in code rather than in build secrets (Keshab's decision,

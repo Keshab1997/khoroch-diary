@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
 
 void main() {
   testWidgets('selection survives shell restart and entries stay isolated', (
@@ -18,7 +18,7 @@ void main() {
     final File file = File('${dir.path}/ledger.sqlite');
     LocalLedger ledger = LocalLedger(NativeDatabase(file));
     await tester.runAsync(() => ledger.initialize());
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
     await tester.ensureVisible(find.byKey(const Key('switch-khata')));
     await tester.pumpAndSettle();
@@ -73,7 +73,7 @@ void main() {
     await tester.pumpAndSettle();
     ledger = LocalLedger(NativeDatabase(file));
     await tester.runAsync(() => ledger.initialize());
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
     expect(find.text('Business'), findsOneWidget);
     expect(find.text('Business lunch'), findsOneWidget);
@@ -119,7 +119,7 @@ void main() {
         <Object?>[DateTime.now().toUtc().toIso8601String(), 'personal'],
       );
     });
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
     expect(find.text('Could not open local ledger.'), findsOneWidget);
     expect(find.text('₹0'), findsNothing);
@@ -136,7 +136,7 @@ void main() {
   ) async {
     final ledger = LocalLedger(NativeDatabase.memory());
     await tester.runAsync(() => ledger.initialize());
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
     await tester.ensureVisible(find.byKey(const Key('switch-khata')));
     await tester.pumpAndSettle();
@@ -169,7 +169,7 @@ void main() {
     addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
     final ledger = LocalLedger(NativeDatabase.memory());
     await tester.runAsync(() => ledger.initialize());
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
     await tester.ensureVisible(find.byKey(const Key('switch-khata')));
     await tester.pumpAndSettle();

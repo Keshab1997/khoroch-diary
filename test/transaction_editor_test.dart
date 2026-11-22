@@ -4,10 +4,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart';
-import 'package:khatabook/core/theme/app_theme.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/entry/transaction_editor_screen.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart';
+import 'package:khoroch_diary/core/theme/app_theme.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/entry/transaction_editor_screen.dart';
 
 const Size smallPhone = Size(320, 568);
 const Size midPhone = Size(360, 640);

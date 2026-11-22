@@ -26,7 +26,7 @@ enum AppLanguage {
 enum AppString {
   // Home and shared navigation
   home('Home', 'মূল পাতা'),
-  appName('KhataBook', 'খাতাবুক'),
+  appName('Khoroch Diary', 'খরচের ডায়েরি'),
   tagline('Plan · Track · Save', 'পরিকল্পনা · হিসাব · সঞ্চয়'),
   personalKhata('Personal Khata', 'ব্যক্তিগত খাতা'),
   activeKhata('Active Khata', 'সক্রিয় খাতা'),
@@ -341,7 +341,7 @@ enum AppString {
     'Accounts and cloud sync are not available in this build. Your khata stays on this device.',
     'এই সংস্করণে অ্যাকাউন্ট ও ক্লাউড সিঙ্কের সুবিধা নেই। আপনার খাতা এই ডিভাইসেই থাকে।',
   ),
-  about('About KhataBook', 'খাতাবুক সম্পর্কে'),
+  about('About Khoroch Diary', 'খরচের ডায়েরি সম্পর্কে'),
   version('Version', 'সংস্করণ'),
   dataLocation('Where your data lives', 'আপনার তথ্য কোথায় থাকে'),
   thisDeviceOnly('This device only', 'শুধু এই ডিভাইসে'),
@@ -353,19 +353,19 @@ enum AppString {
   lightOnly('Light only', 'শুধু হালকা থিম'),
   licences('Open-source licences', 'ওপেন সোর্স লাইসেন্স'),
   licencesDescription(
-    'Software KhataBook is built with.',
-    'খাতাবুক তৈরিতে ব্যবহৃত সফটওয়্যার।',
+    'Software Khoroch Diary is built with.',
+    'খরচের ডায়েরি তৈরিতে ব্যবহৃত সফটওয়্যার।',
   ),
   localProfile('Local profile', 'ডিভাইসের প্রোফাইল'),
   notSignedIn('Not signed in', 'সাইন ইন করা হয়নি'),
   localProfileDescription(
-    'No account is linked to KhataBook. Everything you enter stays in the local database on this device.',
-    'খাতাবুকের সঙ্গে কোনো অ্যাকাউন্ট যুক্ত নেই। আপনার দেওয়া তথ্য এই ডিভাইসের ডেটাবেসেই থাকে।',
+    'No account is linked to Khoroch Diary. Everything you enter stays in the local database on this device.',
+    'খরচের ডায়েরিের সঙ্গে কোনো অ্যাকাউন্ট যুক্ত নেই। আপনার দেওয়া তথ্য এই ডিভাইসের ডেটাবেসেই থাকে।',
   ),
   offlineLocalOnly('Offline & local-only', 'অফলাইন, শুধু ডিভাইসে'),
   offlinePrivacy(
-    'KhataBook works without internet. Entries are saved on this device, nothing is uploaded, and there is no cloud copy to restore.',
-    'খাতাবুক ইন্টারনেট ছাড়াই চলে। লেনদেন এই ডিভাইসে থাকে, কিছুই আপলোড হয় না এবং ফেরানোর মতো কোনো ক্লাউড কপি নেই।',
+    'Khoroch Diary works without internet. Entries are saved on this device, nothing is uploaded, and there is no cloud copy to restore.',
+    'খরচের ডায়েরি ইন্টারনেট ছাড়াই চলে। লেনদেন এই ডিভাইসে থাকে, কিছুই আপলোড হয় না এবং ফেরানোর মতো কোনো ক্লাউড কপি নেই।',
   ),
 
   // Settings
@@ -379,8 +379,8 @@ enum AppString {
   fixed('Fixed in v1', 'প্রথম সংস্করণে নির্ধারিত'),
   theme('Theme', 'থিম'),
   themeDetail(
-    'KhataBook uses its light, paper-style theme. Dark mode is not available.',
-    'খাতাবুকে কাগজের মতো হালকা থিম ব্যবহার করা হয়। গাঢ় থিম নেই।',
+    'Khoroch Diary uses its light, paper-style theme. Dark mode is not available.',
+    'খরচের ডায়েরিে কাগজের মতো হালকা থিম ব্যবহার করা হয়। গাঢ় থিম নেই।',
   ),
   light('Light', 'হালকা'),
   language('Language', 'ভাষা'),

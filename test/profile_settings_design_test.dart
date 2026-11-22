@@ -12,14 +12,14 @@ import 'package:drift/native.dart';
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart';
-import 'package:khatabook/core/theme/app_colors.dart';
-import 'package:khatabook/core/widgets/ledger_header_background.dart';
-import 'package:khatabook/core/theme/app_theme.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/profile/profile_screen.dart';
-import 'package:khatabook/features/profile/profile_store.dart';
-import 'package:khatabook/features/profile/settings_screen.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart';
+import 'package:khoroch_diary/core/theme/app_colors.dart';
+import 'package:khoroch_diary/core/widgets/ledger_header_background.dart';
+import 'package:khoroch_diary/core/theme/app_theme.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/profile/profile_screen.dart';
+import 'package:khoroch_diary/features/profile/profile_store.dart';
+import 'package:khoroch_diary/features/profile/settings_screen.dart';
 
 /// The smallest supported phone (320 x 568 logical px).
 const Size smallPhone = Size(320, 568);
@@ -282,7 +282,7 @@ void main() {
       expect(find.text('Choose photo'), findsOneWidget);
       expect(find.text('Not signed in'), findsOneWidget);
       expect(find.text('Local profile'), findsOneWidget);
-      expect(find.text('KHATABOOK'), findsOneWidget);
+      expect(find.text('KHOROCH DIARY'), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
 
@@ -300,7 +300,7 @@ void main() {
       expect(find.text('Choose photo'), findsOneWidget);
       final Finder avatar = find.byKey(const Key('profile-avatar'));
       expect(
-        tester.getBottomLeft(find.text('KHATABOOK')).dy,
+        tester.getBottomLeft(find.text('KHOROCH DIARY')).dy,
         lessThan(tester.getTopLeft(avatar).dy),
         reason: 'The avatar must not paint over the brand caption',
       );
@@ -328,8 +328,11 @@ void main() {
       expect(find.text('নাম পরিবর্তন'), findsOneWidget);
       expect(find.text('ছবি বাছুন'), findsOneWidget);
       // The brand caption is localized too, and no English tagline is left.
-      expect(find.text('খাতাবুক'), findsOneWidget);
-      expect(find.text('KhataBook · Plan · Track · Save'), findsNothing);
+      expect(find.text('খরচের ডায়েরি'), findsOneWidget);
+      expect(
+        find.text('Khoroch Diary · Your ledger, on your phone'),
+        findsNothing,
+      );
       expect(tester.takeException(), isNull);
     });
   });

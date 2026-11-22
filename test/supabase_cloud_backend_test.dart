@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:khatabook/features/sync/cloud_backend.dart';
-import 'package:khatabook/features/sync/supabase_cloud_backend.dart';
+import 'package:khoroch_diary/features/sync/cloud_backend.dart';
+import 'package:khoroch_diary/features/sync/supabase_cloud_backend.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class _MemoryGotrueStorage extends GotrueAsyncStorage {
@@ -123,7 +123,7 @@ void main() {
 
       final SupabaseCloudBackend backend = SupabaseCloudBackend(
         client: client,
-        redirectTo: 'in.keshab.khatabook://login-callback',
+        redirectTo: 'com.keshabstudios.khorochdiary://login-callback',
       );
 
       final List<CloudUser?> observed = <CloudUser?>[];
@@ -210,7 +210,7 @@ void main() {
       // 1. Timeout when no OAuth callback arrives -> returns null (cancelled).
       final SupabaseCloudBackend timeoutBackend = SupabaseCloudBackend(
         client: client,
-        redirectTo: 'in.keshab.khatabook://login-callback',
+        redirectTo: 'com.keshabstudios.khorochdiary://login-callback',
         signInTimeout: const Duration(milliseconds: 40),
       );
       final CloudUser? cancelled = await timeoutBackend.signInWithGoogle();
@@ -224,13 +224,13 @@ void main() {
       expect(parsedLaunch.queryParameters['provider'], 'google');
       expect(
         parsedLaunch.queryParameters['redirect_to'],
-        'in.keshab.khatabook://login-callback',
+        'com.keshabstudios.khorochdiary://login-callback',
       );
 
       // 2. Session arrives over onAuthStateChange -> resolves with CloudUser.
       final SupabaseCloudBackend liveBackend = SupabaseCloudBackend(
         client: client,
-        redirectTo: 'in.keshab.khatabook://login-callback',
+        redirectTo: 'com.keshabstudios.khorochdiary://login-callback',
         signInTimeout: const Duration(seconds: 5),
       );
       final Future<CloudUser?> signInFuture = liveBackend.signInWithGoogle();

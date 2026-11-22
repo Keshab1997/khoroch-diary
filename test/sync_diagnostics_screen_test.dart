@@ -9,11 +9,11 @@
 import 'package:flutter/material.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart' show AppLanguage;
-import 'package:khatabook/core/theme/app_theme.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/sync/cloud_backup_screen.dart';
-import 'package:khatabook/features/sync/sync_diagnostics_screen.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart' show AppLanguage;
+import 'package:khoroch_diary/core/theme/app_theme.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/sync/cloud_backup_screen.dart';
+import 'package:khoroch_diary/features/sync/sync_diagnostics_screen.dart';
 
 Future<void> _pump(
   WidgetTester tester,

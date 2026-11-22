@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
 
 Future<void> revealTap(WidgetTester tester, Finder finder) async {
   // Let any in-flight scroll finish first. A focused text field keeps itself
@@ -50,7 +50,7 @@ void main() {
         ),
       );
     });
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
     await revealTap(tester, find.text('View All'));
     await revealTap(tester, find.text('Lunch'));
@@ -105,7 +105,7 @@ void main() {
         ),
       );
     });
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
     await revealTap(tester, find.text('View All'));
     await revealTap(tester, find.text('Tea'));

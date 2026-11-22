@@ -9,20 +9,20 @@ import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:khatabook/core/theme/app_theme.dart';
-import 'package:khatabook/features/calculator/calculator_screen.dart';
-import 'package:khatabook/features/counter/note_counter_screen.dart';
-import 'package:khatabook/features/counter/note_counter_store.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/home/home_screen.dart';
-import 'package:khatabook/features/home/models.dart';
-import 'package:khatabook/features/ledger/all_transactions_screen.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/profile/profile_screen.dart';
-import 'package:khatabook/features/profile/settings_screen.dart';
-import 'package:khatabook/features/sync/cloud_backend.dart';
-import 'package:khatabook/features/sync/cloud_backup_screen.dart';
-import 'package:khatabook/features/sync/sign_in_screen.dart';
+import 'package:khoroch_diary/core/theme/app_theme.dart';
+import 'package:khoroch_diary/features/calculator/calculator_screen.dart';
+import 'package:khoroch_diary/features/counter/note_counter_screen.dart';
+import 'package:khoroch_diary/features/counter/note_counter_store.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/home/home_screen.dart';
+import 'package:khoroch_diary/features/home/models.dart';
+import 'package:khoroch_diary/features/ledger/all_transactions_screen.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/profile/profile_screen.dart';
+import 'package:khoroch_diary/features/profile/settings_screen.dart';
+import 'package:khoroch_diary/features/sync/cloud_backend.dart';
+import 'package:khoroch_diary/features/sync/cloud_backup_screen.dart';
+import 'package:khoroch_diary/features/sync/sign_in_screen.dart';
 
 import 'shot_framework.dart';
 

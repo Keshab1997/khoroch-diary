@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
 
 void main() {
   testWidgets(
@@ -16,7 +16,7 @@ void main() {
         openingBalancePaise: 12345,
       );
       await ledger.setActiveKhataId(shop.id);
-      await tester.pumpWidget(KhataBookApp(ledger: ledger));
+      await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
       await tester.pumpAndSettle();
       expect(find.text('Shop'), findsOneWidget);
       await tester.tap(find.byKey(const Key('switch-khata')));

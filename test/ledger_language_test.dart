@@ -15,14 +15,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/home/models.dart';
-import 'package:khatabook/features/ledger/all_transactions_screen.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/ledger/khata_manage_screen.dart';
-import 'package:khatabook/features/ledger/khata_switcher.dart';
-import 'package:khatabook/features/ledger/wallet_summary_screen.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/home/models.dart';
+import 'package:khoroch_diary/features/ledger/all_transactions_screen.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/ledger/khata_manage_screen.dart';
+import 'package:khoroch_diary/features/ledger/khata_switcher.dart';
+import 'package:khoroch_diary/features/ledger/wallet_summary_screen.dart';
 
 const AppStrings bn = AppStrings(AppLanguage.bn);
 

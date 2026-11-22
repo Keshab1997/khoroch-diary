@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/ledger/wallet_summary_screen.dart';
-import 'package:khatabook/features/ledger/all_transactions_screen.dart';
-import 'package:khatabook/features/profile/profile_screen.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/ledger/wallet_summary_screen.dart';
+import 'package:khoroch_diary/features/ledger/all_transactions_screen.dart';
+import 'package:khoroch_diary/features/profile/profile_screen.dart';
 
 void main() {
   testWidgets('Home and Profile open real transaction and wallet data', (
@@ -40,7 +40,7 @@ void main() {
         khataId: shop.id,
       );
     });
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
     await tester.ensureVisible(find.text('View All'));
     await tester.pumpAndSettle();

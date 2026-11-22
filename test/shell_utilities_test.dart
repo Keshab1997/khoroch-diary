@@ -3,11 +3,11 @@ import 'package:drift/native.dart';
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/features/counter/note_counter_screen.dart';
-import 'package:khatabook/features/counter/note_counter_store.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/features/counter/note_counter_screen.dart';
+import 'package:khoroch_diary/features/counter/note_counter_store.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Opens the app over an in-memory ledger, as the other shell tests do: the
@@ -19,7 +19,7 @@ Future<LocalLedger> pumpApp(WidgetTester tester) async {
   addTearDown(tester.view.reset);
   final LocalLedger ledger = LocalLedger(NativeDatabase.memory());
   await tester.runAsync(() => ledger.initialize());
-  await tester.pumpWidget(KhataBookApp(ledger: ledger));
+  await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
   await tester.pumpAndSettle();
   return ledger;
 }

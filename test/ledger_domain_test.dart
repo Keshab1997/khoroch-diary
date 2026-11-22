@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/features/ledger/ledger_domain.dart';
+import 'package:khoroch_diary/features/ledger/ledger_domain.dart';
 
 /// Fixed UTC instants, so ordering assertions never depend on the clock.
 DateTime at(int hour, [int minute = 0, int day = 19]) =>

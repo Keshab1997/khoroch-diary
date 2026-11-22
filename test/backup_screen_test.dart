@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/theme/app_colors.dart';
-import 'package:khatabook/features/profile/backup_screen.dart';
+import 'package:khoroch_diary/core/theme/app_colors.dart';
+import 'package:khoroch_diary/features/profile/backup_screen.dart';
 
 const preview = BackupPreview(
   payload: 'SECRET_PAYLOAD',

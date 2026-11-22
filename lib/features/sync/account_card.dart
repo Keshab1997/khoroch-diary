@@ -548,8 +548,8 @@ class _AccountCardState extends State<AccountCard> {
                       const SizedBox(height: 2),
                       Text(
                         _pair(
-                          'You can continue using KhataBook normally.',
-                          'আপনি স্বাভাবিকভাবেই খাতাবুক ব্যবহার চালিয়ে যেতে পারেন।',
+                          'You can continue using Khoroch Diary normally.',
+                          'আপনি স্বাভাবিকভাবেই খরচের ডায়েরি ব্যবহার চালিয়ে যেতে পারেন।',
                         ),
                         style: const TextStyle(
                           fontSize: 12.5,

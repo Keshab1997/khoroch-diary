@@ -16,5 +16,5 @@ commit a secret or service-role key; `test/cloud_project_test.dart` fails if
 one appears in `lib/`.
 
 The phone's SQLite database stays the source of truth. Google is the only sign-in
-provider, and the app's redirect `in.keshab.khatabook://login-callback` is in the
+provider, and the app's redirect `com.keshabstudios.khorochdiary://login-callback` is in the
 project's allowed redirect URLs.

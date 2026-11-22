@@ -4,10 +4,10 @@ import 'dart:async';
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart' show AppLanguage;
-import 'package:khatabook/core/theme/app_theme.dart';
-import 'package:khatabook/features/sync/cloud_backend.dart';
-import 'package:khatabook/features/sync/sign_in_screen.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart' show AppLanguage;
+import 'package:khoroch_diary/core/theme/app_theme.dart';
+import 'package:khoroch_diary/features/sync/cloud_backend.dart';
+import 'package:khoroch_diary/features/sync/sign_in_screen.dart';
 
 import 'support/fake_cloud_backend.dart';
 

@@ -1,4 +1,4 @@
-/// Dependency-free ledger domain rules for KhataBook (B2 First).
+/// Dependency-free ledger domain rules for Khoroch Diary (B2 First).
 ///
 /// This file is the pure, in-memory half of the ledger: it holds no database,
 /// no network, no Flutter imports and no seeded rows. It mirrors

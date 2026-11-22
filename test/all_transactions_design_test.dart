@@ -16,14 +16,14 @@ import 'package:drift/native.dart';
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart' show AppLanguage;
-import 'package:khatabook/core/theme/app_colors.dart';
-import 'package:khatabook/core/theme/app_theme.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart'
+import 'package:khoroch_diary/core/l10n/app_strings.dart' show AppLanguage;
+import 'package:khoroch_diary/core/theme/app_colors.dart';
+import 'package:khoroch_diary/core/theme/app_theme.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart'
     show EntryFormKind, EntryFormResult;
-import 'package:khatabook/features/home/models.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/ledger/all_transactions_screen.dart';
+import 'package:khoroch_diary/features/home/models.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/ledger/all_transactions_screen.dart';
 
 const Size _reference = Size(390, 844);
 const Size _smallPhone = Size(320, 568);

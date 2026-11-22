@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:drift/native.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/core/format/money.dart';
-import 'package:khatabook/core/theme/app_colors.dart';
-import 'package:khatabook/features/home/models.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/core/format/money.dart';
+import 'package:khoroch_diary/core/theme/app_colors.dart';
+import 'package:khoroch_diary/features/home/models.dart';
 
 void main() {
   group('palette tokens match the style guide', () {
@@ -62,7 +62,7 @@ void main() {
   ) async {
     final LocalLedger ledger = LocalLedger(NativeDatabase.memory());
     await ledger.initialize();
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
 
     expect(find.byType(NavigationBar), findsOneWidget);

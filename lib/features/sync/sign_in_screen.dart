@@ -638,8 +638,8 @@ class _ActionCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         pair(
-                          'Connecting to Google… You can keep using KhataBook offline anytime.',
-                          'Google-এর সাথে সংযোগ করা হচ্ছে… আপনি যেকোনো সময় অফলাইনে খাতাবুক ব্যবহার করতে পারেন।',
+                          'Connecting to Google… You can keep using Khoroch Diary offline anytime.',
+                          'Google-এর সাথে সংযোগ করা হচ্ছে… আপনি যেকোনো সময় অফলাইনে খরচের ডায়েরি ব্যবহার করতে পারেন।',
                         ),
                         style: const TextStyle(
                           fontSize: 12.5,

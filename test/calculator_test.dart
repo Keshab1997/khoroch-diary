@@ -2,9 +2,9 @@
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/theme/app_colors.dart';
-import 'package:khatabook/core/theme/app_theme.dart';
-import 'package:khatabook/features/calculator/calculator_screen.dart';
+import 'package:khoroch_diary/core/theme/app_colors.dart';
+import 'package:khoroch_diary/core/theme/app_theme.dart';
+import 'package:khoroch_diary/features/calculator/calculator_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The calculator is always exercised at a small phone width; the layout test

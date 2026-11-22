@@ -2,13 +2,13 @@ import 'package:drift/native.dart';
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/features/entry/category_store.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/entry/transaction_editor_screen.dart';
-import 'package:khatabook/features/home/home_screen.dart';
-import 'package:khatabook/features/home/models.dart';
-import 'package:khatabook/features/ledger/all_transactions_screen.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/entry/category_store.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/entry/transaction_editor_screen.dart';
+import 'package:khoroch_diary/features/home/home_screen.dart';
+import 'package:khoroch_diary/features/home/models.dart';
+import 'package:khoroch_diary/features/ledger/all_transactions_screen.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

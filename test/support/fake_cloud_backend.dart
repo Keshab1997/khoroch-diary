@@ -16,7 +16,7 @@ library;
 
 import 'dart:async';
 
-import 'package:khatabook/features/sync/cloud_backend.dart';
+import 'package:khoroch_diary/features/sync/cloud_backend.dart';
 
 class FakeCloudBackend implements CloudBackend {
   FakeCloudBackend({CloudUser? initialUser, DateTime? initialServerTime})

@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:drift/drift.dart' hide isNull, isNotNull;
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/home/models.dart';
-import 'package:khatabook/features/ledger/data/ledger_backup.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/home/models.dart';
+import 'package:khoroch_diary/features/ledger/data/ledger_backup.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
 
 EntryFormResult _entry({
   required EntryFormKind kind,

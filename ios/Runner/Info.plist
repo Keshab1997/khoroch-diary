@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Khatabook</string>
+	<string>Khoroch Diary</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>khatabook</string>
+	<string>Khoroch Diary</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -73,15 +73,15 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>in.keshab.khatabook</string>
+				<string>com.keshabstudios.khorochdiary</string>
 			</array>
 		</dict>
 	</array>
 	<key>FlutterDeepLinkingEnabled</key>
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>KhataBook uses a photo you choose as your profile picture. It stays on this device.</string>
+	<string>Khoroch Diary uses a photo you choose as your profile picture. It stays on this device.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>KhataBook can take a profile picture with the camera. It stays on this device.</string>
+	<string>Khoroch Diary can take a profile picture with the camera. It stays on this device.</string>
 </dict>
 </plist>

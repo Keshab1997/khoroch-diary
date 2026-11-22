@@ -4,12 +4,12 @@ import 'dart:io';
 import 'package:drift/drift.dart' hide isNull, isNotNull;
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/home/models.dart';
-import 'package:khatabook/features/counter/note_counter_store.dart';
-import 'package:khatabook/features/ledger/data/ledger_backup.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/profile/profile_store.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/home/models.dart';
+import 'package:khoroch_diary/features/counter/note_counter_store.dart';
+import 'package:khoroch_diary/features/ledger/data/ledger_backup.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/profile/profile_store.dart';
 
 const String _t1 = '2026-11-20T10:30:00.000Z';
 

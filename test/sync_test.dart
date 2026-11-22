@@ -4,13 +4,13 @@ import 'package:drift/drift.dart' hide isNotNull, isNull;
 import 'package:drift/native.dart';
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/home/models.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/sync/cloud_backend.dart';
-import 'package:khatabook/features/sync/sync_engine.dart';
-import 'package:khatabook/features/sync/sync_scheduler.dart';
-import 'package:khatabook/features/sync/sync_status.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/home/models.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/sync/cloud_backend.dart';
+import 'package:khoroch_diary/features/sync/sync_engine.dart';
+import 'package:khoroch_diary/features/sync/sync_scheduler.dart';
+import 'package:khoroch_diary/features/sync/sync_status.dart';
 
 import 'support/fake_cloud_backend.dart';
 

@@ -5,11 +5,11 @@ import 'package:flutter/semantics.dart';
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart';
-import 'package:khatabook/core/theme/app_colors.dart';
-import 'package:khatabook/core/theme/app_theme.dart';
-import 'package:khatabook/features/profile/profile_screen.dart';
-import 'package:khatabook/features/profile/settings_screen.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart';
+import 'package:khoroch_diary/core/theme/app_colors.dart';
+import 'package:khoroch_diary/core/theme/app_theme.dart';
+import 'package:khoroch_diary/features/profile/profile_screen.dart';
+import 'package:khoroch_diary/features/profile/settings_screen.dart';
 
 /// The smallest supported phone (320 x 568 logical px) and a common one.
 const Size smallPhone = Size(320, 568);
@@ -421,7 +421,7 @@ void main() {
       // Both section titles are headings, in dark text.
       for (final String title in <String>[
         'Account & backup',
-        'About KhataBook',
+        'About Khoroch Diary',
       ]) {
         final Text heading = tester.widget<Text>(find.text(title));
         expect(heading.style?.fontWeight, FontWeight.w800);
@@ -481,7 +481,7 @@ void main() {
       expect(
         find.descendant(
           of: find.byKey(const Key('profile-footer-tagline')),
-          matching: find.text('KhataBook · Plan · Track · Save'),
+          matching: find.text('Khoroch Diary · Your ledger, on your phone'),
         ),
         findsOneWidget,
       );
@@ -559,10 +559,10 @@ void main() {
       // The build label is a quiet pill under the last card; scroll to it.
       await reveal(
         tester,
-        find.text('KhataBook 1.0.0 (build 1)'),
+        find.text('Khoroch Diary 1.0.0 (build 1)'),
         screen: SettingsScreen,
       );
-      expect(find.text('KhataBook 1.0.0 (build 1)'), findsOneWidget);
+      expect(find.text('Khoroch Diary 1.0.0 (build 1)'), findsOneWidget);
     });
 
     testWidgets('value pills share one type scale with the rest of the app', (
@@ -849,11 +849,11 @@ void main() {
 
       await reveal(
         tester,
-        find.text('KhataBook 1.0.0 (build 1)'),
+        find.text('Khoroch Diary 1.0.0 (build 1)'),
         screen: SettingsScreen,
       );
       expect(tester.takeException(), isNull);
-      expect(find.text('KhataBook 1.0.0 (build 1)'), findsOneWidget);
+      expect(find.text('Khoroch Diary 1.0.0 (build 1)'), findsOneWidget);
     });
 
     testWidgets('settings fits a 360 dp phone at 100%', (

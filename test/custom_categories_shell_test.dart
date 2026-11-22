@@ -4,18 +4,18 @@ import 'package:flutter/foundation.dart'
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/core/l10n/app_strings.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/entry/category_picker.dart';
-import 'package:khatabook/features/entry/category_store.dart';
-import 'package:khatabook/features/entry/transaction_editor_screen.dart';
-import 'package:khatabook/features/home/home_screen.dart';
-import 'package:khatabook/features/ledger/all_transactions_screen.dart';
-import 'package:khatabook/features/ledger/data/ledger_backup.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/profile/backup_screen.dart';
-import 'package:khatabook/features/profile/profile_screen.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/entry/category_picker.dart';
+import 'package:khoroch_diary/features/entry/category_store.dart';
+import 'package:khoroch_diary/features/entry/transaction_editor_screen.dart';
+import 'package:khoroch_diary/features/home/home_screen.dart';
+import 'package:khoroch_diary/features/ledger/all_transactions_screen.dart';
+import 'package:khoroch_diary/features/ledger/data/ledger_backup.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/profile/backup_screen.dart';
+import 'package:khoroch_diary/features/profile/profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Wait for a real UI condition while native database work runs outside the
@@ -51,7 +51,7 @@ void main() {
     addTearDown(tester.view.reset);
     final LocalLedger ledger = LocalLedger(NativeDatabase.memory());
     await tester.runAsync(() => ledger.initialize());
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await waitFor(tester, find.byType(HomeScreen));
     final CategoryStore store = tester
         .widget<HomeScreen>(find.byType(HomeScreen))
@@ -196,7 +196,7 @@ void main() {
       backupJson = await LedgerBackup(ledger).exportJson();
       seed.dispose();
     });
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await waitFor(tester, find.text('Tea'));
     final CategoryStore store = tester
         .widget<HomeScreen>(find.byType(HomeScreen))

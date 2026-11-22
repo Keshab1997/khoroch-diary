@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/features/ledger/data/ledger_backup.dart';
-import 'package:khatabook/features/profile/backup_files.dart';
+import 'package:khoroch_diary/features/ledger/data/ledger_backup.dart';
+import 'package:khoroch_diary/features/profile/backup_files.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  const channel = MethodChannel('in.keshab.khatabook/backup_files');
+  const channel = MethodChannel('com.keshabstudios.khorochdiary/backup_files');
   final messenger =
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
   tearDown(() => messenger.setMockMethodCallHandler(channel, null));

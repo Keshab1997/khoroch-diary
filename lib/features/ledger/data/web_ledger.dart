@@ -16,6 +16,8 @@ import 'local_ledger.dart';
 /// copied into the `web/` folder and shipped with the web build.
 Future<LocalLedger> openWebLedger() async {
   final WasmDatabaseResult result = await WasmDatabase.open(
+    // Kept from the pre-rename build: IndexedDB is keyed by this name, so
+    // changing it would orphan the ledger already saved in the browser.
     databaseName: 'khatabook',
     sqlite3Uri: Uri.parse('sqlite3.wasm'),
     driftWorkerUri: Uri.parse('drift_worker.js'),

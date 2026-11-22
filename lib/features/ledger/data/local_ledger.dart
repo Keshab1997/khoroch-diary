@@ -128,6 +128,9 @@ final class LocalSyncMetadata {
 class LocalLedger extends GeneratedDatabase {
   LocalLedger(super.executor);
 
+  // The on-disk name predates the Khoroch Diary rename. It stays 'khatabook'
+  // so an app update opens the ledger already on the device instead of an
+  // empty one.
   factory LocalLedger.device() => LocalLedger(driftDatabase(name: 'khatabook'));
 
   static const String _defaultKhata = 'personal';

@@ -1,4 +1,4 @@
-/// Abstract cloud backend contract and wire-free row models for KhataBook B5.
+/// Abstract cloud backend contract and wire-free row models for Khoroch Diary B5.
 ///
 /// Nothing in this library imports Supabase or any HTTP client: [SyncEngine]
 /// and the sync widgets depend only on [CloudBackend], while the concrete

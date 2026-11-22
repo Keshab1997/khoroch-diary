@@ -1,4 +1,4 @@
-package `in`.keshab.khatabook.khatabook
+package com.keshabstudios.khorochdiary
 
 import android.app.Activity
 import android.content.Intent
@@ -11,7 +11,7 @@ import java.io.ByteArrayOutputStream
 
 /** Storage Access Framework: the user explicitly chooses every file location. */
 class MainActivity : FlutterActivity() {
-    private val channelName = "in.keshab.khatabook/backup_files"
+    private val channelName = "com.keshabstudios.khorochdiary/backup_files"
     private val maxBytes = 10 * 1024 * 1024
     private val openRequest = 7811
     private val saveRequest = 7812
@@ -47,7 +47,7 @@ class MainActivity : FlutterActivity() {
                     intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                         addCategory(Intent.CATEGORY_OPENABLE)
                         type = "application/json"
-                        putExtra(Intent.EXTRA_TITLE, "khatabook-backup.json")
+                        putExtra(Intent.EXTRA_TITLE, "khoroch-diary-backup.json")
                     }
                     request = saveRequest
                 }

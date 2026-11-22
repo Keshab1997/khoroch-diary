@@ -3,13 +3,13 @@ import 'package:drift/native.dart';
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/core/l10n/app_strings.dart';
-import 'package:khatabook/core/l10n/language_preference.dart';
-import 'package:khatabook/features/calculator/calculator_screen.dart';
-import 'package:khatabook/features/home/home_screen.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/profile/profile_screen.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart';
+import 'package:khoroch_diary/core/l10n/language_preference.dart';
+import 'package:khoroch_diary/features/calculator/calculator_screen.dart';
+import 'package:khoroch_diary/features/home/home_screen.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/profile/profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -25,7 +25,7 @@ void main() {
     final LocalLedger ledger = LocalLedger(NativeDatabase.memory());
     await tester.runAsync(() => ledger.initialize());
     await tester.pumpWidget(
-      KhataBookApp(ledger: ledger, initialLanguage: language),
+      KhorochDiaryApp(ledger: ledger, initialLanguage: language),
     );
     await tester.pumpAndSettle();
 
@@ -60,7 +60,7 @@ void main() {
     SharedPreferences.setMockInitialValues(<String, Object>{});
     final LocalLedger ledger = LocalLedger(NativeDatabase.memory());
     await tester.runAsync(() => ledger.initialize());
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
     final NavigationBar before = tester.widget(find.byType(NavigationBar));
     expect((before.destinations.first as NavigationDestination).label, 'Home');

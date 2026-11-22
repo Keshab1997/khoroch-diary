@@ -1,4 +1,4 @@
-/// App-level cloud backup & sync service for KhataBook B5.
+/// App-level cloud backup & sync service for Khoroch Diary B5.
 ///
 /// Owns one [CloudBackend], one [SyncEngine] (and its [SyncScheduler]), and an
 /// [AppLifecycleListener] so cloud sync runs:

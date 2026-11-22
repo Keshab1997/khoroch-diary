@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart';
-import 'package:khatabook/features/profile/settings_screen.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart';
+import 'package:khoroch_diary/features/profile/settings_screen.dart';
 
 const _changeKey = Key('settings-change-language');
 const _backupKey = Key('settings-offline-backup-row');

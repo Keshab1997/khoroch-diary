@@ -20,7 +20,7 @@ Future<void> main() async {
   // the device log instead of dying silently. (No crash reporter is wired up;
   // this is deliberately the cheapest observable sink.)
   await runZonedGuarded<Future<void>>(_run, (Object error, StackTrace stack) {
-    debugPrint('KhataBook uncaught error: $error\n$stack');
+    debugPrint('Khoroch Diary uncaught error: $error\n$stack');
   });
 }
 
@@ -57,7 +57,7 @@ Future<void> _run() async {
     );
   }
   runApp(
-    KhataBookApp(
+    KhorochDiaryApp(
       ledger: ledger,
       cloudSync: cloudSync,
       initialLanguage: language,

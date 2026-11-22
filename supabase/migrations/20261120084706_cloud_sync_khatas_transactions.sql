@@ -1,4 +1,4 @@
--- KhataBook cloud sync (spec B5). The phone's SQLite stays the source of
+-- Khoroch Diary cloud sync (spec B5). The phone's SQLite stays the source of
 -- truth; these tables mirror `khatas` and `transactions` for the signed-in
 -- user. Money is integer paise. Entry deletes and khata archives are
 -- tombstones (`deleted_at`): the app never hard-deletes, so there is no

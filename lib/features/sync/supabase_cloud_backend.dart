@@ -1,4 +1,4 @@
-/// Live Supabase implementation of [CloudBackend] for KhataBook B5.
+/// Live Supabase implementation of [CloudBackend] for Khoroch Diary B5.
 ///
 /// Always receives an injected [SupabaseClient] and never touches
 /// `Supabase.instance`. Maps the `khatas` and `transactions` tables in

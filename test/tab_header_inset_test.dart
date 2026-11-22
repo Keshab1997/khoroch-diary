@@ -1,10 +1,10 @@
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/widgets/ledger_header_background.dart';
-import 'package:khatabook/features/calculator/calculator_screen.dart';
-import 'package:khatabook/features/counter/note_counter_screen.dart';
-import 'package:khatabook/features/home/home_screen.dart';
+import 'package:khoroch_diary/core/widgets/ledger_header_background.dart';
+import 'package:khoroch_diary/features/calculator/calculator_screen.dart';
+import 'package:khoroch_diary/features/counter/note_counter_screen.dart';
+import 'package:khoroch_diary/features/home/home_screen.dart';
 
 void main() {
   for (final entry in <String, Widget>{

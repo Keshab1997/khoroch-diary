@@ -1,8 +1,8 @@
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/theme/app_colors.dart';
-import 'package:khatabook/core/theme/app_theme.dart';
+import 'package:khoroch_diary/core/theme/app_colors.dart';
+import 'package:khoroch_diary/core/theme/app_theme.dart';
 
 void main() {
   test('navigation highlights the selected tab with a readable green pill', () {

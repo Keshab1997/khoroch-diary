@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart';
 
 void main() {
   const en = AppStrings();

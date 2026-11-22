@@ -1,11 +1,11 @@
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart';
-import 'package:khatabook/core/theme/app_theme.dart';
-import 'package:khatabook/features/counter/note_counter_screen.dart';
-import 'package:khatabook/features/profile/profile_screen.dart';
-import 'package:khatabook/features/profile/settings_screen.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart';
+import 'package:khoroch_diary/core/theme/app_theme.dart';
+import 'package:khoroch_diary/features/counter/note_counter_screen.dart';
+import 'package:khoroch_diary/features/profile/profile_screen.dart';
+import 'package:khoroch_diary/features/profile/settings_screen.dart';
 
 const Size _smallViewport = Size(320, 568);
 const Size _tallViewport = Size(400, 1600);

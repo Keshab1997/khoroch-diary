@@ -1,4 +1,4 @@
-/// Offline, versioned JSON backup of the local KhataBook ledger.
+/// Offline, versioned JSON backup of the local Khoroch Diary ledger.
 ///
 /// This file is a standalone service with **no** file I/O, platform code,
 /// network, UI or new dependency: it reads and writes the ledger tables
@@ -55,8 +55,11 @@ import '../../counter/note_counter_store.dart';
 
 import 'local_ledger.dart';
 
-/// Marker that identifies a KhataBook ledger backup. The marker is checked
+/// Marker that identifies a Khoroch Diary ledger backup. The marker is checked
 /// before anything else so a foreign JSON file is rejected as such.
+///
+/// The value keeps its pre-rename spelling on purpose: a backup exported before
+/// the rename must keep importing.
 const String kLedgerBackupFormat = 'khatabook-ledger-backup';
 
 /// The backup format version this build writes. Version 2 adds the profile,

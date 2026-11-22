@@ -5,18 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/features/counter/note_counter_store.dart';
-import 'package:khatabook/features/ledger/data/ledger_backup.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/profile/backup_screen.dart';
-import 'package:khatabook/features/profile/profile_screen.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/features/counter/note_counter_store.dart';
+import 'package:khoroch_diary/features/ledger/data/ledger_backup.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/profile/backup_screen.dart';
+import 'package:khoroch_diary/features/profile/profile_screen.dart';
 
 void main() {
   testWidgets(
     'Android backup export and confirmed restore refresh the selected khata',
     (t) async {
-      const channel = MethodChannel('in.keshab.khatabook/backup_files');
+      const channel = MethodChannel(
+        'com.keshabstudios.khorochdiary/backup_files',
+      );
       final messenger =
           TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
       final original = LocalLedger(NativeDatabase.memory());
@@ -85,7 +87,7 @@ CREATE TABLE IF NOT EXISTS custom_categories (
         throw PlatformException(code: 'unknown');
       });
       addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
-      await t.pumpWidget(KhataBookApp(ledger: ledger));
+      await t.pumpWidget(KhorochDiaryApp(ledger: ledger));
       await t.pumpAndSettle();
       expect(find.text('Old Shop'), findsOneWidget);
       await t.tap(find.text('Profile').last);

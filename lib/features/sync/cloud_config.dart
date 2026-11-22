@@ -1,4 +1,4 @@
-/// Build-time configuration for KhataBook cloud backup & sync (B5).
+/// Build-time configuration for Khoroch Diary cloud backup & sync (B5).
 ///
 /// Defaults to the baked-in project constants from
 /// `core/config/cloud_project.dart`; `--dart-define=SUPABASE_URL=...` and
@@ -35,7 +35,7 @@ final class CloudConfig {
   /// browser redirects back to the current page).
   static const String? defaultRedirectTo = kIsWeb
       ? null
-      : 'in.keshab.khatabook://login-callback';
+      : 'com.keshabstudios.khorochdiary://login-callback';
 
   final String url;
   final String publishableKey;

@@ -9,8 +9,8 @@ import 'features/shell/main_shell.dart';
 import 'features/ledger/data/local_ledger.dart';
 import 'features/sync/cloud_sync.dart';
 
-class KhataBookApp extends StatelessWidget {
-  const KhataBookApp({
+class KhorochDiaryApp extends StatelessWidget {
+  const KhorochDiaryApp({
     super.key,
     this.ledger,
     this.cloudSync,
@@ -29,7 +29,7 @@ class KhataBookApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'KhataBook',
+      title: 'Khoroch Diary',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
       builder: (context, child) => Container(

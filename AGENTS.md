@@ -1,4 +1,4 @@
-# AGENTS.md — KhataBook
+# AGENTS.md — Khoroch Diary
 
 Playbook for AI agents working in this repository. Read it once at the start of
 a session: everything here exists to keep the work moving without burning CI.
@@ -330,7 +330,7 @@ Everything above the end marker is maintained by
 `scripts/install-agent-pack.sh` (re-run the one-liner to update it; your text
 down here is never touched).
 
-- **App:** KhataBook — offline-first personal finance ledger. Local SQLite
+- **App:** Khoroch Diary — offline-first personal finance ledger. Local SQLite
   (Drift) is the source of truth (web: Drift WASM + IndexedDB via
   `openWebLedger`); Supabase is an opt-in cloud backup (Google sign-in only,
   RLS), never a dependency of the UI.

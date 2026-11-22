@@ -3,9 +3,9 @@ import 'dart:async';
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/theme/app_colors.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/ledger/khata_manage_screen.dart';
+import 'package:khoroch_diary/core/theme/app_colors.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/ledger/khata_manage_screen.dart';
 
 void main() {
   const LocalKhata personal = LocalKhata(

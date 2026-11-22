@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:drift/drift.dart' hide isNull, isNotNull;
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/features/counter/note_counter_store.dart';
-import 'package:khatabook/features/home/models.dart' show LedgerSummary;
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/counter/note_counter_store.dart';
+import 'package:khoroch_diary/features/home/models.dart' show LedgerSummary;
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
 
 /// A snapshot with every denomination defaulted to zero.
 NoteCounterSnapshot _snapshot({

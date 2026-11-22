@@ -15,7 +15,7 @@ import 'package:drift/drift.dart' hide isNull, isNotNull;
 import 'package:drift/native.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
 
 /// A ledger frozen at an old schema version. `onCreate` writes exactly what
 /// that version shipped: the schema.sql DDL, plus `active_khata_preference`

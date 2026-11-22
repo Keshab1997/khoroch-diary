@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
 
 void main() {
   testWidgets('save expense updates offline Home and all transactions', (
@@ -12,7 +12,7 @@ void main() {
   ) async {
     final ledger = LocalLedger(NativeDatabase.memory());
     await ledger.initialize();
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await tester.pumpAndSettle();
     expect(
       find.text('No transactions yet. Add an entry to see it here.'),

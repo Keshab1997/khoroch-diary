@@ -3,14 +3,14 @@ import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/app.dart';
-import 'package:khatabook/features/entry/add_entry_screen.dart';
-import 'package:khatabook/features/entry/category_store.dart';
-import 'package:khatabook/features/entry/transaction_editor_screen.dart';
-import 'package:khatabook/features/home/home_screen.dart';
-import 'package:khatabook/features/home/models.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/sync/cloud_sync.dart';
+import 'package:khoroch_diary/app.dart';
+import 'package:khoroch_diary/features/entry/add_entry_screen.dart';
+import 'package:khoroch_diary/features/entry/category_store.dart';
+import 'package:khoroch_diary/features/entry/transaction_editor_screen.dart';
+import 'package:khoroch_diary/features/home/home_screen.dart';
+import 'package:khoroch_diary/features/home/models.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/sync/cloud_sync.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'support/fake_cloud_backend.dart';
@@ -179,7 +179,7 @@ void main() {
       await backend.dispose();
     });
 
-    await tester.pumpWidget(KhataBookApp(ledger: ledger, cloudSync: sync));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger, cloudSync: sync));
     final Finder row = find.byKey(const Key('home-recent-Business tea'));
     await _waitFor(tester, row);
     final HomeScreen home = tester.widget(find.byType(HomeScreen));
@@ -287,7 +287,7 @@ void main() {
       await sync.dispose();
       await backend.dispose();
     });
-    await tester.pumpWidget(KhataBookApp(ledger: ledger, cloudSync: sync));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger, cloudSync: sync));
     await _waitFor(tester, find.text('Rejected tea'));
     await _tapWhenStable(tester, find.text('Rejected tea'));
     await _waitFor(tester, find.byType(TransactionEditorScreen));
@@ -360,7 +360,7 @@ void main() {
       );
       await ledger.setActiveKhataId(business.id);
     });
-    await tester.pumpWidget(KhataBookApp(ledger: ledger));
+    await tester.pumpWidget(KhorochDiaryApp(ledger: ledger));
     await _waitFor(tester, find.text('Business tea'));
     await _tapVisible(tester, find.text('Business tea'));
     await _waitFor(tester, find.byType(TransactionEditorScreen));

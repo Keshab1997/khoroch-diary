@@ -8,7 +8,7 @@ import '../ledger/data/ledger_backup.dart';
 class BackupFiles {
   const BackupFiles();
   static const MethodChannel _channel = MethodChannel(
-    'in.keshab.khatabook/backup_files',
+    'com.keshabstudios.khorochdiary/backup_files',
   );
 
   Future<bool> save(String json) async {

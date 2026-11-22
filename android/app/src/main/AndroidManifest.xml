@@ -3,7 +3,7 @@
          builds; debug builds get this permission from the debug manifest. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="KhataBook"
+        android:label="Khoroch Diary"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -28,14 +28,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <!-- Google sign-in returns to the app through this link
-                 (in.keshab.khatabook://login-callback). supabase_flutter reads
+                 (com.keshabstudios.khorochdiary://login-callback). supabase_flutter reads
                  it with app_links, so Flutter's own deep-link routing is off. -->
             <meta-data android:name="flutter_deeplinking_enabled" android:value="false" />
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="in.keshab.khatabook" android:host="login-callback" />
+                <data android:scheme="com.keshabstudios.khorochdiary" android:host="login-callback" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

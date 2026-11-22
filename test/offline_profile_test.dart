@@ -3,11 +3,11 @@ import 'package:drift/native.dart';
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:khatabook/core/l10n/app_strings.dart';
-import 'package:khatabook/features/ledger/data/local_ledger.dart';
-import 'package:khatabook/features/profile/profile_screen.dart';
-import 'package:khatabook/features/profile/profile_store.dart';
-import 'package:khatabook/features/profile/settings_screen.dart';
+import 'package:khoroch_diary/core/l10n/app_strings.dart';
+import 'package:khoroch_diary/features/ledger/data/local_ledger.dart';
+import 'package:khoroch_diary/features/profile/profile_screen.dart';
+import 'package:khoroch_diary/features/profile/profile_store.dart';
+import 'package:khoroch_diary/features/profile/settings_screen.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +51,6 @@ void main() {
     );
     expect(find.text('অফলাইন ও শুধু স্থানীয়'), findsOneWidget);
     expect(find.text('অ্যাপ সেটিংস'), findsOneWidget);
-    expect(find.text('খাতাবুক সম্পর্কে'), findsOneWidget);
+    expect(find.text('খরচের ডায়েরি সম্পর্কে'), findsOneWidget);
   });
 }

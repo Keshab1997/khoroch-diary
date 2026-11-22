@@ -1,11 +1,11 @@
 {
-    "name": "KhataBook",
-    "short_name": "KhataBook",
+    "name": "Khoroch Diary",
+    "short_name": "Khoroch Diary",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFF8E1",
     "theme_color": "#1B5E20",
-    "description": "KhataBook — Smart Digital Khata. Plan · Track · Save.",
+    "description": "Khoroch Diary — Smart Digital Khata. Plan · Track · Save.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
