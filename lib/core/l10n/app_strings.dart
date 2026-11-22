@@ -37,6 +37,46 @@ enum AppString {
     'Sample ledger · preview data only',
     'নমুনা খাতা · শুধু প্রিভিউয়ের তথ্য',
   ),
+  onboardingOneTitle(
+    'Your everyday khata, made simple',
+    'প্রতিদিনের হিসাব, সহজে',
+  ),
+  onboardingOneBody(
+    'Record income and expenses, then see your balance and recent activity in one place.',
+    'আয়-ব্যয় লিখুন, ব্যালেন্স ও সাম্প্রতিক লেনদেন এক জায়গায় দেখুন।',
+  ),
+  onboardingTwoTitle(
+    'Works offline. No account needed.',
+    'অফলাইনেই চলে, অ্যাকাউন্ট লাগে না',
+  ),
+  onboardingTwoBody(
+    'Your core ledger stays on this device. Add and review entries even without internet.',
+    'মূল হিসাব এই ডিভাইসেই থাকে। ইন্টারনেট ছাড়াই লেনদেন যোগ করুন ও দেখুন।',
+  ),
+  onboardingThreeTitle(
+    'Keep different khatas organized',
+    'আলাদা খাতা, গুছানো হিসাব',
+  ),
+  onboardingThreeBody(
+    'Create separate khatas and keep income, expenses, and remaining balances clear.',
+    'আলাদা খাতা তৈরি করুন; আয়, ব্যয় ও অবশিষ্ট টাকার হিসাব পরিষ্কার রাখুন।',
+  ),
+  onboardingFourTitle(
+    'Useful tools. Backup on your terms.',
+    'দরকারি টুল, ব্যাকআপ আপনার পছন্দে',
+  ),
+  onboardingFourBody(
+    'Use the calculator and cash note counter. Export a backup or choose optional Google cloud sync when you want.',
+    'ক্যালকুলেটর ও নগদ নোট কাউন্টার ব্যবহার করুন। চাইলে ব্যাকআপ নিন বা ঐচ্ছিক Google ক্লাউড সিঙ্ক চালু করুন।',
+  ),
+  onboardingSkip('Skip', 'এড়িয়ে যান'),
+  onboardingNext('Next', 'পরবর্তী'),
+  onboardingBack('Back', 'ফিরে যান'),
+  onboardingStart(
+    'Start using Khoroch Diary',
+    'Khoroch Diary ব্যবহার শুরু করুন',
+  ),
+  onboardingLanguage('Bengali', 'English-এ যান'),
   settings('Settings', 'সেটিংস'),
   totalIncome('Total Income', 'মোট আয়'),
   totalExpense('Total Expense', 'মোট ব্যয়'),
@@ -499,6 +539,10 @@ class AppStrings {
   bool get _bn => language == AppLanguage.bn;
 
   String text(AppString key) => _bn ? key.bn : key.en;
+
+  String onboardingPageLabel(int current, int total) => _bn
+      ? 'পরিচিতির পৃষ্ঠা ${number(current)}, মোট ${number(total)}টি'
+      : 'Introduction page $current of $total';
 
   String _digits(String text) => _bn
       ? text.replaceAllMapped(

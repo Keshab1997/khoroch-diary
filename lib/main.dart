@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'app.dart';
 import 'core/l10n/app_strings.dart';
 import 'core/l10n/language_preference.dart';
+import 'core/l10n/onboarding_preference.dart';
 import 'features/ledger/data/local_ledger.dart';
 import 'features/ledger/data/web_ledger_stub.dart'
     if (dart.library.js_interop) 'features/ledger/data/web_ledger.dart'
@@ -29,6 +30,7 @@ Future<void> _run() async {
   // Read the saved language before the first frame, so a Bengali user never
   // sees an English flash.
   final AppLanguage language = await loadLanguagePreference();
+  final bool onboardingCompleted = await loadOnboardingCompleted();
 
   // Web opens the real WASM/IndexedDB ledger; native uses the on-device DB.
   // Passing a live ledger makes MainShell leave its read-only preview mode.
@@ -61,6 +63,7 @@ Future<void> _run() async {
       ledger: ledger,
       cloudSync: cloudSync,
       initialLanguage: language,
+      showOnboarding: !onboardingCompleted,
     ),
   );
 }
