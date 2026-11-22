@@ -1,4 +1,4 @@
--- KhataBook - initial local schema (B2 First, building block only).
+-- Khoroch Diary - initial local schema (B2 First, building block only).
 --
 -- Mirrors docs/spec/data-model.md. This file is pure DDL: it defines two tables
 -- and two indexes, creates no rows, and never drops or rewrites anything, so it
