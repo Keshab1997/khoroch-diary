@@ -1,1 +1,8 @@
-Internal testing build with the latest changes. Please try the app and share any issues or feedback with the team.
+Welcome to Khoroch Diary v1.0.0!
+
+Track your daily income and expenses in a simple, offline-first personal khata:
+• Record income & expenses with built-in or custom categories
+• Manage multiple khatas and view combined Wallet Summary totals
+• Search and filter transactions by type, category, or date
+• Built-in Calculator with history & INR Cash Note Counter
+• English & বাংলা support, offline JSON backup, and optional Google cloud sync
