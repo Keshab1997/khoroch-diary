@@ -692,5 +692,59 @@ void main() {
       expect(opened!.name, 'নতুন খাতা');
       await tester.runAsync(() => ledger.close());
     });
+
+    testWidgets('opening balance reads Bengali digits and a leading zero', (
+      WidgetTester tester,
+    ) async {
+      const List<LocalKhata> khatas = <LocalKhata>[
+        LocalKhata(id: 'personal', name: 'Personal', openingBalancePaise: 0),
+      ];
+      final LocalLedger ledger = LocalLedger(NativeDatabase.memory());
+      await tester.runAsync(() => ledger.initialize());
+
+      LocalKhata? opened;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Builder(
+            builder: (BuildContext context) => Scaffold(
+              body: Center(
+                child: ElevatedButton(
+                  key: const Key('open-switcher'),
+                  onPressed: () async {
+                    opened = await showKhataSwitcher(
+                      context,
+                      ledger,
+                      khatas,
+                      'personal',
+                      language: AppLanguage.bn,
+                      onManage: () async {},
+                    );
+                  },
+                  child: const Text('Open'),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      // The entry forms read Bengali digits; this field has to as well.
+      await tapKey(tester, 'open-switcher');
+      await tapKey(tester, 'new-khata');
+      await tester.enterText(find.byKey(const Key('khata-name')), 'দোকান');
+      await tester.enterText(find.byKey(const Key('khata-opening')), '১০০.৫০');
+      await tapKey(tester, 'create-khata');
+      expect(opened?.openingBalancePaise, 10050);
+
+      // The field starts out as `0`, so typing at its end gives `05000`.
+      opened = null;
+      await tapKey(tester, 'open-switcher');
+      await tapKey(tester, 'new-khata');
+      await tester.enterText(find.byKey(const Key('khata-name')), 'Shop');
+      await tester.enterText(find.byKey(const Key('khata-opening')), '05000');
+      await tapKey(tester, 'create-khata');
+      expect(opened?.openingBalancePaise, 500000);
+      await tester.runAsync(() => ledger.close());
+    });
   });
 }

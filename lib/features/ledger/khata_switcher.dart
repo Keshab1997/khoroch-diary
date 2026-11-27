@@ -2,6 +2,7 @@
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 
+import '../../core/format/money.dart';
 import '../../core/l10n/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import 'data/local_ledger.dart';
@@ -202,12 +203,10 @@ class _CreateKhataState extends State<_CreateKhata> {
     return null;
   }
 
-  int? _paise(String input) {
-    final match = RegExp(r'^(\d{1,9})(?:\.(\d{1,2}))?$').firstMatch(input);
-    if (match == null) return null;
-    return int.parse(match.group(1)!) * 100 +
-        int.parse((match.group(2) ?? '').padRight(2, '0'));
-  }
+  /// Zero is a fine opening balance, and the field starts out as `0`, so a
+  /// leading zero in front of what is typed (`05000`) has to be fine too.
+  int? _paise(String input) =>
+      parsePaise(input, allowZero: true, allowLeadingZeros: true);
 
   Future<void> _save() async {
     if (_saving || !_form.currentState!.validate()) return;
