@@ -6,6 +6,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/format/money.dart';
 import '../../core/l10n/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/ledger_header_background.dart'
@@ -250,33 +251,10 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
     super.dispose();
   }
 
-  int? _parseAmount(String input) {
-    final String text = _amountDigits(input);
-    // Rupees without a leading-zero mess (`007`, `00.5` are not amounts),
-    // at most two decimals; positivity is checked on the parsed paise.
-    if (!RegExp(r'^(?:0|[1-9]\d{0,8})(?:\.\d{1,2})?$').hasMatch(text)) {
-      return null;
-    }
-    final List<String> parts = text.split('.');
-    final int rupees = int.parse(parts[0]);
-    final int paise = parts.length == 1
-        ? 0
-        : int.parse(parts[1].padRight(2, '0'));
-    final int amount = rupees * 100 + paise;
-    return amount > 0 ? amount : null;
-  }
-
-  String _amountDigits(String text) => widget.language == AppLanguage.bn
-      ? text.replaceAllMapped(
-          RegExp('[০-৯]'),
-          (match) => '০১২৩৪৫৬৭৮৯'.indexOf(match[0]!).toString(),
-        )
-      : text;
-
   /// The live "After saving" figure: the balance this entry would leave, or
   /// `null` while the amount is not a valid positive one.
   int? _projectedBalance() {
-    final int? paise = _parseAmount(_amount.text);
+    final int? paise = parsePaise(_amount.text);
     if (paise == null) return null;
     return _kind == EntryFormKind.income
         ? widget.openingBalancePaise + paise
@@ -318,7 +296,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
     _descriptionFocus.unfocus();
     final FormState? form = _formKey.currentState;
     final bool validFields = form?.validate() ?? false;
-    final bool validAmount = _parseAmount(_amount.text) != null;
+    final bool validAmount = parsePaise(_amount.text) != null;
     final bool validCategory =
         _kind == EntryFormKind.income || _category != null;
     setState(() {
@@ -337,7 +315,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
     widget.onSave(
       EntryFormResult(
         kind: _kind,
-        amountPaise: _parseAmount(_amount.text)!,
+        amountPaise: parsePaise(_amount.text)!,
         category: _kind == EntryFormKind.income ? 'Income' : _category!,
         description: _description.text,
         occurredAt: _date,
@@ -595,7 +573,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
   /// a calm helper line instead of a floating label, errors under the frame.
   Widget _amountSection() {
     final bool focused = _amountFocus.hasFocus;
-    final bool valid = _parseAmount(_amount.text) != null;
+    final bool valid = parsePaise(_amount.text) != null;
     // An invalid amount flags itself once the field lets focus go, or as
     // soon as a save press has asked the form what it is missing. After a
     // save press the flag stays up even though the field is refocused, so
@@ -1094,7 +1072,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
   /// `Expense ₹500 → remaining ₹5,920`. The balance is the screen's own
   /// ledger figure plus or minus the delta - no query, no other arithmetic.
   String _previewLine() {
-    final int? paise = _parseAmount(_amount.text);
+    final int? paise = parsePaise(_amount.text);
     if (paise == null) return _strings.afterSave(null);
     final String kind = _strings.text(
       _kind == EntryFormKind.income ? AppString.income : AppString.expense,
@@ -1110,7 +1088,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
   /// height when the amount becomes valid; the state is carried by the row's
   /// ink and icon instead.
   Widget _saveArea() {
-    final bool hasAmount = _parseAmount(_amount.text) != null;
+    final bool hasAmount = parsePaise(_amount.text) != null;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[

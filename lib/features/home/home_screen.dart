@@ -156,6 +156,7 @@ class HomeScreen extends StatelessWidget {
           entries: kSeedEntries,
         );
     final List<LedgerEntry> recent = visibleSummary.recent();
+    final LedgerSummaryTotals totals = visibleSummary.totals;
 
     return Scaffold(
       bottomNavigationBar: SafeArea(
@@ -239,10 +240,10 @@ class HomeScreen extends StatelessWidget {
                       ],
                       _BalanceCard(
                         strings: _strings,
-                        remainingPaise: visibleSummary.remainingPaise,
+                        remainingPaise: totals.remainingPaise,
                       ),
                       const SizedBox(height: _cardGap),
-                      _summaryRow(visibleSummary),
+                      _summaryRow(totals),
                       const SizedBox(height: _sectionGap),
                       _SectionHeader(
                         strings: _strings,
@@ -287,7 +288,7 @@ class HomeScreen extends StatelessWidget {
   /// Income and expense are one comparison, so they share one frame with a
   /// 1 px rule between them instead of sitting in two boxes: the pair reads
   /// together and the two figures line up on the same baseline.
-  Widget _summaryRow(LedgerSummary summary) {
+  Widget _summaryRow(LedgerSummaryTotals totals) {
     return Container(
       key: const Key('home-summary-row'),
       decoration: BoxDecoration(
@@ -303,7 +304,7 @@ class HomeScreen extends StatelessWidget {
               child: _SummaryTile(
                 strings: _strings,
                 label: _strings.text(AppString.totalIncome),
-                paise: summary.totalIncomePaise,
+                paise: totals.totalIncomePaise,
                 color: AppColors.incomeGreen,
                 icon: Icons.south_rounded,
                 direction: _strings.text(AppString.income).toLowerCase(),
@@ -314,7 +315,7 @@ class HomeScreen extends StatelessWidget {
               child: _SummaryTile(
                 strings: _strings,
                 label: _strings.text(AppString.totalExpense),
-                paise: summary.totalExpensePaise,
+                paise: totals.totalExpensePaise,
                 color: AppColors.expenseRed,
                 icon: Icons.north_east_rounded,
                 direction: _strings.text(AppString.expense).toLowerCase(),

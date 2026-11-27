@@ -495,6 +495,7 @@ class _KhataCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LedgerSummary summary = totals.summary;
+    final LedgerSummaryTotals sums = summary.totals;
     return Container(
       key: Key('wallet-khata-${totals.khata.id}'),
       padding: const EdgeInsets.all(16),
@@ -546,13 +547,13 @@ class _KhataCard extends StatelessWidget {
           const SizedBox(height: _innerGap),
           _StatRow(
             label: strings.text(AppString.incomeIncludingOpening),
-            value: strings.money(summary.totalIncomePaise),
+            value: strings.money(sums.totalIncomePaise),
             color: AppColors.incomeGreen,
           ),
           const SizedBox(height: _innerGap),
           _StatRow(
             label: strings.text(AppString.expense),
-            value: strings.money(summary.totalExpensePaise),
+            value: strings.money(sums.totalExpensePaise),
             color: AppColors.expenseRed,
           ),
           // The same 1 px beige rule that separates two transaction rows: here
@@ -566,9 +567,9 @@ class _KhataCard extends StatelessWidget {
           ),
           _StatRow(
             label: strings.text(AppString.remaining),
-            value: strings.money(summary.remainingPaise),
+            value: strings.money(sums.remainingPaise),
             emphasized: true,
-            color: summary.remainingPaise < 0
+            color: sums.remainingPaise < 0
                 ? AppColors.expenseRed
                 : AppColors.primaryGreen,
           ),

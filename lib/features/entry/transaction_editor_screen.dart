@@ -2,6 +2,7 @@
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 
+import '../../core/format/money.dart';
 import '../../core/l10n/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/ledger_header_background.dart';
@@ -68,12 +69,6 @@ class _TransactionEditorScreenState extends State<TransactionEditorScreen> {
     'Gifts',
   ];
 
-  /// Rupees without a leading-zero mess (`007`, `00.5` are not amounts), at
-  /// most two decimals; positivity is checked on the parsed paise.
-  static final RegExp _amountPattern = RegExp(
-    r'^(?:0|[1-9]\d{0,8})(?:\.\d{1,2})?$',
-  );
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final TextEditingController _amount;
   late final TextEditingController _description;
@@ -115,7 +110,7 @@ class _TransactionEditorScreenState extends State<TransactionEditorScreen> {
     if (_description.text != initial.description || !_dateUnchanged) {
       return true;
     }
-    final int? amountPaise = _parseAmountPaise(_amount.text);
+    final int? amountPaise = parsePaise(_amount.text);
     if (amountPaise == null) {
       return _amount.text != _amountText(initial.amountPaise);
     }
@@ -164,21 +159,6 @@ class _TransactionEditorScreenState extends State<TransactionEditorScreen> {
     return '$rupees.${fraction.toString().padLeft(2, '0')}';
   }
 
-  /// Rejects anything that is not rupees with at most two decimals, and zero.
-  int? _parseAmountPaise(String input) {
-    final String text = _amountDigits(input);
-    if (!_amountPattern.hasMatch(text)) {
-      return null;
-    }
-    final List<String> parts = text.split('.');
-    final int rupees = int.parse(parts[0]);
-    final int paise = parts.length == 1
-        ? 0
-        : int.parse(parts[1].padRight(2, '0'));
-    final int amount = rupees * 100 + paise;
-    return amount > 0 ? amount : null;
-  }
-
   bool get _dateUnchanged {
     final DateTime original = widget.initial.occurredAt;
     return _date.year == original.year &&
@@ -197,13 +177,6 @@ class _TransactionEditorScreenState extends State<TransactionEditorScreen> {
     choices.addAll(_standardCategories);
     return choices;
   }
-
-  String _amountDigits(String text) => widget.language == AppLanguage.bn
-      ? text.replaceAllMapped(
-          RegExp('[০-৯]'),
-          (match) => '০১২৩৪৫৬৭৮৯'.indexOf(match[0]!).toString(),
-        )
-      : text;
 
   Future<void> _pickDate() async {
     if (_busy) {
@@ -256,7 +229,7 @@ class _TransactionEditorScreenState extends State<TransactionEditorScreen> {
     if (!fieldsValid || !categoryValid) {
       return;
     }
-    final int? amountPaise = _parseAmountPaise(_amount.text);
+    final int? amountPaise = parsePaise(_amount.text);
     if (amountPaise == null) {
       return;
     }
@@ -722,11 +695,11 @@ class _TransactionEditorScreenState extends State<TransactionEditorScreen> {
             errorStyle: EntryFormLayout.error,
           ),
           validator: (String? value) {
-            final String text = _amountDigits(value ?? '');
-            if (!_amountPattern.hasMatch(text)) {
+            final String text = value ?? '';
+            if (parsePaise(text, allowZero: true) == null) {
               return _strings.text(AppString.amountPrecision);
             }
-            if (_parseAmountPaise(text) == null) {
+            if (parsePaise(text) == null) {
               return _strings.text(AppString.positiveAmount);
             }
             return null;
@@ -882,7 +855,7 @@ class _TransactionEditorScreenState extends State<TransactionEditorScreen> {
   /// helpers, no query. Falls back to the dash line while the amount is not
   /// a valid positive one.
   String _previewLine() {
-    final int? paise = _parseAmountPaise(_amount.text);
+    final int? paise = parsePaise(_amount.text);
     if (paise == null) return _strings.afterSave(null);
     final EntryFormResult original = widget.initial;
     final int effect = _kind == EntryFormKind.income ? paise : -paise;
@@ -902,7 +875,7 @@ class _TransactionEditorScreenState extends State<TransactionEditorScreen> {
 
   /// The preview as the same calm row Add Entry puts above its save action.
   Widget _previewRow() {
-    final bool hasAmount = _parseAmountPaise(_amount.text) != null;
+    final bool hasAmount = parsePaise(_amount.text) != null;
     return Row(
       children: <Widget>[
         Icon(
@@ -947,7 +920,7 @@ class _TransactionEditorScreenState extends State<TransactionEditorScreen> {
             key: const Key('editor-update-button'),
             // Disabled until a positive amount exists: there is nothing to
             // update before that, matching Add Entry's save gate.
-            onPressed: _busy || _parseAmountPaise(_amount.text) == null
+            onPressed: _busy || parsePaise(_amount.text) == null
                 ? null
                 : _submit,
             style: FilledButton.styleFrom(

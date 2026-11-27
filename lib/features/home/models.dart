@@ -43,24 +43,70 @@ class LedgerSummary {
   final int openingBalancePaise;
   final List<LedgerEntry> entries;
 
-  int get totalIncomePaise =>
-      openingBalancePaise +
-      entries
-          .where((LedgerEntry e) => e.type == EntryType.income)
-          .fold<int>(0, (int sum, LedgerEntry e) => sum + e.amountPaise);
+  /// Income (opening balance included), expense and what remains, summed in a
+  /// single pass over [entries]. A screen that shows more than one of the
+  /// figures reads this once per build instead of walking the whole history
+  /// for each of them.
+  LedgerSummaryTotals get totals {
+    int incomePaise = openingBalancePaise;
+    int expensePaise = 0;
+    for (final LedgerEntry entry in entries) {
+      switch (entry.type) {
+        case EntryType.income:
+          incomePaise += entry.amountPaise;
+        case EntryType.expense:
+          expensePaise += entry.amountPaise;
+      }
+    }
+    return LedgerSummaryTotals(
+      totalIncomePaise: incomePaise,
+      totalExpensePaise: expensePaise,
+    );
+  }
 
-  int get totalExpensePaise => entries
-      .where((LedgerEntry e) => e.type == EntryType.expense)
-      .fold<int>(0, (int sum, LedgerEntry e) => sum + e.amountPaise);
+  int get totalIncomePaise => totals.totalIncomePaise;
 
-  int get remainingPaise => totalIncomePaise - totalExpensePaise;
+  int get totalExpensePaise => totals.totalExpensePaise;
+
+  int get remainingPaise => totals.remainingPaise;
 
   /// Home shows the newest four rows; `View All` opens the full list (D5).
+  ///
+  /// Home asks on every rebuild and the history only grows, so this picks the
+  /// newest [limit] rows in one pass instead of copying and sorting all of
+  /// them. Rows with the same timestamp keep the order they have in [entries].
   List<LedgerEntry> recent([int limit = 4]) {
-    final List<LedgerEntry> sorted = List<LedgerEntry>.from(entries)
-      ..sort((LedgerEntry a, LedgerEntry b) => b.at.compareTo(a.at));
-    return sorted.take(limit).toList(growable: false);
+    RangeError.checkNotNegative(limit, 'limit');
+    final List<LedgerEntry> newest = <LedgerEntry>[];
+    for (final LedgerEntry entry in entries) {
+      int slot = newest.length;
+      while (slot > 0 && entry.at.isAfter(newest[slot - 1].at)) {
+        slot--;
+      }
+      if (slot >= limit) {
+        continue;
+      }
+      newest.insert(slot, entry);
+      if (newest.length > limit) {
+        newest.removeLast();
+      }
+    }
+    return newest.toList(growable: false);
   }
+}
+
+/// The three figures a ledger screen shows, from one pass over a
+/// [LedgerSummary]. [totalIncomePaise] already includes the opening balance.
+class LedgerSummaryTotals {
+  const LedgerSummaryTotals({
+    required this.totalIncomePaise,
+    required this.totalExpensePaise,
+  });
+
+  final int totalIncomePaise;
+  final int totalExpensePaise;
+
+  int get remainingPaise => totalIncomePaise - totalExpensePaise;
 }
 
 /// Seed reproduces the numbers in docs/design/ui-preview.png exactly:
