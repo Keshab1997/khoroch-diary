@@ -194,6 +194,105 @@ void expectNoLayoutErrors(WidgetTester tester) {
 }
 
 void main() {
+  group('LedgerSummary totals and recent rows', () {
+    LedgerEntry row(
+      String title,
+      int paise,
+      DateTime at, {
+      EntryType type = EntryType.expense,
+    }) {
+      return LedgerEntry(
+        title: title,
+        category: 'Food',
+        at: at,
+        amountPaise: paise,
+        type: type,
+      );
+    }
+
+    List<String> titles(List<LedgerEntry> rows) =>
+        rows.map((LedgerEntry entry) => entry.title).toList();
+
+    test(
+      'totals fold the opening balance into income and match the getters',
+      () {
+        final LedgerSummary summary = LedgerSummary(
+          openingBalancePaise: 1000,
+          entries: <LedgerEntry>[
+            row('Salary', 5000, DateTime(2026, 11, 3), type: EntryType.income),
+            row('Tea', 300, DateTime(2026, 11, 2)),
+            row('Bus', 450, DateTime(2026, 11, 1)),
+          ],
+        );
+
+        final LedgerSummaryTotals totals = summary.totals;
+        expect(totals.totalIncomePaise, 6000);
+        expect(totals.totalExpensePaise, 750);
+        expect(totals.remainingPaise, 5250);
+        expect(summary.totalIncomePaise, totals.totalIncomePaise);
+        expect(summary.totalExpensePaise, totals.totalExpensePaise);
+        expect(summary.remainingPaise, totals.remainingPaise);
+      },
+    );
+
+    test('a ledger with no entries is just its opening balance', () {
+      const LedgerSummary empty = LedgerSummary(
+        openingBalancePaise: 2500,
+        entries: <LedgerEntry>[],
+      );
+
+      expect(empty.totals.totalIncomePaise, 2500);
+      expect(empty.totals.totalExpensePaise, 0);
+      expect(empty.totals.remainingPaise, 2500);
+      expect(empty.recent(), isEmpty);
+    });
+
+    test('recent returns the newest rows whatever order they arrive in', () {
+      final List<LedgerEntry> arrival = <LedgerEntry>[
+        row('c', 3, DateTime(2026, 11, 3)),
+        row('a', 1, DateTime(2026, 11, 1)),
+        row('e', 5, DateTime(2026, 11, 5)),
+        row('b', 2, DateTime(2026, 11, 2)),
+        row('d', 4, DateTime(2026, 11, 4)),
+        row('f', 6, DateTime(2026, 11, 6)),
+      ];
+      final LedgerSummary summary = LedgerSummary(
+        openingBalancePaise: 0,
+        entries: arrival,
+      );
+
+      expect(titles(summary.recent()), <String>['f', 'e', 'd', 'c']);
+      expect(titles(summary.recent(2)), <String>['f', 'e']);
+      expect(titles(summary.recent(10)), <String>[
+        'f',
+        'e',
+        'd',
+        'c',
+        'b',
+        'a',
+      ]);
+      expect(summary.recent(0), isEmpty);
+      expect(() => summary.recent(-1), throwsArgumentError);
+      // Reading the newest rows leaves the summary's own list as it was.
+      expect(titles(arrival), <String>['c', 'a', 'e', 'b', 'd', 'f']);
+    });
+
+    test('rows at the same instant keep the order they were read in', () {
+      final DateTime same = DateTime(2026, 11, 4, 10);
+      final LedgerSummary summary = LedgerSummary(
+        openingBalancePaise: 0,
+        entries: <LedgerEntry>[
+          row('first', 1, same),
+          row('second', 2, same),
+          row('older', 3, DateTime(2026, 11, 3)),
+          row('third', 4, same),
+        ],
+      );
+
+      expect(titles(summary.recent(3)), <String>['first', 'second', 'third']);
+    });
+  });
+
   group('supplied live data', () {
     testWidgets(
       'renders supplied totals, four newest rows and no preview notice',
