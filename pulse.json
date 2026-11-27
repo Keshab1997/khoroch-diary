@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "update": {
+    "latestVersion": "1.0.0",
+    "minSupportedVersion": "1.0.0",
+    "androidUrl": "https://play.google.com/store/apps/details?id=com.keshabstudios.khorochdiary",
+    "whatsNew": [
+      "Offline-first personal finance ledger in English & বাংলা",
+      "Multi-khata support, built-in calculator, note counter & backups"
+    ],
+    "latestBuildNumber": 1,
+    "minSupportedBuildNumber": 1
+  },
+  "maintenance": {
+    "enabled": false,
+    "allowRetry": true
+  },
+  "notices": [],
+  "flags": {
+    "ads_enabled": false,
+    "cloud_sync_beta": true
+  }
+}

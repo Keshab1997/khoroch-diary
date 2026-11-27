@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'dart:async' show runZonedGuarded, unawaited;
 
+import 'package:app_pulse_kit/app_pulse_kit.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:smart_review_feedback/smart_review_feedback.dart';
 
 import 'app.dart';
+import 'core/config/pulse_config.dart';
 import 'core/l10n/app_strings.dart';
 import 'core/l10n/language_preference.dart';
 import 'core/l10n/onboarding_preference.dart';
@@ -58,12 +61,37 @@ Future<void> _run() async {
           ),
     );
   }
+  AppPulseController? pulseController;
+  try {
+    pulseController = await AppPulse.init(
+      configUrl: KhorochPulseConfig.pulseConfigUrl,
+      fallbackConfig: KhorochPulseConfig.fallbackConfig,
+    );
+  } catch (error) {
+    debugPrint('AppPulse init skipped: $error');
+  }
+
+  SmartReviewController? reviewController;
+  try {
+    reviewController = await SmartReview.init(
+      feedbackSink: const EmailFeedbackSink(
+        toEmail: KhorochPulseConfig.supportEmail,
+      ),
+      appName: KhorochPulseConfig.appName,
+      androidPackageName: KhorochPulseConfig.packageId,
+    );
+  } catch (error) {
+    debugPrint('SmartReview init skipped: $error');
+  }
+
   runApp(
     KhorochDiaryApp(
       ledger: ledger,
       cloudSync: cloudSync,
       initialLanguage: language,
       showOnboarding: !onboardingCompleted,
+      pulseController: pulseController,
+      reviewController: reviewController,
     ),
   );
 }

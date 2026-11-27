@@ -1,9 +1,14 @@
+import 'dart:async' show unawaited;
+
+import 'package:app_pulse_kit/app_pulse_kit.dart';
 // Flutter 3.50 deprecates this import; migrate to material_ui in a dedicated dependency update.
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
+import 'package:smart_review_feedback/smart_review_feedback.dart';
 
+import '../../core/config/pulse_config.dart';
 import '../../core/l10n/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/ledger_header_background.dart';
@@ -33,10 +38,14 @@ class SettingsScreen extends StatefulWidget {
     super.key,
     this.language = AppLanguage.en,
     this.onLanguageChanged,
+    this.pulseController,
+    this.reviewController,
   });
 
   final AppLanguage language;
   final Future<bool> Function(AppLanguage)? onLanguageChanged;
+  final AppPulseController? pulseController;
+  final SmartReviewController? reviewController;
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -46,6 +55,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _picking = false;
   bool _busy = false;
   bool _failed = false;
+  int _buildTapCount = 0;
+
+  void _handleBuildTap(AppPulseController? pulse) {
+    if (pulse == null) return;
+    _buildTapCount++;
+    if (_buildTapCount >= 5) {
+      _buildTapCount = 0;
+      unawaited(PulseDebugSheet.show(context, controller: pulse));
+    }
+  }
 
   Future<void> _chooseLanguage(AppStrings strings) async {
     if (_picking || _busy || kIsWeb || widget.onLanguageChanged == null) return;
@@ -299,15 +318,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ],
                   ),
+                  ..._buildStudioSections(context),
                   const SizedBox(height: 14),
                   Center(
-                    child: Text(
-                      strings.buildLabel('1.0.0', 1),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.softText,
+                    child: GestureDetector(
+                      onTap: () => _handleBuildTap(
+                        widget.pulseController ??
+                            KhorochServicesScope.maybeOf(
+                              context,
+                            )?.pulseController,
+                      ),
+                      child: Text(
+                        strings.buildLabel('1.0.0', 1),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.softText,
+                        ),
                       ),
                     ),
                   ),
@@ -318,6 +346,62 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ],
       ),
     );
+  }
+
+  List<Widget> _buildStudioSections(BuildContext context) {
+    final KhorochServicesScope? scope = KhorochServicesScope.maybeOf(context);
+    final AppPulseController? pulse =
+        widget.pulseController ?? scope?.pulseController;
+    final SmartReviewController? review =
+        widget.reviewController ?? scope?.reviewController;
+    if (pulse == null && review == null) return const <Widget>[];
+
+    final bool bn = widget.language == AppLanguage.bn;
+    return <Widget>[
+      const SizedBox(height: 12),
+      AccountSectionPanel(
+        heading: bn ? 'অ্যাপ ও মতামত' : 'App & Feedback',
+        children: <Widget>[
+          if (review != null)
+            AccountRow(
+              key: const Key('settings-rate-feedback-row'),
+              icon: Icons.star_rate_rounded,
+              title: bn ? 'রেটিং ও মতামত' : 'Rate & Feedback',
+              subtitle: bn
+                  ? 'অ্যাপটি কেমন লাগছে জানান বা সমস্যা রিপোর্ট করুন।'
+                  : 'Share a rating or send private feedback.',
+              onTap: () {
+                unawaited(
+                  review.showNow(
+                    context,
+                    strings: bn
+                        ? const ReviewStrings.bn(
+                            appName: KhorochPulseConfig.appName,
+                          )
+                        : const ReviewStrings.en(
+                            appName: KhorochPulseConfig.appName,
+                          ),
+                    screenName: 'SettingsScreen',
+                  ),
+                );
+              },
+            ),
+          if (review != null && pulse != null) const AccountRowDivider(),
+          if (pulse != null)
+            AccountRow(
+              key: const Key('settings-check-updates-row'),
+              icon: Icons.system_update_outlined,
+              title: bn ? 'আপডেট চেক করুন' : 'Check for updates',
+              subtitle: bn
+                  ? 'নতুন ভার্সন বা জরুরি ঘোষণা আছে কিনা দেখুন।'
+                  : 'Check for the latest version or notices.',
+              onTap: () {
+                unawaited(pulse.refresh());
+              },
+            ),
+        ],
+      ),
+    ];
   }
 }
 

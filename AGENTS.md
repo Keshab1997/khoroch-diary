@@ -3,7 +3,7 @@
 Playbook for AI agents working in this repository. Read it once at the start of
 a session: everything here exists to keep the work moving without burning CI.
 
-<!-- flutter-builder:agent-pack:start v1.18.9 -->
+<!-- flutter-builder:agent-pack:start v1.19.0 -->
 ## Captain task or independent work?
 
 **Captain A/B/C assignment:** attach this **app repo** in Arena Agent Mode,
@@ -298,6 +298,28 @@ rejects a request that still carries the `Authorization` header
   way it is — keep that voice).
 - **Match the check to the change** — the cost table near the top of this file
   is the map. Cheap checks run every time; CI runs once, at the end.
+
+## Companion Flutter packages — reuse, don't rebuild
+
+Before writing boilerplate for cross-app features from scratch, check these
+shared `Keshab1997` Dart packages (all install cleanly via `pubspec.yaml` `git:`
+dependencies):
+
+| Need | Package | Notes |
+|---|---|---|
+| Remote soft/force updates, maintenance screen, scheduled notices, feature flags | [`app_pulse_kit`](https://github.com/Keshab1997/app_pulse_kit) | Zero-cost `pulse.json` or Firestore (`CallbackPulseSource`), offline cache, built-in EN + বাংলা UI. Keep `pulse.json` aligned with `pubspec.yaml` via `scripts/sync-pulse-config.py` from `flutter-builder`. |
+| Smart Play Store rating gate (4–5★ → In-App Review, 1–3★ → in-app feedback + auto diagnostics) | [`smart_review_feedback`](https://github.com/Keshab1997/smart_review_feedback) | Pluggable sinks (Webhook, Telegram, Email, Firestore `CallbackFeedbackSink`), built-in EN + বাংলা UI. |
+| Indian currency (`₹`/`৳`, Lakh/Crore), Bangla digits, number-to-words, Bangla dates & deadline chips | [`bangla_kit`](https://github.com/Keshab1997/bangla_kit) | Zero third-party dependencies; ideal for Bengali/Indian finance, quiz, and job apps. |
+| Offline-first encrypted JSON backup & restore (SHA-256 + password + schema migrations, EN + বাংলা UI) | [`local_vault_backup`](https://github.com/Keshab1997/local_vault_backup) | Pure-Dart encryption (`crypto` only); works with SQLite, Hive, Isar, or SharedPreferences. |
+| Single web control panel to manage `pulse.json` across all Flutter apps | [`pulse-control-panel`](https://github.com/Keshab1997/pulse-control-panel) | Zero-cost static web UI (GitHub Pages / local browser) for updates, maintenance, notices & flags. |
+| AdMob monetization (auto debug test IDs, interstitial capping, adaptive banners, EN/বাংলা rewarded prompts & kill-switch) | [`smart_ad_kit`](https://github.com/Keshab1997/smart_ad_kit) | Protects AdMob accounts in debug builds, supports 1-line `app_pulse_kit` `ads_enabled` toggle & `FakeAdBackend` for tests. |
+| Local reminders, daily streak nudges & job/exam deadline alerts (Quiet Hours, EN/বাংলা permission pre-dialog) | [`smart_notify_kit`](https://github.com/Keshab1997/smart_notify_kit) | Includes `ReminderSettingsTile`, multi-offset deadline alerts & `FakeNotificationBackend` for tests. |
+| Branded WhatsApp / Status PNG share cards (Quiz Score, Job Alert, Expense Summary, Streak) | [`smart_share_card`](https://github.com/Keshab1997/smart_share_card) | Zero third-party dependencies; `SmartShareCardController.capturePng()` exports crisp 3x PNG bytes + EN/বাংলা captions. |
+| 1st-launch EN/বাংলা onboarding walkthrough + automatic version-aware "What's New" sheet | [`smart_onboarding_kit`](https://github.com/Keshab1997/smart_onboarding_kit) | Live EN/বাংলা toggle inside onboarding slides; `WhatsNewSheet.showIfNeeded()` shows once per version upgrade. |
+| AI-First Play Store Feature Graphic (`1024×500`), Promo Posters & Screenshots (`1080×1920`) from real app screenshots | [`store_launch_kit`](https://github.com/Keshab1997/store_launch_kit) | Follow `AGENT_DESIGN_PLAYBOOK.md`: capture screens via `tool/local_screenshots.py` → `extract_app_brief.py` (auto theme colors + mascot prompts) → `generate_image(images=[screenshot])` → `store_launch_kit.py finalize` for exact Play Store dimensions. |
+| Firestore-backed admin API key pool (failover, cooldowns, health checks, admin UI) | [`admin_api_key_manager`](https://github.com/Keshab1997/admin_api_key_manager) | Shared Gemini / OpenRouter key rotation & management. |
+| Shared OCR + AI extraction pipeline | [`smart_ocr_ai_bridge`](https://github.com/Keshab1997/smart_ocr_ai_bridge) | Reusable OCR-to-AI bridge for scanner apps. |
+| 1-click new Flutter app template (pre-wired with `flutter-builder`, Agent Pack, `app_pulse_kit`, signing & Settings) | [`flutter-app-starter`](https://github.com/Keshab1997/flutter-app-starter) | Click **Use this template** → **Actions → Setup New App (1-Click)** to spin up a new app in ~30s. |
 
 ## Ask the human before
 

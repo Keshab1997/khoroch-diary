@@ -1,7 +1,10 @@
+import 'package:app_pulse_kit/app_pulse_kit.dart';
 // Flutter 3.50 deprecates this import; migrate to material_ui in a dedicated dependency update.
 // ignore: deprecated_member_use
 import 'package:flutter/material.dart';
+import 'package:smart_review_feedback/smart_review_feedback.dart';
 
+import 'core/config/pulse_config.dart';
 import 'core/l10n/app_strings.dart';
 import 'core/l10n/language_preference.dart';
 import 'core/l10n/onboarding_preference.dart';
@@ -19,6 +22,8 @@ class KhorochDiaryApp extends StatefulWidget {
     this.cloudSync,
     this.initialLanguage = AppLanguage.en,
     this.showOnboarding = false,
+    this.pulseController,
+    this.reviewController,
   });
 
   final LocalLedger? ledger;
@@ -32,6 +37,12 @@ class KhorochDiaryApp extends StatefulWidget {
 
   /// First-run gate supplied by `main`; defaults off for embedded/widget tests.
   final bool showOnboarding;
+
+  /// Optional remote update/maintenance/notices controller from `app_pulse_kit`.
+  final AppPulseController? pulseController;
+
+  /// Optional smart rating gate & private feedback controller.
+  final SmartReviewController? reviewController;
 
   @override
   State<KhorochDiaryApp> createState() => _KhorochDiaryAppState();
@@ -67,30 +78,47 @@ class _KhorochDiaryAppState extends State<KhorochDiaryApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Khoroch Diary',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.light(),
-      builder: (context, child) => Container(
-        color: AppColors.navigationGrey.withAlpha(51),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 600),
-            child: child!,
+    final Widget rootHome = _showOnboarding
+        ? OnboardingScreen(
+            language: _language,
+            onLanguageChanged: _changeOnboardingLanguage,
+            onComplete: _finishOnboarding,
+          )
+        : MainShell(
+            ledger: widget.ledger,
+            cloudSync: widget.cloudSync,
+            initialLanguage: _language,
+          );
+
+    final AppPulseController? pulse = widget.pulseController;
+    final Widget gatedHome = pulse == null
+        ? rootHome
+        : AppPulseGate(
+            controller: pulse,
+            strings: _language == AppLanguage.bn
+                ? const PulseStrings.bn()
+                : const PulseStrings.en(),
+            child: rootHome,
+          );
+
+    return KhorochServicesScope(
+      pulseController: widget.pulseController,
+      reviewController: widget.reviewController,
+      child: MaterialApp(
+        title: 'Khoroch Diary',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.light(),
+        builder: (context, child) => Container(
+          color: AppColors.navigationGrey.withAlpha(51),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: child!,
+            ),
           ),
         ),
+        home: gatedHome,
       ),
-      home: _showOnboarding
-          ? OnboardingScreen(
-              language: _language,
-              onLanguageChanged: _changeOnboardingLanguage,
-              onComplete: _finishOnboarding,
-            )
-          : MainShell(
-              ledger: widget.ledger,
-              cloudSync: widget.cloudSync,
-              initialLanguage: _language,
-            ),
     );
   }
 }
