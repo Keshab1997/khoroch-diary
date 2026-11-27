@@ -324,9 +324,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: GestureDetector(
                       onTap: () => _handleBuildTap(
                         widget.pulseController ??
-                            KhorochServicesScope.maybeOf(
-                              context,
-                            )?.pulseController,
+                            KhorochServicesScope.maybeOf(context)
+                                ?.pulseController,
                       ),
                       child: Text(
                         strings.buildLabel('1.0.0', 1),

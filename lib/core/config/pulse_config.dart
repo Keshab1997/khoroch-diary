@@ -16,10 +16,7 @@ class KhorochPulseConfig {
       'https://raw.githubusercontent.com/Keshab1997/khoroch-diary/main/pulse.json';
 
   static const PulseConfig fallbackConfig = PulseConfig(
-    flags: <String, dynamic>{
-      'ads_enabled': false,
-      'cloud_sync_beta': true,
-    },
+    flags: <String, dynamic>{'ads_enabled': false, 'cloud_sync_beta': true},
   );
 }
 
