@@ -53,3 +53,6 @@ tests/__pycache__/
 *.orig
 *.rej
 patch_*.diff
+
+# Local store launch scratch
+.store-launch/
