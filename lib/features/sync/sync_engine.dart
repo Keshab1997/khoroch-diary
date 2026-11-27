@@ -12,6 +12,9 @@
 ///   explicit user confirmation before pushing, and backend failures leave
 ///   local data untouched, persist `last_error`, emit [SyncStatus.error] and
 ///   schedule exponential backoff through [scheduler].
+/// * Offline shows no error, but while rows are still pending it arms that same
+///   backoff, so what was written offline goes out once the network is back
+///   without waiting for another edit or for the app to be reopened.
 library;
 
 import 'dart:async';
@@ -237,6 +240,7 @@ class SyncEngine {
           isOffline: true,
         ),
       );
+      if (pending > 0) await _armSchedulerFailureFromDirectCall();
       return SyncOutcome.offline;
     }
 
@@ -251,6 +255,11 @@ class SyncEngine {
     return outcome;
   }
 
+  /// The scheduler's runner: `true` ends the attempt, `false` arms the next
+  /// capped backoff retry. Offline is not an error worth showing, but rows
+  /// written while offline still have to go out once the network is back, so
+  /// offline with rows pending retries; with nothing pending there is nothing
+  /// to retry.
   Future<bool> _runFromScheduler() async {
     if (_disposed || _syncing) return true;
     final CloudUser? user = backend.currentUser;
@@ -282,7 +291,7 @@ class SyncEngine {
           isOffline: true,
         ),
       );
-      return true;
+      return pending == 0;
     }
 
     final SyncOutcome outcome = await _performSync(
@@ -290,6 +299,9 @@ class SyncEngine {
       meta: meta,
       manageBackoffOnDirectCall: false,
     );
+    if (outcome == SyncOutcome.offline) {
+      return await ledger.readPendingSyncCount() == 0;
+    }
     return outcome != SyncOutcome.failed;
   }
 
@@ -363,6 +375,9 @@ class SyncEngine {
           isOffline: true,
         ),
       );
+      if (manageBackoffOnDirectCall && pending > 0) {
+        await _armSchedulerFailureFromDirectCall();
+      }
       return SyncOutcome.offline;
     } catch (error) {
       _syncing = false;

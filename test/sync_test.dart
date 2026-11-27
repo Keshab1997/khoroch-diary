@@ -648,6 +648,78 @@ void main() {
       expect(await ledger.readPendingSyncCount(), 0);
     });
 
+    test(
+      'offline with rows pending keeps a quiet retry running until they go out',
+      () async {
+        await ledger.addEntry(
+          _entry(
+            kind: EntryFormKind.expense,
+            amountPaise: 4500,
+            category: 'Food',
+            description: 'Written offline',
+            occurredAt: DateTime.utc(2026, 11, 20, 9, 30),
+          ),
+        );
+        backend.offline = true;
+
+        // A direct pass (start-up, app resume, Back up now): no error is shown,
+        // but the capped backoff is armed.
+        expect(await engine.syncNow(), SyncOutcome.offline);
+        expect(engine.currentStatus.isOffline, isTrue);
+        expect((await ledger.readSyncMetadata()).lastError, isNull);
+        expect(engine.scheduler.failureCount, 1);
+        expect(
+          engine.scheduler.scheduledRetryDelay,
+          const Duration(seconds: 2),
+        );
+
+        // The scheduler's own pass (a write's debounce, the retry timer) keeps
+        // retrying while offline, with the delay doubling.
+        expect(await engine.scheduler.triggerNow(), isFalse);
+        expect(engine.scheduler.failureCount, 2);
+        expect(
+          engine.scheduler.scheduledRetryDelay,
+          const Duration(seconds: 4),
+        );
+
+        // Back online, the next pass pushes everything and the retry stops.
+        backend.offline = false;
+        expect(await engine.scheduler.triggerNow(), isTrue);
+        expect(engine.scheduler.failureCount, 0);
+        expect(engine.scheduler.hasScheduledRetry, isFalse);
+        expect(engine.currentStatus.isOffline, isFalse);
+        expect(await ledger.readPendingSyncCount(), 0);
+      },
+    );
+
+    test('offline with nothing pending arms no retry', () async {
+      expect(await engine.syncNow(), SyncOutcome.synced);
+      expect(await ledger.readPendingSyncCount(), 0);
+
+      backend.offline = true;
+      expect(await engine.syncNow(), SyncOutcome.offline);
+      expect(await engine.scheduler.triggerNow(), isTrue);
+      expect(engine.scheduler.failureCount, 0);
+      expect(engine.scheduler.hasScheduledRetry, isFalse);
+    });
+
+    test(
+      'an explicit offline check arms the same retry while rows are pending',
+      () async {
+        final SyncEngine gated = SyncEngine(
+          ledger: ledger,
+          backend: backend,
+          isOnline: () => false,
+        );
+        addTearDown(gated.dispose);
+
+        expect(await gated.syncNow(), SyncOutcome.offline);
+        expect(gated.scheduler.failureCount, 1);
+        expect(await gated.scheduler.triggerNow(), isFalse);
+        expect(gated.scheduler.failureCount, 2);
+      },
+    );
+
     test('account-switch guard blocks pushing to a different account until confirmed', () async {
       await ledger.addEntry(
         _entry(
